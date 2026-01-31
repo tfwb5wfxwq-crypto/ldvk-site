@@ -180,17 +180,55 @@
       }
     }
 
+    /* Animation subtile en continu sur mobile */
     @media (hover: none) {
-      .logo span { cursor: default; }
-      .logo span:nth-child(1):hover,
-      .logo span:nth-child(2):hover,
-      .logo span:nth-child(3):hover,
-      .logo span:nth-child(4):hover {
-        transform: none;
-        filter: none;
-        background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+      .logo span {
+        cursor: default;
+        animation: float 3s ease-in-out infinite;
+      }
+      .logo span:nth-child(1) { animation-delay: 0s; }
+      .logo span:nth-child(2) { animation-delay: 0.2s; }
+      .logo span:nth-child(3) { animation-delay: 0.4s; }
+      .logo span:nth-child(4) { animation-delay: 0.6s; }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      .logo span.tapped {
+        animation: tap 0.5s ease-out;
+      }
+
+      .logo span:nth-child(1).tapped {
+        background: #6366f1;
         -webkit-background-clip: text;
         background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8));
+      }
+      .logo span:nth-child(2).tapped {
+        background: #ec4899;
+        -webkit-background-clip: text;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8));
+      }
+      .logo span:nth-child(3).tapped {
+        background: #10b981;
+        -webkit-background-clip: text;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.8));
+      }
+      .logo span:nth-child(4).tapped {
+        background: #f59e0b;
+        -webkit-background-clip: text;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.8));
+      }
+
+      @keyframes tap {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
       }
     }
   </style>
@@ -210,6 +248,16 @@
       <span>Digital</span>
     </div>
   </div>
+
+  <script>
+    // Tap effect on mobile
+    document.querySelectorAll('.logo span').forEach(letter => {
+      letter.addEventListener('touchstart', () => {
+        letter.classList.add('tapped');
+        setTimeout(() => letter.classList.remove('tapped'), 500);
+      });
+    });
+  </script>
 
 </body>
 </html>
