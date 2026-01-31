@@ -182,6 +182,16 @@
 
     @media (hover: none) {
       .logo span { cursor: default; }
+      .logo span:nth-child(1):hover,
+      .logo span:nth-child(2):hover,
+      .logo span:nth-child(3):hover,
+      .logo span:nth-child(4):hover {
+        transform: none;
+        filter: none;
+        background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
     }
   </style>
 </head>
