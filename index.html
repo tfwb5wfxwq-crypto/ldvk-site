@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LDVK — Studio</title>
-  <meta name="description" content="LDVK — Production vidéo et digital. Paris.">
+  <title>LDVK — Production Vidéo & Digital</title>
+  <meta name="description" content="LDVK — Agence de production vidéo et digitale.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>●</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -17,101 +17,151 @@
     body {
       background: #0a0a0a;
       color: #fff;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       min-height: 100vh;
       overflow: hidden;
     }
 
-    /* Container */
+    /* Gradient animé subtil en fond */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 60%);
+      animation: gradientShift 15s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
     .container {
       position: relative;
-      z-index: 10;
+      z-index: 1;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 2.5rem;
+      padding: 2rem;
     }
 
-    /* Logo */
+    /* Logo principal */
     .logo {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      cursor: default;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
       display: flex;
       gap: 0.02em;
     }
 
     .logo span {
       display: inline-block;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.5);
-      text-shadow: 0 0 0 transparent;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    /* Effet hover qui pète */
-    .logo:hover span:nth-child(1) {
-      transform: translateY(-20px) rotate(-12deg) scale(1.2);
-      color: #ff6b6b;
-      text-shadow: 0 0 60px #ff6b6b, 0 0 100px #ff6b6b;
+    .logo span:nth-child(1):hover {
+      color: #6366f1;
+      background: #6366f1;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transform: translateY(-12px) rotate(-8deg) scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6));
     }
-    .logo:hover span:nth-child(2) {
-      transform: translateY(18px) rotate(10deg) scale(1.3);
-      color: #4ecdc4;
-      text-shadow: 0 0 60px #4ecdc4, 0 0 100px #4ecdc4;
+
+    .logo span:nth-child(2):hover {
+      color: #ec4899;
+      background: #ec4899;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transform: translateY(-8px) rotate(6deg) scale(1.15);
+      filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.6));
     }
-    .logo:hover span:nth-child(3) {
-      transform: translateY(-25px) rotate(-8deg) scale(1.15);
-      color: #ffe66d;
-      text-shadow: 0 0 60px #ffe66d, 0 0 100px #ffe66d;
+
+    .logo span:nth-child(3):hover {
+      color: #10b981;
+      background: #10b981;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transform: translateY(-14px) rotate(-5deg) scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.6));
     }
-    .logo:hover span:nth-child(4) {
-      transform: translateY(15px) rotate(15deg) scale(1.25);
-      color: #a29bfe;
-      text-shadow: 0 0 60px #a29bfe, 0 0 100px #a29bfe;
+
+    .logo span:nth-child(4):hover {
+      color: #f59e0b;
+      background: #f59e0b;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transform: translateY(-10px) rotate(10deg) scale(1.12);
+      filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.6));
     }
 
     /* Tagline */
     .tagline {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255, 255, 255, 0.4);
+      display: flex;
+      gap: 2rem;
     }
 
     .tagline span {
-      transition: all 0.3s ease;
+      position: relative;
+      transition: color 0.3s ease;
     }
 
     .tagline span:hover {
-      color: #fff;
+      color: rgba(255, 255, 255, 0.9);
     }
 
-    /* Footer */
-    .footer {
-      position: fixed;
-      bottom: 1.5rem;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      color: rgba(255,255,255,0.15);
-      text-transform: uppercase;
+    .tagline span::before {
+      content: '';
+      position: absolute;
+      left: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
     }
 
-    /* Mobile */
+    .tagline span:first-child::before {
+      display: none;
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
       .tagline {
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 1rem;
         text-align: center;
+      }
+
+      .tagline span::before {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
+
+  <div class="bg-gradient"></div>
 
   <div class="container">
     <h1 class="logo">
@@ -120,12 +170,10 @@
 
     <div class="tagline">
       <span>Production</span>
-      <span>Video</span>
+      <span>Vidéo</span>
       <span>Digital</span>
     </div>
   </div>
-
-  <div class="footer">Paris</div>
 
 </body>
 </html>
