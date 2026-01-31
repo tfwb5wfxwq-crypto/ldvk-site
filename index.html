@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LDVK — Creative Studio</title>
-  <meta name="description" content="LDVK — Production vidéo, contenu digital et direction créative. Paris.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>LDVK — Studio</title>
+  <meta name="description" content="LDVK — Production vidéo et digital. Paris.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>●</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,92 +15,36 @@
     }
 
     body {
-      background: #0c0c0f;
+      background: #0a0a0a;
       color: #fff;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Syne', sans-serif;
       min-height: 100vh;
       overflow: hidden;
-      position: relative;
     }
 
-    /* Matrix-like code rain */
-    .code-bg {
+    /* Noise texture */
+    body::before {
+      content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.07;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #00ff88;
-      overflow: hidden;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03;
       pointer-events: none;
+      z-index: 100;
     }
 
-    .code-column {
-      position: absolute;
-      top: -100%;
-      animation: fall linear infinite;
-      white-space: nowrap;
-    }
-
-    @keyframes fall {
-      to { transform: translateY(200vh); }
-    }
-
-    /* Gradient orbs */
-    .orb {
+    /* Gradient blob */
+    .blob {
       position: fixed;
+      width: 50vw;
+      height: 50vw;
       border-radius: 50%;
-      filter: blur(100px);
-      z-index: 1;
+      background: radial-gradient(circle, rgba(80,80,80,0.15) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       pointer-events: none;
-    }
-
-    .orb-1 {
-      width: 400px;
-      height: 400px;
-      background: rgba(0, 255, 136, 0.08);
-      top: 10%;
-      right: 10%;
-      animation: float1 15s ease-in-out infinite;
-    }
-
-    .orb-2 {
-      width: 300px;
-      height: 300px;
-      background: rgba(100, 100, 255, 0.06);
-      bottom: 20%;
-      left: 10%;
-      animation: float2 20s ease-in-out infinite;
-    }
-
-    @keyframes float1 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-50px, 30px); }
-    }
-
-    @keyframes float2 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(30px, -40px); }
-    }
-
-    /* Grid pattern */
-    .grid-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: 1;
-      pointer-events: none;
+      z-index: 0;
     }
 
     /* Container */
@@ -112,117 +56,91 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      gap: 3rem;
     }
 
     /* Logo */
     .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(3rem, 10vw, 6rem);
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      margin-bottom: 2rem;
-      position: relative;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
       cursor: default;
+      position: relative;
+      display: flex;
+      gap: 0.1em;
     }
 
     .logo span {
       display: inline-block;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: typeIn 0.4s ease forwards;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  color 0.3s ease;
     }
 
-    .logo span:nth-child(1) { animation-delay: 0.1s; }
-    .logo span:nth-child(2) { animation-delay: 0.2s; }
-    .logo span:nth-child(3) { animation-delay: 0.3s; }
-    .logo span:nth-child(4) { animation-delay: 0.4s; }
-
-    @keyframes typeIn {
-      to { opacity: 1; transform: translateY(0); }
+    .logo:hover span:nth-child(1) {
+      transform: translateY(-8px) rotate(-5deg);
+      color: #ff6b6b;
     }
-
-    .logo::after {
-      content: '_';
-      animation: blink 1s step-end infinite;
-      color: #00ff88;
+    .logo:hover span:nth-child(2) {
+      transform: translateY(6px) rotate(3deg);
+      color: #4ecdc4;
     }
-
-    @keyframes blink {
-      50% { opacity: 0; }
+    .logo:hover span:nth-child(3) {
+      transform: translateY(-10px) rotate(-3deg);
+      color: #ffe66d;
     }
-
-    /* Hover effects */
-    .logo:hover span {
-      color: #00ff88;
-      text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-      transition: all 0.3s ease;
+    .logo:hover span:nth-child(4) {
+      transform: translateY(4px) rotate(6deg);
+      color: #a29bfe;
     }
 
     /* Tagline */
     .tagline {
       display: flex;
-      gap: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(0.65rem, 1.2vw, 0.8rem);
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.4);
-      opacity: 0;
-      animation: fadeIn 1s ease 0.8s forwards;
+      gap: 2rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
     }
 
-    .tagline span {
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-
-    .tagline span:hover {
-      border-color: #00ff88;
-      color: #00ff88;
-      background: rgba(0, 255, 136, 0.05);
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* Terminal-like footer */
+    /* Footer */
     .footer {
       position: fixed;
       bottom: 2rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.25);
-      opacity: 0;
-      animation: fadeIn 1s ease 1s forwards;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.2);
     }
 
-    .footer::before {
-      content: '> ';
-      color: #00ff88;
+    /* Animated border on hover for whole page */
+    .border-glow {
+      position: fixed;
+      inset: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.03);
+      pointer-events: none;
+      z-index: 50;
+      transition: border-color 0.5s ease;
+    }
+
+    body:hover .border-glow {
+      border-color: rgba(255,255,255,0.08);
     }
 
     /* Mobile */
     @media (max-width: 600px) {
       .tagline {
         flex-direction: column;
-        gap: 0.8rem;
-        align-items: center;
+        gap: 1rem;
+        text-align: center;
       }
-      .code-bg { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="grid-bg"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-
-  <div class="code-bg" id="codeBg"></div>
+  <div class="blob"></div>
+  <div class="border-glow"></div>
 
   <div class="container">
     <h1 class="logo">
@@ -230,35 +148,13 @@
     </h1>
 
     <div class="tagline">
-      <span>production</span>
-      <span>video</span>
-      <span>digital</span>
+      <span>Production</span>
+      <span>Video</span>
+      <span>Digital</span>
     </div>
   </div>
 
-  <div class="footer">paris.fr</div>
-
-  <script>
-    // Generate code rain
-    const codeBg = document.getElementById('codeBg');
-    const chars = '01アイウエオカキクケコサシスセソ{}[]<>/=+const let var function return async await import export';
-    const columns = 20;
-
-    for (let i = 0; i < columns; i++) {
-      const col = document.createElement('div');
-      col.className = 'code-column';
-      col.style.left = (i * (100 / columns)) + '%';
-      col.style.animationDuration = (10 + Math.random() * 20) + 's';
-      col.style.animationDelay = (Math.random() * -20) + 's';
-
-      let text = '';
-      for (let j = 0; j < 50; j++) {
-        text += chars[Math.floor(Math.random() * chars.length)] + '\n';
-      }
-      col.textContent = text;
-      codeBg.appendChild(col);
-    }
-  </script>
+  <div class="footer">Paris</div>
 
 </body>
 </html>
