@@ -549,14 +549,16 @@
 
   <script>
     // Nav logo shuffle effect
-    document.querySelector('.nav-logo').addEventListener('mouseenter', function() {
-      this.querySelectorAll('span').forEach(span => {
+    function shuffleLogo() {
+      document.querySelectorAll('.nav-logo span').forEach(span => {
         const x = (Math.random() - 0.5) * 30;
         const y = (Math.random() - 0.5) * 20;
         const rot = (Math.random() - 0.5) * 40;
         span.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
       });
-    });
+    }
+    shuffleLogo(); // Shuffle on load
+    document.querySelector('.nav-logo').addEventListener('mouseenter', shuffleLogo);
 
     // Translations
     const translations = {
