@@ -184,14 +184,33 @@
       color: #fff;
     }
 
+    .tagline-link.video {
+      background: linear-gradient(90deg, #6366f1, #ec4899, #a855f7, #6366f1);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientFlow 5s ease infinite;
+    }
+
     .tagline-link.video:hover {
-      color: #6366f1;
-      text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+      filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.6));
+      animation-duration: 1.5s;
+    }
+
+    .tagline-link.data {
+      background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6, #10b981);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientFlow 5s ease infinite;
+      animation-delay: -2.5s;
     }
 
     .tagline-link.data:hover {
-      color: #10b981;
-      text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+      filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6));
+      animation-duration: 1.5s;
     }
 
     .tagline-sep {
@@ -253,23 +272,21 @@
 
     .modal h2 {
       font-family: 'Clash Display', sans-serif;
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 2rem;
-      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+      background: linear-gradient(90deg, #6366f1, #ec4899, #10b981, #f59e0b, #6366f1);
+      background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       display: inline-block;
-      cursor: default;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: gradientFlow 4s ease infinite;
     }
 
-    .modal h2:hover {
-      background: linear-gradient(135deg, #6366f1, #ec4899, #10b981);
-      -webkit-background-clip: text;
-      background-clip: text;
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4));
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .modal p {
@@ -285,16 +302,50 @@
     }
 
     .modal li {
-      color: rgba(255,255,255,0.7);
-      padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.2rem;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
     }
 
-    .modal li span {
-      font-size: 1.3rem;
+    .modal li:hover {
+      padding-left: 0.5rem;
+    }
+
+    .modal li .icon {
+      font-size: 1.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .modal li:hover .icon {
+      background: rgba(99, 102, 241, 0.15);
+      transform: scale(1.1);
+    }
+
+    .modal li .text {
+      background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.3s ease;
+    }
+
+    .modal li:hover .text {
+      background: linear-gradient(90deg, #6366f1, #ec4899, #10b981);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: gradientFlow 2s ease infinite;
     }
 
     .contact-email {
@@ -369,11 +420,11 @@
       <h2>Production Vidéo</h2>
       <p>Création de contenus audiovisuels pour les marques et créateurs.</p>
       <ul>
-        <li><span>🎬</span> Spots publicitaires & films de marque</li>
-        <li><span>📱</span> Contenus social media (TikTok, Reels, Shorts)</li>
-        <li><span>🎙️</span> Podcasts vidéo & interviews</li>
-        <li><span>✨</span> Motion design & animation</li>
-        <li><span>🎥</span> Captation événementielle</li>
+        <li><span class="icon">🎬</span><span class="text">Spots publicitaires & films de marque</span></li>
+        <li><span class="icon">📱</span><span class="text">Contenus social media (TikTok, Reels, Shorts)</span></li>
+        <li><span class="icon">🎙️</span><span class="text">Podcasts vidéo & interviews</span></li>
+        <li><span class="icon">✨</span><span class="text">Motion design & animation</span></li>
+        <li><span class="icon">🎥</span><span class="text">Captation événementielle</span></li>
       </ul>
     </div>
   </div>
@@ -385,11 +436,11 @@
       <h2>Data & Analytics</h2>
       <p>Intelligence data pour comprendre et dominer votre marché.</p>
       <ul>
-        <li><span>📊</span> Analyse de performance — Vues, engagement, croissance</li>
-        <li><span>📈</span> Veille marché — Tendances, formats, algorithmes</li>
-        <li><span>🔍</span> Intelligence concurrentielle — Benchmarking, stratégies</li>
-        <li><span>🎯</span> Études d'audience — Niches, opportunités, timing</li>
-        <li><span>🤖</span> Reporting automatisé — Dashboards temps réel</li>
+        <li><span class="icon">📊</span><span class="text">Analyse de performance — Vues, engagement, croissance</span></li>
+        <li><span class="icon">📈</span><span class="text">Veille marché — Tendances, formats, algorithmes</span></li>
+        <li><span class="icon">🔍</span><span class="text">Intelligence concurrentielle — Benchmarking, stratégies</span></li>
+        <li><span class="icon">🎯</span><span class="text">Études d'audience — Niches, opportunités, timing</span></li>
+        <li><span class="icon">🤖</span><span class="text">Reporting automatisé — Dashboards temps réel</span></li>
       </ul>
     </div>
   </div>
@@ -401,12 +452,12 @@
       <h2>Tous nos services</h2>
       <p>LDVK combine production audiovisuelle et intelligence data.</p>
       <ul>
-        <li><span>🎬</span> Production Vidéo — Spots, films, contenus social media</li>
-        <li><span>📊</span> Analyse de Performance — Vues, engagement, métriques</li>
-        <li><span>📈</span> Veille Marché — Tendances, formats, benchmarking</li>
-        <li><span>🔍</span> Intelligence Concurrentielle — Données publiques</li>
-        <li><span>🎯</span> Études de Marché — Audiences, niches, opportunités</li>
-        <li><span>🤖</span> Reporting Automatisé — Tableaux de bord, alertes</li>
+        <li><span class="icon">🎬</span><span class="text">Production Vidéo — Spots, films, contenus social media</span></li>
+        <li><span class="icon">📊</span><span class="text">Analyse de Performance — Vues, engagement, métriques</span></li>
+        <li><span class="icon">📈</span><span class="text">Veille Marché — Tendances, formats, benchmarking</span></li>
+        <li><span class="icon">🔍</span><span class="text">Intelligence Concurrentielle — Données publiques</span></li>
+        <li><span class="icon">🎯</span><span class="text">Études de Marché — Audiences, niches, opportunités</span></li>
+        <li><span class="icon">🤖</span><span class="text">Reporting Automatisé — Tableaux de bord, alertes</span></li>
       </ul>
     </div>
   </div>
