@@ -563,13 +563,21 @@
 
   <script>
     // Nav logo shuffle effect
+    let logoTimeout;
     function shuffleLogo() {
+      clearTimeout(logoTimeout);
       document.querySelectorAll('.nav-logo span').forEach(span => {
         const x = (Math.random() - 0.5) * 30;
         const y = (Math.random() - 0.5) * 20;
         const rot = (Math.random() - 0.5) * 40;
         span.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
       });
+      // Reset after 3 seconds
+      logoTimeout = setTimeout(() => {
+        document.querySelectorAll('.nav-logo span').forEach(span => {
+          span.style.transform = 'translate(0, 0) rotate(0deg)';
+        });
+      }, 3000);
     }
     shuffleLogo(); // Shuffle on load
     document.querySelector('.nav-logo').addEventListener('mouseenter', shuffleLogo);
