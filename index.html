@@ -446,35 +446,23 @@
       bottom: 2rem;
       left: 0;
       width: 100%;
-      overflow: hidden;
       z-index: 10;
-    }
-
-    .logo-track {
       display: flex;
-      gap: 4rem;
-      animation: scroll 20s linear infinite;
-      width: max-content;
+      justify-content: center;
+      gap: 3rem;
+      padding: 0 2rem;
     }
 
-    .logo-track span {
-      opacity: 0.2;
-      transition: opacity 0.3s;
-      white-space: nowrap;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #fff;
+    .logo-carousel img {
+      height: 22px;
+      opacity: 0.15;
+      filter: brightness(0) invert(1);
+      transition: all 0.4s ease;
     }
 
-    .logo-track span:hover {
-      opacity: 0.5;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .logo-carousel img:hover {
+      opacity: 0.4;
+      transform: translateY(-2px);
     }
 
     /* Mobile */
@@ -529,20 +517,13 @@
 
   <!-- Logo Carousel -->
   <div class="logo-carousel">
-    <div class="logo-track">
-      <span>WINAMAX</span>
-      <span>LA POSTE</span>
-      <span>WEBEDIA</span>
-      <span>MACIF</span>
-      <span>TERRY'S</span>
-      <span>FRANCE TV</span>
-      <span>WINAMAX</span>
-      <span>LA POSTE</span>
-      <span>WEBEDIA</span>
-      <span>MACIF</span>
-      <span>TERRY'S</span>
-      <span>FRANCE TV</span>
-    </div>
+    <img src="logos/winamax.png" alt="Winamax">
+    <img src="logos/laposte.png" alt="La Poste">
+    <img src="logos/webedia.png" alt="Webedia">
+    <img src="logos/macif.png" alt="Macif">
+    <img src="logos/francetv.png" alt="France TV">
+    <img src="logos/terrys.svg" alt="Terry's">
+    <img src="logos/coc.svg" alt="Court ou Crève">
   </div>
 
   <!-- Modal Video -->
