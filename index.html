@@ -440,6 +440,45 @@
       box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
     }
 
+    /* Logo Carousel */
+    .logo-carousel {
+      position: fixed;
+      bottom: 2rem;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .logo-track {
+      display: flex;
+      gap: 4rem;
+      animation: scroll 20s linear infinite;
+      width: max-content;
+    }
+
+    .logo-track img,
+    .logo-track span {
+      height: 24px;
+      opacity: 0.15;
+      filter: grayscale(100%) brightness(10);
+      transition: opacity 0.3s;
+      white-space: nowrap;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .logo-track span:hover,
+    .logo-track img:hover {
+      opacity: 0.4;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -489,6 +528,22 @@
       <span class="tagline-link data" onclick="openModal('data')" data-i18n="tagline.data">Data</span>
     </p>
   </section>
+
+  <!-- Logo Carousel -->
+  <div class="logo-carousel">
+    <div class="logo-track">
+      <span>WINAMAX</span>
+      <span>LA POSTE</span>
+      <span>WEBEDIA</span>
+      <span>MACIF</span>
+      <span>TERRY'S</span>
+      <span>WINAMAX</span>
+      <span>LA POSTE</span>
+      <span>WEBEDIA</span>
+      <span>MACIF</span>
+      <span>TERRY'S</span>
+    </div>
+  </div>
 
   <!-- Modal Video -->
   <div class="modal" id="modal-video">
