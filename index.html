@@ -83,6 +83,26 @@
       text-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
     }
 
+    .lang-toggle {
+      margin-left: 2rem;
+      padding: 0.4rem 0.8rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-color: rgba(255,255,255,0.2);
+    }
+
     /* Hero */
     .hero {
       position: relative;
@@ -420,9 +440,10 @@
   <nav>
     <div class="nav-logo">LDVK</div>
     <div class="nav-links">
-      <a onclick="openModal('services')">Services</a>
-      <a onclick="openModal('about')">À propos</a>
-      <a onclick="openModal('contact')">Contact</a>
+      <a onclick="openModal('services')" data-i18n="nav.services">Services</a>
+      <a onclick="openModal('about')" data-i18n="nav.about">À propos</a>
+      <a onclick="openModal('contact')" data-i18n="nav.contact">Contact</a>
+      <button class="lang-toggle" onclick="toggleLang()">EN</button>
     </div>
   </nav>
 
@@ -431,9 +452,9 @@
       <span>L</span><span>D</span><span>V</span><span>K</span>
     </h1>
     <p class="tagline">
-      <span class="tagline-link video" onclick="openModal('video')">Production Vidéo</span>
+      <span class="tagline-link video" onclick="openModal('video')" data-i18n="tagline.video">Production Vidéo</span>
       <span class="tagline-sep">&</span>
-      <span class="tagline-link data" onclick="openModal('data')">Data</span>
+      <span class="tagline-link data" onclick="openModal('data')" data-i18n="tagline.data">Data</span>
     </p>
   </section>
 
@@ -441,14 +462,14 @@
   <div class="modal" id="modal-video">
     <button class="modal-close" onclick="closeModal('video')">×</button>
     <div class="modal-content">
-      <h2>Production Vidéo</h2>
-      <p>Création de contenus audiovisuels pour les marques et créateurs.</p>
+      <h2 data-i18n="video.title">Production Vidéo</h2>
+      <p data-i18n="video.desc">Création de contenus audiovisuels pour les marques et créateurs.</p>
       <ul>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v8"/></svg></span><span class="text">Spots publicitaires & films de marque</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span class="text">Contenus social media (TikTok, Reels, Shorts)</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span><span class="text">Podcasts vidéo & interviews</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg></span><span class="text">Motion design & animation</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M15 2H9a1 1 0 0 0-1 1v2c0 .6.4 1 1 1h6c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1Z"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><circle cx="12" cy="13" r="4"/></svg></span><span class="text">Captation événementielle</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v8"/></svg></span><span class="text" data-i18n="video.1">Spots publicitaires & films de marque</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span class="text" data-i18n="video.2">Contenus social media (TikTok, Reels, Shorts)</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span><span class="text" data-i18n="video.3">Podcasts vidéo & interviews</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg></span><span class="text" data-i18n="video.4">Motion design & animation</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M15 2H9a1 1 0 0 0-1 1v2c0 .6.4 1 1 1h6c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1Z"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><circle cx="12" cy="13" r="4"/></svg></span><span class="text" data-i18n="video.5">Captation événementielle</span></li>
       </ul>
     </div>
   </div>
@@ -457,14 +478,14 @@
   <div class="modal" id="modal-data">
     <button class="modal-close" onclick="closeModal('data')">×</button>
     <div class="modal-content">
-      <h2>Data & Analytics</h2>
-      <p>Intelligence data pour comprendre et dominer votre marché.</p>
+      <h2 data-i18n="data.title">Data & Analytics</h2>
+      <p data-i18n="data.desc">Intelligence data pour comprendre et dominer votre marché.</p>
       <ul>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="text">Analyse de performance — Vues, engagement, croissance</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span><span class="text">Veille marché — Tendances, formats, algorithmes</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><span class="text">Intelligence concurrentielle — Benchmarking, stratégies</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="text">Études d'audience — Niches, opportunités, timing</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><path d="M8 16h.01"/><path d="M16 16h.01"/></svg></span><span class="text">Reporting automatisé — Dashboards temps réel</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="text" data-i18n="data.1">Analyse de performance — Vues, engagement, croissance</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span><span class="text" data-i18n="data.2">Veille marché — Tendances, formats, algorithmes</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><span class="text" data-i18n="data.3">Intelligence concurrentielle — Benchmarking, stratégies</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="text" data-i18n="data.4">Études d'audience — Niches, opportunités, timing</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><path d="M8 16h.01"/><path d="M16 16h.01"/></svg></span><span class="text" data-i18n="data.5">Reporting automatisé — Dashboards temps réel</span></li>
       </ul>
     </div>
   </div>
@@ -473,15 +494,15 @@
   <div class="modal" id="modal-services">
     <button class="modal-close" onclick="closeModal('services')">×</button>
     <div class="modal-content">
-      <h2>Tous nos services</h2>
-      <p>LDVK combine production audiovisuelle et intelligence data.</p>
+      <h2 data-i18n="services.title">Tous nos services</h2>
+      <p data-i18n="services.desc">LDVK combine production audiovisuelle et intelligence data.</p>
       <ul>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v8"/></svg></span><span class="text">Production Vidéo — Spots, films, contenus social media</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="text">Analyse de Performance — Vues, engagement, métriques</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span><span class="text">Veille Marché — Tendances, formats, benchmarking</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><span class="text">Intelligence Concurrentielle — Données publiques</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="text">Études de Marché — Audiences, niches, opportunités</span></li>
-        <li><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><path d="M8 16h.01"/><path d="M16 16h.01"/></svg></span><span class="text">Reporting Automatisé — Tableaux de bord, alertes</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v8"/></svg></span><span class="text" data-i18n="services.1">Production Vidéo — Spots, films, contenus social media</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="text" data-i18n="services.2">Analyse de Performance — Vues, engagement, métriques</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span><span class="text" data-i18n="services.3">Veille Marché — Tendances, formats, benchmarking</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><span class="text" data-i18n="services.4">Intelligence Concurrentielle — Données publiques</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="text" data-i18n="services.5">Études de Marché — Audiences, niches, opportunités</span></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><path d="M8 16h.01"/><path d="M16 16h.01"/></svg></span><span class="text" data-i18n="services.6">Reporting Automatisé — Tableaux de bord, alertes</span></li>
       </ul>
     </div>
   </div>
@@ -490,11 +511,11 @@
   <div class="modal" id="modal-about">
     <button class="modal-close" onclick="closeModal('about')">×</button>
     <div class="modal-content">
-      <h2>À propos</h2>
-      <p>LDVK est une agence française spécialisée dans la production audiovisuelle et l'analyse du marché vidéo.</p>
-      <p>Notre expertise en collecte et analyse de données nous permet de monitorer les performances, suivre les tendances et identifier les opportunités sur l'ensemble des plateformes vidéo.</p>
-      <p>Nous agrégeons des données publiques pour fournir des insights actionnables à nos clients — agences, marques et créateurs de contenu.</p>
-      <p style="margin-top: 2rem; color: rgba(255,255,255,0.4); font-size: 0.9rem;">Basés en France — Actifs depuis 2019</p>
+      <h2 data-i18n="about.title">À propos</h2>
+      <p data-i18n="about.1">LDVK est une agence française spécialisée dans la production audiovisuelle et l'analyse du marché vidéo.</p>
+      <p data-i18n="about.2">Notre expertise en collecte et analyse de données nous permet de monitorer les performances, suivre les tendances et identifier les opportunités sur l'ensemble des plateformes vidéo.</p>
+      <p data-i18n="about.3">Nous agrégeons des données publiques pour fournir des insights actionnables à nos clients — agences, marques et créateurs de contenu.</p>
+      <p style="margin-top: 2rem; color: rgba(255,255,255,0.4); font-size: 0.9rem;" data-i18n="about.4">Basés en France — Actifs depuis 2019</p>
     </div>
   </div>
 
@@ -502,13 +523,119 @@
   <div class="modal" id="modal-contact">
     <button class="modal-close" onclick="closeModal('contact')">×</button>
     <div class="modal-content">
-      <h2>Contact</h2>
-      <p>Un projet ? Une question sur nos services d'analyse ou de production ?</p>
+      <h2 data-i18n="contact.title">Contact</h2>
+      <p data-i18n="contact.desc">Un projet ? Une question sur nos services d'analyse ou de production ?</p>
       <a href="mailto:contact@ldvk.fr" class="contact-email">contact@ldvk.fr</a>
     </div>
   </div>
 
   <script>
+    // Translations
+    const translations = {
+      fr: {
+        'nav.services': 'Services',
+        'nav.about': 'À propos',
+        'nav.contact': 'Contact',
+        'tagline.video': 'Production Vidéo',
+        'tagline.data': 'Data',
+        'video.title': 'Production Vidéo',
+        'video.desc': 'Création de contenus audiovisuels pour les marques et créateurs.',
+        'video.1': 'Spots publicitaires & films de marque',
+        'video.2': 'Contenus social media (TikTok, Reels, Shorts)',
+        'video.3': 'Podcasts vidéo & interviews',
+        'video.4': 'Motion design & animation',
+        'video.5': 'Captation événementielle',
+        'data.title': 'Data & Analytics',
+        'data.desc': 'Intelligence data pour comprendre et dominer votre marché.',
+        'data.1': 'Analyse de performance — Vues, engagement, croissance',
+        'data.2': 'Veille marché — Tendances, formats, algorithmes',
+        'data.3': 'Intelligence concurrentielle — Benchmarking, stratégies',
+        'data.4': 'Études d\'audience — Niches, opportunités, timing',
+        'data.5': 'Reporting automatisé — Dashboards temps réel',
+        'services.title': 'Tous nos services',
+        'services.desc': 'LDVK combine production audiovisuelle et intelligence data.',
+        'services.1': 'Production Vidéo — Spots, films, contenus social media',
+        'services.2': 'Analyse de Performance — Vues, engagement, métriques',
+        'services.3': 'Veille Marché — Tendances, formats, benchmarking',
+        'services.4': 'Intelligence Concurrentielle — Données publiques',
+        'services.5': 'Études de Marché — Audiences, niches, opportunités',
+        'services.6': 'Reporting Automatisé — Tableaux de bord, alertes',
+        'about.title': 'À propos',
+        'about.1': 'LDVK est une agence française spécialisée dans la production audiovisuelle et l\'analyse du marché vidéo.',
+        'about.2': 'Notre expertise en collecte et analyse de données nous permet de monitorer les performances, suivre les tendances et identifier les opportunités sur l\'ensemble des plateformes vidéo.',
+        'about.3': 'Nous agrégeons des données publiques pour fournir des insights actionnables à nos clients — agences, marques et créateurs de contenu.',
+        'about.4': 'Basés en France — Actifs depuis 2019',
+        'contact.title': 'Contact',
+        'contact.desc': 'Un projet ? Une question sur nos services d\'analyse ou de production ?'
+      },
+      en: {
+        'nav.services': 'Services',
+        'nav.about': 'About',
+        'nav.contact': 'Contact',
+        'tagline.video': 'Video Production',
+        'tagline.data': 'Data',
+        'video.title': 'Video Production',
+        'video.desc': 'Creating audiovisual content for brands and creators.',
+        'video.1': 'Commercials & brand films',
+        'video.2': 'Social media content (TikTok, Reels, Shorts)',
+        'video.3': 'Video podcasts & interviews',
+        'video.4': 'Motion design & animation',
+        'video.5': 'Event coverage',
+        'data.title': 'Data & Analytics',
+        'data.desc': 'Data intelligence to understand and dominate your market.',
+        'data.1': 'Performance analysis — Views, engagement, growth',
+        'data.2': 'Market watch — Trends, formats, algorithms',
+        'data.3': 'Competitive intelligence — Benchmarking, strategies',
+        'data.4': 'Audience studies — Niches, opportunities, timing',
+        'data.5': 'Automated reporting — Real-time dashboards',
+        'services.title': 'All our services',
+        'services.desc': 'LDVK combines audiovisual production and data intelligence.',
+        'services.1': 'Video Production — Commercials, films, social content',
+        'services.2': 'Performance Analysis — Views, engagement, metrics',
+        'services.3': 'Market Watch — Trends, formats, benchmarking',
+        'services.4': 'Competitive Intelligence — Public data',
+        'services.5': 'Market Studies — Audiences, niches, opportunities',
+        'services.6': 'Automated Reporting — Dashboards, alerts',
+        'about.title': 'About',
+        'about.1': 'LDVK is a French agency specialized in audiovisual production and video market analysis.',
+        'about.2': 'Our expertise in data collection and analysis allows us to monitor performance, track trends and identify opportunities across all video platforms.',
+        'about.3': 'We aggregate public data to provide actionable insights to our clients — agencies, brands and content creators.',
+        'about.4': 'Based in France — Active since 2019',
+        'contact.title': 'Contact',
+        'contact.desc': 'Have a project? A question about our analysis or production services?'
+      }
+    };
+
+    let currentLang = 'fr';
+
+    function detectLanguage() {
+      const stored = localStorage.getItem('ldvk-lang');
+      if (stored) return stored;
+      const browserLang = navigator.language.slice(0, 2);
+      return browserLang === 'fr' ? 'fr' : 'en';
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('ldvk-lang', lang);
+      document.documentElement.lang = lang;
+
+      // Update toggle button
+      document.querySelector('.lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+
+      // Update all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    function toggleLang() {
+      setLanguage(currentLang === 'fr' ? 'en' : 'fr');
+    }
+
     function openModal(name) {
       document.getElementById('modal-' + name).classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -539,6 +666,10 @@
       });
     });
 
+    // Initialize language on load
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(detectLanguage());
+    });
   </script>
 
 
