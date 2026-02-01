@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LDVK — Production Vidéo & Digital</title>
-  <meta name="description" content="LDVK — Agence de production vidéo et digitale.">
+  <title>LDVK — Production Vidéo & Consulting Digital</title>
+  <meta name="description" content="LDVK — Agence de production vidéo et analyse de marché. Performance vidéo, veille concurrentielle, études de marché audiovisuel.">
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ldvk.fr/">
-  <meta property="og:title" content="LDVK — Production Vidéo & Digital">
-  <meta property="og:description" content="Agence de production vidéo et digitale.">
+  <meta property="og:title" content="LDVK — Production Vidéo & Consulting Digital">
+  <meta property="og:description" content="Agence de production vidéo et consulting digital. Veille concurrentielle, études de marché, analyse de données.">
   <meta property="og:image" content="https://ldvk.fr/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -18,12 +18,11 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://ldvk.fr/">
-  <meta name="twitter:title" content="LDVK — Production Vidéo & Digital">
-  <meta name="twitter:description" content="Agence de production vidéo et digitale.">
+  <meta name="twitter:title" content="LDVK — Production Vidéo & Consulting Digital">
+  <meta name="twitter:description" content="Agence de production vidéo et consulting digital.">
   <meta name="twitter:image" content="https://ldvk.fr/og-image.png">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -37,7 +36,7 @@
       color: #fff;
       font-family: 'Space Grotesk', sans-serif;
       min-height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .bg-gradient {
@@ -50,15 +49,47 @@
         radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 60%);
-      animation: gradientShift 15s ease-in-out infinite;
+      z-index: 0;
     }
 
-    @keyframes gradientShift {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.1); }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
     }
 
-    .container {
+    .header-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
       position: relative;
       z-index: 1;
       min-height: 100vh;
@@ -67,6 +98,7 @@
       justify-content: center;
       align-items: center;
       padding: 2rem;
+      text-align: center;
     }
 
     .logo {
@@ -79,156 +111,220 @@
 
     .logo span {
       display: inline-block;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .logo span:nth-child(1):hover {
-      background: #6366f1;
-      -webkit-background-clip: text;
-      background-clip: text;
-      transform: translateY(-12px) rotate(-8deg) scale(1.1);
-      filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6));
-    }
-
-    .logo span:nth-child(2):hover {
-      background: #ec4899;
-      -webkit-background-clip: text;
-      background-clip: text;
-      transform: translateY(-8px) rotate(6deg) scale(1.15);
-      filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.6));
-    }
-
-    .logo span:nth-child(3):hover {
-      background: #10b981;
-      -webkit-background-clip: text;
-      background-clip: text;
-      transform: translateY(-14px) rotate(-5deg) scale(1.1);
-      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.6));
-    }
-
-    .logo span:nth-child(4):hover {
-      background: #f59e0b;
-      -webkit-background-clip: text;
-      background-clip: text;
-      transform: translateY(-10px) rotate(10deg) scale(1.12);
-      filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.6));
-    }
-
     .tagline {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4);
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
       display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, #a0a0a0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    /* About */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
     }
 
-    .tagline span {
+    .stat {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.5rem;
+    }
+
+    /* Contact */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-email {
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .contact-email:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Footer */
+    footer {
       position: relative;
-      transition: color 0.3s ease;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
     }
 
-    .tagline span:hover {
-      color: rgba(255, 255, 255, 0.9);
+    footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
     }
 
-    .tagline span::before {
-      content: '';
-      position: absolute;
-      left: -1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: currentColor;
-      opacity: 0.5;
-    }
-
-    .tagline span:first-child::before {
-      display: none;
-    }
-
+    /* Responsive */
     @media (max-width: 768px) {
-      .container { padding: 1.5rem; }
-      .logo { font-size: clamp(2.5rem, 15vw, 4rem); }
-      .tagline { margin-top: 1.5rem; font-size: 0.75rem; gap: 1.5rem; }
-    }
+      header {
+        padding: 1rem 1.5rem;
+      }
 
-    @media (max-width: 480px) {
-      .logo { font-size: clamp(2rem, 18vw, 3.5rem); }
-      .tagline {
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-cta {
         flex-direction: column;
-        gap: 0.8rem;
-        text-align: center;
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-      }
-      .tagline span::before { display: none; }
-      .logo span:nth-child(1):hover,
-      .logo span:nth-child(2):hover,
-      .logo span:nth-child(3):hover,
-      .logo span:nth-child(4):hover {
-        transform: scale(1.1);
-      }
-    }
-
-    /* Animation subtile en continu sur mobile */
-    @media (hover: none) {
-      .logo span {
-        cursor: default;
-        animation: float 3s ease-in-out infinite;
-      }
-      .logo span:nth-child(1) { animation-delay: 0s; }
-      .logo span:nth-child(2) { animation-delay: 0.2s; }
-      .logo span:nth-child(3) { animation-delay: 0.4s; }
-      .logo span:nth-child(4) { animation-delay: 0.6s; }
-
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
       }
 
-      .logo span.tapped {
-        animation: tap 0.5s ease-out;
-      }
-
-      .logo span:nth-child(1).tapped {
-        background: #6366f1;
-        -webkit-background-clip: text;
-        background-clip: text;
-        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8));
-      }
-      .logo span:nth-child(2).tapped {
-        background: #ec4899;
-        -webkit-background-clip: text;
-        background-clip: text;
-        filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8));
-      }
-      .logo span:nth-child(3).tapped {
-        background: #10b981;
-        -webkit-background-clip: text;
-        background-clip: text;
-        filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.8));
-      }
-      .logo span:nth-child(4).tapped {
-        background: #f59e0b;
-        -webkit-background-clip: text;
-        background-clip: text;
-        filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.8));
-      }
-
-      @keyframes tap {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
+      section {
+        padding: 4rem 1.5rem;
       }
     }
   </style>
@@ -237,27 +333,110 @@
 
   <div class="bg-gradient"></div>
 
-  <div class="container">
+  <header>
+    <div class="header-logo">LDVK</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
     <h1 class="logo">
       <span>L</span><span>D</span><span>V</span><span>K</span>
     </h1>
-
-    <div class="tagline">
-      <span>Production</span>
-      <span>Vidéo</span>
-      <span>Digital</span>
+    <p class="tagline">Production vidéo et analyse de marché. Nous accompagnons les marques et créateurs avec des données de performance et des insights concurrentiels.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Nous contacter</a>
+      <a href="#services" class="btn btn-outline">Nos services</a>
     </div>
-  </div>
+  </section>
 
-  <script>
-    // Tap effect on mobile
-    document.querySelectorAll('.logo span').forEach(letter => {
-      letter.addEventListener('touchstart', () => {
-        letter.classList.add('tapped');
-        setTimeout(() => letter.classList.remove('tapped'), 500);
-      });
-    });
-  </script>
+  <section id="services">
+    <h2 class="section-title">Nos services</h2>
+    <p class="section-subtitle">De la production audiovisuelle à l'analyse de données, nous couvrons tous vos besoins digitaux.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎬</div>
+        <h3>Production Vidéo</h3>
+        <p>Création de contenus audiovisuels pour les marques : spots publicitaires, films corporate, contenus pour les réseaux sociaux.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Analyse de Performance</h3>
+        <p>Suivi des vues, engagement et métriques clés sur toutes les plateformes vidéo. Benchmarking concurrentiel et rapports de performance.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h3>Veille Marché Vidéo</h3>
+        <p>Monitoring des tendances du marché audiovisuel : formats populaires, créateurs émergents, évolution des algorithmes et best practices.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3>Intelligence Concurrentielle</h3>
+        <p>Collecte et analyse de données publiques sur vos concurrents : stratégies de contenu, fréquence de publication, taux d'engagement.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3>Études de Marché</h3>
+        <p>Recherche approfondie sur les audiences, les niches et les opportunités. Données agrégées pour orienter votre stratégie de contenu.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>Automatisation & Reporting</h3>
+        <p>Tableaux de bord automatisés, alertes personnalisées et rapports récurrents pour suivre l'évolution du marché en temps réel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">À propos</h2>
+    <p class="section-subtitle">Une agence hybride alliant création et technologie.</p>
+
+    <div class="about-content">
+      <div class="about-text">
+        <p>LDVK est une agence française spécialisée dans la production audiovisuelle et l'analyse du marché vidéo. Nous combinons création de contenu et intelligence data pour accompagner les marques et créateurs.</p>
+        <p>Notre expertise en collecte et analyse de données nous permet de monitorer les performances, suivre les tendances et identifier les opportunités sur l'ensemble des plateformes vidéo. Nous agrégeons des données publiques pour fournir des insights actionnables.</p>
+        <p>Basés en France, nous travaillons avec des agences, des marques et des créateurs de contenu de toutes tailles.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Projets réalisés</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">2019</div>
+          <div class="stat-label">Année de création</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Clients satisfaits</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Monitoring data</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">Un projet ? Une question ? N'hésitez pas à nous contacter.</p>
+    <a href="mailto:contact@ldvk.fr" class="contact-email">contact@ldvk.fr</a>
+  </section>
+
+  <footer>
+    <p>© 2026 LDVK — Production Vidéo & Consulting Digital</p>
+    <p style="margin-top: 0.5rem;">France</p>
+  </footer>
 
 </body>
 </html>
