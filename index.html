@@ -224,20 +224,36 @@
       font-size: 2rem;
       color: rgba(255,255,255,0.5);
       cursor: pointer;
-      transition: color 0.3s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: none;
       border: none;
     }
 
-    .modal-close:hover { color: #fff; }
+    .modal-close:hover {
+      color: #ec4899;
+      transform: rotate(90deg) scale(1.2);
+      filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6));
+    }
 
     .modal h2 {
+      font-family: 'Clash Display', sans-serif;
       font-size: 2rem;
       margin-bottom: 2rem;
-      background: linear-gradient(135deg, #6366f1, #ec4899);
+      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      display: inline-block;
+      cursor: default;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal h2:hover {
+      background: linear-gradient(135deg, #6366f1, #ec4899, #10b981);
+      -webkit-background-clip: text;
+      background-clip: text;
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4));
     }
 
     .modal p {
@@ -334,7 +350,7 @@
   <div class="modal" id="modal-video">
     <button class="modal-close" onclick="closeModal('video')">×</button>
     <div class="modal-content">
-      <h2 style="background: linear-gradient(135deg, #6366f1, #818cf8); -webkit-background-clip: text; background-clip: text;">Production Vidéo</h2>
+      <h2>Production Vidéo</h2>
       <p>Création de contenus audiovisuels pour les marques et créateurs.</p>
       <ul>
         <li><span>🎬</span> Spots publicitaires & films de marque</li>
@@ -350,7 +366,7 @@
   <div class="modal" id="modal-data">
     <button class="modal-close" onclick="closeModal('data')">×</button>
     <div class="modal-content">
-      <h2 style="background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip: text; background-clip: text;">Data & Analytics</h2>
+      <h2>Data & Analytics</h2>
       <p>Intelligence data pour comprendre et dominer votre marché.</p>
       <ul>
         <li><span>📊</span> Analyse de performance — Vues, engagement, croissance</li>
