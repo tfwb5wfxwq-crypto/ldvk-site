@@ -327,37 +327,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.1));
+      background: rgba(255,255,255,0.05);
       border-radius: 12px;
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       flex-shrink: 0;
+      font-size: 1.3rem;
+      filter: grayscale(1) opacity(0.5);
     }
-
-    .modal li .icon svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      stroke: url(#iconGradient);
-      stroke-width: 2;
-    }
-
-    .modal li:nth-child(1) .icon { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05)); }
-    .modal li:nth-child(2) .icon { background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.05)); }
-    .modal li:nth-child(3) .icon { background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05)); }
-    .modal li:nth-child(4) .icon { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05)); }
-    .modal li:nth-child(5) .icon { background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.05)); }
-    .modal li:nth-child(6) .icon { background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.05)); }
-
-    .modal li:nth-child(1) .icon svg { color: #6366f1; }
-    .modal li:nth-child(2) .icon svg { color: #ec4899; }
-    .modal li:nth-child(3) .icon svg { color: #10b981; }
-    .modal li:nth-child(4) .icon svg { color: #f59e0b; }
-    .modal li:nth-child(5) .icon svg { color: #06b6d4; }
-    .modal li:nth-child(6) .icon svg { color: #a855f7; }
 
     .modal li:hover .icon {
-      transform: scale(1.15) rotate(-5deg);
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+      filter: grayscale(0) opacity(1);
+      transform: scale(1.2);
     }
+
+    .modal li:nth-child(1):hover .icon { background: rgba(99, 102, 241, 0.2); box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+    .modal li:nth-child(2):hover .icon { background: rgba(236, 72, 153, 0.2); box-shadow: 0 0 20px rgba(236, 72, 153, 0.4); }
+    .modal li:nth-child(3):hover .icon { background: rgba(16, 185, 129, 0.2); box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+    .modal li:nth-child(4):hover .icon { background: rgba(245, 158, 11, 0.2); box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+    .modal li:nth-child(5):hover .icon { background: rgba(6, 182, 212, 0.2); box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); }
+    .modal li:nth-child(6):hover .icon { background: rgba(168, 85, 247, 0.2); box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
 
     .modal li .text {
       background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.6) 100%);
@@ -447,11 +435,11 @@
       <h2>Production Vidéo</h2>
       <p>Création de contenus audiovisuels pour les marques et créateurs.</p>
       <ul>
-        <li><span class="icon"><i data-lucide="clapperboard"></i></span><span class="text">Spots publicitaires & films de marque</span></li>
-        <li><span class="icon"><i data-lucide="smartphone"></i></span><span class="text">Contenus social media (TikTok, Reels, Shorts)</span></li>
-        <li><span class="icon"><i data-lucide="mic"></i></span><span class="text">Podcasts vidéo & interviews</span></li>
-        <li><span class="icon"><i data-lucide="sparkles"></i></span><span class="text">Motion design & animation</span></li>
-        <li><span class="icon"><i data-lucide="video"></i></span><span class="text">Captation événementielle</span></li>
+        <li><span class="icon">🎬</span><span class="text">Spots publicitaires & films de marque</span></li>
+        <li><span class="icon">📱</span><span class="text">Contenus social media (TikTok, Reels, Shorts)</span></li>
+        <li><span class="icon">🎙️</span><span class="text">Podcasts vidéo & interviews</span></li>
+        <li><span class="icon">✨</span><span class="text">Motion design & animation</span></li>
+        <li><span class="icon">🎥</span><span class="text">Captation événementielle</span></li>
       </ul>
     </div>
   </div>
@@ -463,11 +451,11 @@
       <h2>Data & Analytics</h2>
       <p>Intelligence data pour comprendre et dominer votre marché.</p>
       <ul>
-        <li><span class="icon"><i data-lucide="bar-chart-3"></i></span><span class="text">Analyse de performance — Vues, engagement, croissance</span></li>
-        <li><span class="icon"><i data-lucide="trending-up"></i></span><span class="text">Veille marché — Tendances, formats, algorithmes</span></li>
-        <li><span class="icon"><i data-lucide="search"></i></span><span class="text">Intelligence concurrentielle — Benchmarking, stratégies</span></li>
-        <li><span class="icon"><i data-lucide="target"></i></span><span class="text">Études d'audience — Niches, opportunités, timing</span></li>
-        <li><span class="icon"><i data-lucide="bot"></i></span><span class="text">Reporting automatisé — Dashboards temps réel</span></li>
+        <li><span class="icon">📊</span><span class="text">Analyse de performance — Vues, engagement, croissance</span></li>
+        <li><span class="icon">📈</span><span class="text">Veille marché — Tendances, formats, algorithmes</span></li>
+        <li><span class="icon">🔍</span><span class="text">Intelligence concurrentielle — Benchmarking, stratégies</span></li>
+        <li><span class="icon">🎯</span><span class="text">Études d'audience — Niches, opportunités, timing</span></li>
+        <li><span class="icon">🤖</span><span class="text">Reporting automatisé — Dashboards temps réel</span></li>
       </ul>
     </div>
   </div>
@@ -479,12 +467,12 @@
       <h2>Tous nos services</h2>
       <p>LDVK combine production audiovisuelle et intelligence data.</p>
       <ul>
-        <li><span class="icon"><i data-lucide="clapperboard"></i></span><span class="text">Production Vidéo — Spots, films, contenus social media</span></li>
-        <li><span class="icon"><i data-lucide="bar-chart-3"></i></span><span class="text">Analyse de Performance — Vues, engagement, métriques</span></li>
-        <li><span class="icon"><i data-lucide="trending-up"></i></span><span class="text">Veille Marché — Tendances, formats, benchmarking</span></li>
-        <li><span class="icon"><i data-lucide="search"></i></span><span class="text">Intelligence Concurrentielle — Données publiques</span></li>
-        <li><span class="icon"><i data-lucide="target"></i></span><span class="text">Études de Marché — Audiences, niches, opportunités</span></li>
-        <li><span class="icon"><i data-lucide="bot"></i></span><span class="text">Reporting Automatisé — Tableaux de bord, alertes</span></li>
+        <li><span class="icon">🎬</span><span class="text">Production Vidéo — Spots, films, contenus social media</span></li>
+        <li><span class="icon">📊</span><span class="text">Analyse de Performance — Vues, engagement, métriques</span></li>
+        <li><span class="icon">📈</span><span class="text">Veille Marché — Tendances, formats, benchmarking</span></li>
+        <li><span class="icon">🔍</span><span class="text">Intelligence Concurrentielle — Données publiques</span></li>
+        <li><span class="icon">🎯</span><span class="text">Études de Marché — Audiences, niches, opportunités</span></li>
+        <li><span class="icon">🤖</span><span class="text">Reporting Automatisé — Tableaux de bord, alertes</span></li>
       </ul>
     </div>
   </div>
@@ -544,15 +532,6 @@
 
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.300.0/dist/umd/lucide.min.js"></script>
-  <script>
-    // Initialize Lucide icons
-    window.addEventListener('load', () => {
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      }
-    });
-  </script>
 
 </body>
 </html>
