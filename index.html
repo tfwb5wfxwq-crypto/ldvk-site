@@ -564,7 +564,7 @@
   <script>
     // Nav logo shuffle effect
     let hoverCount = 0;
-    const resetAt = 8 + Math.floor(Math.random() * 5); // Reset between 8-12 hovers
+    let resetAt = 8 + Math.floor(Math.random() * 5); // Reset between 8-12 hovers
 
     function shuffleLogo() {
       hoverCount++;
@@ -574,6 +574,7 @@
           span.style.transform = 'translate(0, 0) rotate(0deg)';
         });
         hoverCount = 0;
+        resetAt = 8 + Math.floor(Math.random() * 5);
       } else {
         // Shuffle randomly
         document.querySelectorAll('.nav-logo span').forEach(span => {
@@ -586,6 +587,20 @@
     }
     shuffleLogo(); // Shuffle on load
     document.querySelector('.nav-logo').addEventListener('mouseenter', shuffleLogo);
+
+    // Mobile: shake detection with accelerometer
+    let lastShake = 0;
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', function(e) {
+        const acc = e.accelerationIncludingGravity;
+        if (!acc) return;
+        const force = Math.abs(acc.x) + Math.abs(acc.y) + Math.abs(acc.z);
+        if (force > 25 && Date.now() - lastShake > 500) {
+          lastShake = Date.now();
+          shuffleLogo();
+        }
+      });
+    }
 
     // Translations
     const translations = {
