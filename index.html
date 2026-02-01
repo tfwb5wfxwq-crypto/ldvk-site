@@ -139,6 +139,49 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .tagline-link {
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .tagline-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+
+    .tagline-link:hover::after {
+      width: 100%;
+    }
+
+    .tagline-link:hover {
+      color: #fff;
+    }
+
+    .tagline-link.video:hover {
+      color: #6366f1;
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .tagline-link.data:hover {
+      color: #10b981;
+      text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+
+    .tagline-sep {
+      opacity: 0.3;
     }
 
     /* Modal */
@@ -279,22 +322,58 @@
     <h1 class="logo">
       <span>L</span><span>D</span><span>V</span><span>K</span>
     </h1>
-    <p class="tagline">Production Vidéo & Data</p>
+    <p class="tagline">
+      <span class="tagline-link video" onclick="openModal('video')">Production Vidéo</span>
+      <span class="tagline-sep">&</span>
+      <span class="tagline-link data" onclick="openModal('data')">Data</span>
+    </p>
   </section>
 
-  <!-- Modal Services -->
+  <!-- Modal Video -->
+  <div class="modal" id="modal-video">
+    <button class="modal-close" onclick="closeModal('video')">×</button>
+    <div class="modal-content">
+      <h2 style="background: linear-gradient(135deg, #6366f1, #818cf8); -webkit-background-clip: text; background-clip: text;">Production Vidéo</h2>
+      <p>Création de contenus audiovisuels pour les marques et créateurs.</p>
+      <ul>
+        <li><span>🎬</span> Spots publicitaires & films de marque</li>
+        <li><span>📱</span> Contenus social media (TikTok, Reels, Shorts)</li>
+        <li><span>🎙️</span> Podcasts vidéo & interviews</li>
+        <li><span>✨</span> Motion design & animation</li>
+        <li><span>🎥</span> Captation événementielle</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal Data -->
+  <div class="modal" id="modal-data">
+    <button class="modal-close" onclick="closeModal('data')">×</button>
+    <div class="modal-content">
+      <h2 style="background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip: text; background-clip: text;">Data & Analytics</h2>
+      <p>Intelligence data pour comprendre et dominer votre marché.</p>
+      <ul>
+        <li><span>📊</span> Analyse de performance — Vues, engagement, croissance</li>
+        <li><span>📈</span> Veille marché — Tendances, formats, algorithmes</li>
+        <li><span>🔍</span> Intelligence concurrentielle — Benchmarking, stratégies</li>
+        <li><span>🎯</span> Études d'audience — Niches, opportunités, timing</li>
+        <li><span>🤖</span> Reporting automatisé — Dashboards temps réel</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal Services (all) -->
   <div class="modal" id="modal-services">
     <button class="modal-close" onclick="closeModal('services')">×</button>
     <div class="modal-content">
-      <h2>Nos Services</h2>
-      <p>LDVK combine production audiovisuelle et intelligence data pour accompagner les marques et créateurs.</p>
+      <h2>Tous nos services</h2>
+      <p>LDVK combine production audiovisuelle et intelligence data.</p>
       <ul>
-        <li><span>🎬</span> Production Vidéo — Spots, films corporate, contenus social media</li>
-        <li><span>📊</span> Analyse de Performance — Suivi des vues, engagement, métriques clés</li>
-        <li><span>📈</span> Veille Marché — Tendances, formats populaires, benchmarking</li>
-        <li><span>🔍</span> Intelligence Concurrentielle — Données publiques, stratégies de contenu</li>
+        <li><span>🎬</span> Production Vidéo — Spots, films, contenus social media</li>
+        <li><span>📊</span> Analyse de Performance — Vues, engagement, métriques</li>
+        <li><span>📈</span> Veille Marché — Tendances, formats, benchmarking</li>
+        <li><span>🔍</span> Intelligence Concurrentielle — Données publiques</li>
         <li><span>🎯</span> Études de Marché — Audiences, niches, opportunités</li>
-        <li><span>🤖</span> Reporting Automatisé — Tableaux de bord, alertes, suivi temps réel</li>
+        <li><span>🤖</span> Reporting Automatisé — Tableaux de bord, alertes</li>
       </ul>
     </div>
   </div>
