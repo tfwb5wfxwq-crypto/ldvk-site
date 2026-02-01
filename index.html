@@ -590,7 +590,7 @@
 
     // Mobile: shake detection with accelerometer
     let lastShake = 0;
-    if (window.DeviceMotionEvent) {
+    function startShakeDetection() {
       window.addEventListener('devicemotion', function(e) {
         const acc = e.accelerationIncludingGravity;
         if (!acc) return;
@@ -600,6 +600,20 @@
           shuffleLogo();
         }
       });
+    }
+
+    // iOS 13+ requires permission
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      document.querySelector('.nav-logo').addEventListener('click', function() {
+        DeviceMotionEvent.requestPermission().then(response => {
+          if (response === 'granted') {
+            startShakeDetection();
+            shuffleLogo();
+          }
+        });
+      });
+    } else if (window.DeviceMotionEvent) {
+      startShakeDetection();
     }
 
     // Translations
