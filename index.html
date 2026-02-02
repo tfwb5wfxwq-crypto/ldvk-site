@@ -550,6 +550,16 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
+      animation: cardPulse 4s ease-in-out infinite;
+    }
+
+    .dash-card:nth-child(2) { animation-delay: 1s; }
+    .dash-card:nth-child(3) { animation-delay: 2s; }
+    .dash-card:nth-child(4) { animation-delay: 3s; }
+
+    @keyframes cardPulse {
+      0%, 100% { background: rgba(255,255,255,0.03); }
+      50% { background: rgba(255,255,255,0.05); }
     }
 
     .dash-label {
@@ -581,11 +591,16 @@
       stroke: url(#ringGradient);
       stroke-width: 3;
       stroke-linecap: round;
-      animation: ringFill 1.5s ease-out forwards;
+      animation: ringFill 1.5s ease-out forwards, ringGlow 3s ease-in-out infinite 1.5s;
     }
 
     @keyframes ringFill {
       from { stroke-dasharray: 0, 100; }
+    }
+
+    @keyframes ringGlow {
+      0%, 100% { filter: drop-shadow(0 0 2px rgba(99, 102, 241, 0.3)); }
+      50% { filter: drop-shadow(0 0 6px rgba(236, 72, 153, 0.5)); }
     }
 
     .ring-value {
@@ -1232,7 +1247,7 @@
           </video>
           <div class="overlay">
             <span class="client-name">Winamax</span>
-            <span class="project-type">Sponsoring Instagram</span>
+            <span class="project-type">Série poker</span>
           </div>
         </div>
         <div class="portfolio-item">
@@ -1285,7 +1300,7 @@
                 <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                 <path class="ring-fill" stroke-dasharray="78, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
               </svg>
-              <span class="ring-value">78%</span>
+              <span class="ring-value" data-base="78" data-suffix="%">0%</span>
             </div>
             <span class="dash-label">Taux d'engagement</span>
           </div>
@@ -1313,7 +1328,7 @@
 
           <!-- Growth -->
           <div class="dash-card growth-card">
-            <div class="growth-value">+247%</div>
+            <div class="growth-value" data-base="247" data-prefix="+" data-suffix="%">0%</div>
             <div class="growth-trend">
               <svg viewBox="0 0 100 30" class="sparkline">
                 <polyline points="0,25 15,22 30,18 45,20 60,12 75,8 100,2"/>
@@ -1598,7 +1613,50 @@
       document.body.style.overflow = 'hidden';
       if (name === 'portfolio') {
         setTimeout(animateStats, 200);
+        setTimeout(animateDashboard, 400);
       }
+    }
+
+    // Animate dashboard values
+    function animateDashboard() {
+      const dashValues = document.querySelectorAll('[data-base]');
+      dashValues.forEach(el => {
+        const base = parseInt(el.dataset.base);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const duration = 1500;
+        const start = performance.now();
+
+        function update(currentTime) {
+          const elapsed = currentTime - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * base);
+          el.textContent = prefix + current + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = prefix + base + suffix;
+            // Start live fluctuation
+            startLiveUpdate(el, base, prefix, suffix);
+          }
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    // Simulate live data updates
+    function startLiveUpdate(el, base, prefix, suffix) {
+      setInterval(() => {
+        const fluctuation = Math.floor((Math.random() - 0.3) * 3);
+        const newVal = Math.max(base - 2, Math.min(base + 3, base + fluctuation));
+        el.style.transition = 'opacity 0.2s';
+        el.style.opacity = '0.7';
+        setTimeout(() => {
+          el.textContent = prefix + newVal + suffix;
+          el.style.opacity = '1';
+        }, 200);
+      }, 3000 + Math.random() * 2000);
     }
 
     function closeModal(name) {
