@@ -435,15 +435,20 @@
     /* Portfolio Carousel */
     .portfolio-carousel {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      padding: 20px 0;
-      margin: 0 -3rem;
-      padding-left: 3rem;
-      padding-right: 3rem;
+      padding: 10px 0 20px;
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      cursor: grab;
+    }
+
+    .portfolio-carousel:active {
+      cursor: grabbing;
     }
 
     .portfolio-carousel::-webkit-scrollbar {
@@ -452,18 +457,18 @@
 
     .portfolio-item {
       position: relative;
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
       aspect-ratio: 9/16;
-      flex: 0 0 200px;
+      flex: 0 0 140px;
       scroll-snap-align: start;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     }
 
     .portfolio-item:hover {
-      transform: scale(1.05) translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
     }
 
     .portfolio-item video,
@@ -472,12 +477,6 @@
       height: 100%;
       object-fit: cover;
       pointer-events: none;
-      transition: transform 0.5s ease;
-    }
-
-    .portfolio-item:hover video,
-    .portfolio-item:hover img {
-      transform: scale(1.1);
     }
 
     .portfolio-item .overlay {
@@ -485,54 +484,49 @@
       top: 0;
       left: 0;
       right: 0;
-      padding: 16px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+      padding: 12px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
       display: flex;
       flex-direction: column;
     }
 
     .portfolio-item .client-name {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.85rem;
       color: #fff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .portfolio-item .project-type {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.8);
-      margin-top: 4px;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 2px;
     }
 
     .portfolio-scroll-hint {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      color: rgba(255,255,255,0.4);
-      font-size: 0.8rem;
-      margin-top: 16px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.75rem;
+      margin-top: 12px;
     }
 
     .portfolio-scroll-hint svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       fill: currentColor;
       animation: scrollHint 1.5s ease-in-out infinite;
     }
 
     @keyframes scrollHint {
       0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(5px); }
+      50% { transform: translateX(4px); }
     }
 
     @media (max-width: 768px) {
-      .portfolio-carousel {
-        margin: 0 -1.5rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
       .portfolio-item {
-        flex: 0 0 160px;
+        flex: 0 0 120px;
       }
     }
 
@@ -824,13 +818,12 @@
 
     /* Stats Section */
     .stats-section {
-      position: absolute;
-      bottom: 120px;
-      left: 50%;
-      transform: translateX(-50%);
       display: flex;
-      gap: 3rem;
-      z-index: 10;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 1.5rem 0;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .stat-item {
@@ -839,7 +832,7 @@
 
     .stat-number {
       font-family: 'Clash Display', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #10b981 100%);
       -webkit-background-clip: text;
@@ -849,23 +842,22 @@
     }
 
     .stat-label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: rgba(255,255,255,0.5);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     @media (max-width: 768px) {
       .stats-section {
-        gap: 1.5rem;
-        bottom: 100px;
+        gap: 1.2rem;
       }
       .stat-number {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
       .stat-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
       }
     }
 
@@ -910,21 +902,7 @@
       <span class="tagline-sep">•</span>
       <span class="tagline-link data" onclick="openModal('data')" data-i18n="tagline.data">Data</span>
     </p>
-    <div class="stats-section">
-      <div class="stat-item">
-        <div class="stat-number" data-target="50">0</div>
-        <div class="stat-label" data-i18n="stats.campaigns">Campagnes</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="12" data-suffix="M">0</div>
-        <div class="stat-label" data-i18n="stats.views">Vues générées</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="15">0</div>
-        <div class="stat-label" data-i18n="stats.clients">Clients</div>
-      </div>
-    </div>
-  </section>
+      </section>
 
   <!-- Logo Carousel - Infinite Scroll -->
   <div class="logo-carousel">
@@ -972,7 +950,20 @@
     <div class="modal-content" style="max-width: 700px;">
       <button class="modal-close" onclick="closeModal('portfolio')">×</button>
       <h2 data-i18n="portfolio.title">Derniers Projets</h2>
-      <p data-i18n="portfolio.desc">Contenus créatifs pour nos clients.</p>
+      <div class="stats-section">
+        <div class="stat-item">
+          <div class="stat-number" data-target="50">0</div>
+          <div class="stat-label" data-i18n="stats.campaigns">Campagnes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="12" data-suffix="M">0</div>
+          <div class="stat-label" data-i18n="stats.views">Vues générées</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="15">0</div>
+          <div class="stat-label" data-i18n="stats.clients">Clients</div>
+        </div>
+      </div>
       <div class="portfolio-carousel">
         <div class="portfolio-item">
           <video autoplay muted loop playsinline>
@@ -980,7 +971,7 @@
           </video>
           <div class="overlay">
             <span class="client-name">Court ou Crève</span>
-            <span class="project-type">Série poker</span>
+            <span class="project-type">Masterclass Paris</span>
           </div>
         </div>
         <div class="portfolio-item">
@@ -1288,6 +1279,9 @@
     function openModal(name) {
       document.getElementById('modal-' + name).classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (name === 'portfolio') {
+        setTimeout(animateStats, 200);
+      }
     }
 
     function closeModal(name) {
@@ -1553,8 +1547,6 @@
     // Initialize language on load
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
-      // Animate stats after a short delay
-      setTimeout(animateStats, 500);
     });
   </script>
 
