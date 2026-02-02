@@ -499,6 +499,147 @@
       }
     }
 
+    /* Analytics Preview */
+    .analytics-preview {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .analytics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .analytics-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .analytics-badge {
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      border-radius: 20px;
+      font-weight: 600;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .analytics-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 80px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chart-bar {
+      flex: 1;
+      height: var(--height);
+      background: linear-gradient(to top, #6366f1, #ec4899);
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      animation: barGrow 1s ease-out forwards;
+      transform-origin: bottom;
+    }
+
+    @keyframes barGrow {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+
+    .chart-bar span {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .analytics-metrics {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 24px;
+    }
+
+    .metric {
+      text-align: center;
+    }
+
+    .metric-value {
+      display: block;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .metric-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* CTA 2026 */
+    .cta-2026 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-2026:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(236, 72, 153, 0.25));
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .cta-year {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .cta-2026 svg {
+      color: rgba(255,255,255,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .cta-2026:hover svg {
+      transform: translateX(4px);
+      color: #ec4899;
+    }
+
     /* Logo Carousel - Infinite Scroll */
     .logo-carousel {
       position: fixed;
@@ -940,7 +1081,7 @@
           </video>
           <div class="overlay">
             <span class="client-name">Court ou Crève</span>
-            <span class="project-type">Masterclass 2024-2025</span>
+            <span class="project-type">Série YouTube</span>
           </div>
         </div>
         <div class="portfolio-item">
@@ -979,6 +1120,34 @@
             <span class="project-type">Série poker</span>
           </div>
         </div>
+      </div>
+
+      <!-- Analytics Preview -->
+      <div class="analytics-preview">
+        <div class="analytics-header">
+          <span class="analytics-title" data-i18n="portfolio.analytics">Suivi de performance</span>
+          <span class="analytics-badge">Live</span>
+        </div>
+        <div class="analytics-chart">
+          <div class="chart-bar" style="--height: 45%"><span>Jan</span></div>
+          <div class="chart-bar" style="--height: 62%"><span>Fév</span></div>
+          <div class="chart-bar" style="--height: 78%"><span>Mar</span></div>
+          <div class="chart-bar" style="--height: 55%"><span>Avr</span></div>
+          <div class="chart-bar" style="--height: 89%"><span>Mai</span></div>
+          <div class="chart-bar" style="--height: 95%"><span>Juin</span></div>
+        </div>
+        <div class="analytics-metrics">
+          <div class="metric"><span class="metric-value">+127%</span><span class="metric-label">Engagement</span></div>
+          <div class="metric"><span class="metric-value">2.4M</span><span class="metric-label">Reach</span></div>
+          <div class="metric"><span class="metric-value">18-34</span><span class="metric-label">Cible</span></div>
+        </div>
+      </div>
+
+      <!-- CTA 2026 -->
+      <div class="cta-2026" onclick="closeModal('portfolio'); setTimeout(() => openModal('contact'), 300);">
+        <span class="cta-year">2026</span>
+        <span class="cta-text" data-i18n="portfolio.cta">Votre projet commence ici</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </div>
   </div>
@@ -1092,7 +1261,8 @@
         'nav.contact': 'Contact',
         'portfolio.title': 'Derniers Projets',
         'portfolio.desc': 'Contenus créatifs pour nos clients.',
-        'portfolio.scroll': 'Glisse pour voir plus',
+        'portfolio.analytics': 'Suivi de performance',
+        'portfolio.cta': 'Votre projet commence ici',
         'tagline.video': 'Production Vidéo',
         'tagline.data': 'Data',
         'video.title': 'Production Vidéo',
@@ -1149,7 +1319,8 @@
         'nav.contact': 'Contact',
         'portfolio.title': 'Latest Projects',
         'portfolio.desc': 'Creative content for our clients.',
-        'portfolio.scroll': 'Swipe to see more',
+        'portfolio.analytics': 'Performance tracking',
+        'portfolio.cta': 'Your project starts here',
         'tagline.video': 'Video Production',
         'tagline.data': 'Data',
         'video.title': 'Video Production',
