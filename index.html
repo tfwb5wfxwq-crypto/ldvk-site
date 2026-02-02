@@ -508,9 +508,15 @@
       box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
     }
 
+    .contact-form input:invalid,
+    .contact-form textarea:invalid {
+      box-shadow: none;
+    }
+
     .contact-form textarea {
-      min-height: 100px;
-      resize: vertical;
+      min-height: 80px;
+      max-height: 150px;
+      resize: none;
     }
 
     .contact-form button {
