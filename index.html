@@ -1129,9 +1129,11 @@
         setTimeout(() => inputArea.style.display = 'none', 300);
 
         // Mark last bubble as "sending"
+        const messages = document.getElementById('chatMessages');
         const lastBubble = document.querySelector('.chat-messages .chat-bubble:last-child');
         if (lastBubble) {
           lastBubble.insertAdjacentHTML('afterend', `<div class="bubble-status sending">${t('chat.sending')}</div>`);
+          messages.scrollTop = messages.scrollHeight;
         }
 
         const formData = new FormData();
@@ -1148,18 +1150,21 @@
           const status = document.querySelector('.bubble-status');
           if (status) {
             status.className = 'bubble-status delivered';
-            status.innerHTML = t('chat.delivered');
+            status.textContent = t('chat.delivered');
+            messages.scrollTop = messages.scrollHeight;
           }
 
           setTimeout(() => {
             if (status) {
               status.className = 'bubble-status read';
-              status.innerHTML = t('chat.read');
+              status.textContent = t('chat.read');
+              messages.scrollTop = messages.scrollHeight;
             }
 
             // Show response after "read"
             setTimeout(() => {
               showTyping();
+              messages.scrollTop = messages.scrollHeight;
               setTimeout(() => {
                 hideTyping();
                 addBubble(t('chat.success'), 'received');
@@ -1176,9 +1181,9 @@
                     setTimeout(resetChat, 500);
                   }, 500);
                 }, 2000);
-              }, 800);
-            }, 600);
-          }, 800);
+              }, 1000);
+            }, 800);
+          }, 1000);
         }).catch(() => {
           const status = document.querySelector('.bubble-status');
           if (status) status.remove();
