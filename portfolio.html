@@ -19,266 +19,165 @@
 
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem 3rem;
+      top: 0; left: 0; right: 0;
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
       background: rgba(5,5,5,0.8);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .nav-logo {
       font-family: 'Clash Display', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #fff;
+      color: rgba(255,255,255,0.3);
       text-decoration: none;
+      display: flex;
+      cursor: pointer;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
+    .nav-logo span {
+      display: inline-block;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+    .nav-links { display: flex; gap: 2.5rem; }
 
     .nav-links a {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.3s;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #fff;
-    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #fff; }
 
-    .hero {
-      padding: 140px 3rem 60px;
-      max-width: 1200px;
+    .content {
+      max-width: 1000px;
       margin: 0 auto;
+      padding: 120px 2rem 80px;
     }
 
-    .hero h1 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.6);
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    /* Stats */
-    .stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .stat-item {
-      text-align: left;
-    }
-
-    .stat-number {
+    h1 {
       font-family: 'Clash Display', sans-serif;
       font-size: 2.5rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #10b981 100%);
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .subtitle {
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 3rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-num {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #ec4899, #10b981);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .stat-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-top: 4px;
     }
 
-    /* Portfolio Grid */
-    .portfolio {
-      padding: 40px 3rem 100px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .portfolio-grid {
+    .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
-    .portfolio-item {
+    .item {
       position: relative;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       aspect-ratio: 9/16;
-      cursor: pointer;
-      transition: all 0.4s ease;
+      transition: transform 0.3s;
     }
 
-    .portfolio-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
+    .item:hover { transform: translateY(-6px); }
 
-    .portfolio-item video,
-    .portfolio-item img {
+    .item video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .portfolio-item .overlay {
+    .item .info {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 40%, transparent 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      top: 0; left: 0; right: 0;
+      padding: 1rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
     }
 
-    .portfolio-item:hover .overlay {
-      opacity: 1;
-    }
-
-    .portfolio-item .client-name {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.3rem;
+    .item .name {
       font-weight: 600;
-      color: #fff;
-    }
-
-    .portfolio-item .project-type {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-      margin-top: 4px;
     }
 
-    .portfolio-item .project-desc {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      margin-top: 8px;
-      line-height: 1.5;
+    .item .type {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.6);
     }
 
-    /* Clients */
     .clients {
-      padding: 60px 3rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .clients-title {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .clients-grid {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 4rem;
+      gap: 3rem;
       flex-wrap: wrap;
-      max-width: 900px;
-      margin: 0 auto;
     }
 
-    .clients-grid img {
-      height: 35px;
-      opacity: 0.4;
+    .clients img {
+      height: 30px;
+      opacity: 0.3;
       filter: grayscale(1) invert(1) brightness(1.5);
       transition: opacity 0.3s;
     }
 
-    .clients-grid img:hover {
-      opacity: 0.8;
-    }
+    .clients img:hover { opacity: 0.6; }
 
-    /* Footer */
     footer {
-      padding: 2rem 3rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.4);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
     }
 
-    footer a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: #fff; }
 
-    footer a:hover {
-      color: #fff;
-    }
-
-    @media (max-width: 1000px) {
-      .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .stats {
-        flex-wrap: wrap;
-        gap: 2rem;
-      }
-      nav {
-        padding: 1rem 1.5rem;
-      }
-      .nav-links {
-        gap: 1.5rem;
-      }
-      .hero, .portfolio {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-      .clients-grid {
-        gap: 2rem;
-      }
-      .clients-grid img {
-        height: 25px;
-      }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .stats { gap: 2rem; flex-wrap: wrap; }
+      h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="/" class="nav-logo">LDVK</a>
+    <a href="/" class="nav-logo"><span>L</span><span>D</span><span>V</span><span>K</span></a>
     <div class="nav-links">
       <a href="/services">Services</a>
       <a href="/portfolio" class="active">Projets</a>
@@ -287,87 +186,40 @@
     </div>
   </nav>
 
-  <section class="hero">
+  <div class="content">
     <h1>Nos réalisations</h1>
-    <p>Contenus vidéo créés pour nos clients, de la conception à l'analyse des performances.</p>
+    <p class="subtitle">De la conception à l'analyse des performances.</p>
+
     <div class="stats">
-      <div class="stat-item">
-        <div class="stat-number">22</div>
-        <div class="stat-label">Campagnes 2025</div>
+      <div><div class="stat-num">22</div><div class="stat-label">Campagnes 2025</div></div>
+      <div><div class="stat-num">45M</div><div class="stat-label">Vues générées</div></div>
+      <div><div class="stat-num">7 ans</div><div class="stat-label">D'expérience</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="item">
+        <video autoplay muted loop playsinline><source src="/portfolio/videos/coc.mp4" type="video/mp4"></video>
+        <div class="info"><div class="name">Court ou Crève</div><div class="type">Série YouTube</div></div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">45M</div>
-        <div class="stat-label">Vues générées</div>
+      <div class="item">
+        <video autoplay muted loop playsinline><source src="/portfolio/videos/winamax.mp4" type="video/mp4"></video>
+        <div class="info"><div class="name">Winamax</div><div class="type">Série poker</div></div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">7 ans</div>
-        <div class="stat-label">D'expérience</div>
+      <div class="item">
+        <video autoplay muted loop playsinline><source src="/portfolio/videos/terrys.mp4" type="video/mp4"></video>
+        <div class="info"><div class="name">Terry's</div><div class="type">Sponsoring Instagram</div></div>
+      </div>
+      <div class="item">
+        <video autoplay muted loop playsinline><source src="/portfolio/videos/wina-aveugle.mp4" type="video/mp4"></video>
+        <div class="info"><div class="name">Winamax</div><div class="type">Série poker</div></div>
+      </div>
+      <div class="item">
+        <video autoplay muted loop playsinline><source src="/portfolio/videos/wina-botox.mp4" type="video/mp4"></video>
+        <div class="info"><div class="name">Winamax</div><div class="type">Série poker</div></div>
       </div>
     </div>
-  </section>
 
-  <section class="portfolio">
-    <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <video autoplay muted loop playsinline>
-          <source src="/portfolio/videos/coc.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">
-          <span class="client-name">Court ou Crève</span>
-          <span class="project-type">Série YouTube</span>
-          <span class="project-desc">Production complète de la série poker sur YouTube.</span>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <video autoplay muted loop playsinline>
-          <source src="/portfolio/videos/winamax.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">
-          <span class="client-name">Winamax</span>
-          <span class="project-type">Série poker</span>
-          <span class="project-desc">Contenus sponsorisés pour les réseaux sociaux.</span>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <video autoplay muted loop playsinline>
-          <source src="/portfolio/videos/terrys.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">
-          <span class="client-name">Terry's Chocolate</span>
-          <span class="project-type">Sponsoring Instagram</span>
-          <span class="project-desc">Campagne social media pour le lancement produit.</span>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <video autoplay muted loop playsinline>
-          <source src="/portfolio/videos/wina-aveugle.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">
-          <span class="client-name">Winamax</span>
-          <span class="project-type">Série poker</span>
-          <span class="project-desc">Épisode "L'Aveugle" de la série humoristique.</span>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <video autoplay muted loop playsinline>
-          <source src="/portfolio/videos/wina-botox.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">
-          <span class="client-name">Winamax</span>
-          <span class="project-type">Série poker</span>
-          <span class="project-desc">Épisode "Botox" de la série humoristique.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="clients">
-    <div class="clients-title">Ils nous font confiance</div>
-    <div class="clients-grid">
+    <div class="clients">
       <img src="/logos/winamax.png" alt="Winamax">
       <img src="/logos/laposte.png" alt="La Poste">
       <img src="/logos/francetv.png" alt="France TV">
@@ -375,12 +227,37 @@
       <img src="/logos/webedia.png" alt="Webedia">
       <img src="/logos/primevideo.png" alt="Prime Video">
     </div>
-  </section>
+  </div>
 
   <footer>
-    <span>© 2018-2026 LDVK SAS — SIRET 834 994 352 00021</span>
-    <a href="/mentions-legales">Mentions légales</a>
+    <span>© 2018-2026 LDVK SAS</span> · <a href="/mentions-legales">Mentions légales</a>
   </footer>
+
+  <script>
+    let hoverCount = 0;
+    let resetAt = 8 + Math.floor(Math.random() * 5);
+
+    function shuffleLogo() {
+      hoverCount++;
+      if (hoverCount >= resetAt) {
+        document.querySelectorAll('.nav-logo span').forEach(span => {
+          span.style.transform = 'translate(0, 0) rotate(0deg)';
+        });
+        hoverCount = 0;
+        resetAt = 8 + Math.floor(Math.random() * 5);
+      } else {
+        document.querySelectorAll('.nav-logo span').forEach(span => {
+          const x = (Math.random() - 0.5) * 30;
+          const y = (Math.random() - 0.5) * 20;
+          const rot = (Math.random() - 0.5) * 40;
+          span.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+        });
+      }
+    }
+    shuffleLogo();
+    document.querySelector('.nav-logo').addEventListener('mouseenter', shuffleLogo);
+    document.querySelector('.nav-logo').addEventListener('click', shuffleLogo);
+  </script>
 
 </body>
 </html>
