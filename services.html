@@ -62,9 +62,17 @@
 
     .service-content h2 {
       font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;
-      transition: color 0.3s;
+      transition: all 0.3s;
     }
     .service:hover .service-content h2 { color: #fff; }
+    .service.animate-colors .service-content h2 { animation: textColorShift 0.5s linear infinite; }
+
+    @keyframes textColorShift {
+      0% { color: #6366f1; }
+      33% { color: #ec4899; }
+      66% { color: #10b981; }
+      100% { color: #6366f1; }
+    }
     .service-content p { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.6; }
 
     .tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -191,6 +199,12 @@
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
+
+    // Multicolor hover on services
+    document.querySelectorAll('.service').forEach(service => {
+      service.addEventListener('mouseenter', () => service.classList.add('animate-colors'));
+      service.addEventListener('mouseleave', () => service.classList.remove('animate-colors'));
+    });
   </script>
 </body>
 </html>

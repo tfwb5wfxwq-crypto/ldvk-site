@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projets — LDVK</title>
-  <meta name="description" content="Portfolio LDVK : Winamax, Terry's, Court ou Crève.">
+  <meta name="description" content="Portfolio LDVK : Winamax, Terry's, Court ou Creve.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <style>
@@ -23,7 +23,7 @@
     }
     .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; cursor: pointer; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .lang-toggle {
       margin-left: 1rem; padding: 0.3rem 0.6rem;
@@ -33,34 +33,75 @@
     }
     .lang-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-    .content { max-width: 900px; margin: 0 auto; padding: 100px 2rem 60px; }
-
+    .hero {
+      padding: 120px 2rem 40px;
+      max-width: 1200px; margin: 0 auto;
+    }
     h1 {
-      font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600;
-      margin-bottom: 0.3rem; cursor: default;
-      background: linear-gradient(135deg, #fff, #fff);
+      font-family: 'Clash Display', sans-serif; font-size: 3rem; font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      transition: transform 0.3s ease, letter-spacing 0.3s ease;
+      margin-bottom: 0.5rem;
     }
-    h1:hover { transform: scale(1.05); letter-spacing: 0.05em; }
-    h1.animate-colors { animation: colorShift 0.8s linear infinite; }
+    .sub { color: rgba(255,255,255,0.4); font-size: 1rem; }
 
-    @keyframes colorShift {
-      0% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
-      25% { background: linear-gradient(135deg, #ec4899, #10b981, #6366f1); -webkit-background-clip: text; background-clip: text; }
-      50% { background: linear-gradient(135deg, #10b981, #6366f1, #ec4899); -webkit-background-clip: text; background-clip: text; }
-      75% { background: linear-gradient(135deg, #6366f1, #10b981, #ec4899); -webkit-background-clip: text; background-clip: text; }
-      100% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
+    .stats {
+      display: flex; gap: 3rem; margin-top: 2rem;
+    }
+    .stat .n {
+      font-family: 'Clash Display', sans-serif; font-size: 2rem; font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat .l { font-size: 0.7rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .projects {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto; padding: 2rem;
     }
 
-    .sub { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-bottom: 2rem; }
-
-    .stats { display: flex; gap: 2.5rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .stat { cursor: default; transition: transform 0.3s ease; }
-    .stat:hover { transform: scale(1.05); }
-    .stat .n { font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: all 0.3s; }
-    .stat.animate-colors .n { animation: textColorShift 0.5s linear infinite; -webkit-background-clip: unset; -webkit-text-fill-color: unset; }
-    .stat .l { font-size: 0.65rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; }
+    .project {
+      position: relative; border-radius: 16px; overflow: hidden;
+      aspect-ratio: 16/9; cursor: pointer;
+    }
+    .project video {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; filter: brightness(0.5) grayscale(0.3);
+      transition: all 0.5s ease;
+    }
+    .project:hover video {
+      filter: brightness(0.7) grayscale(0);
+      transform: scale(1.05);
+    }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem; transition: all 0.3s;
+    }
+    .project:hover .project-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 100%);
+    }
+    .project-name {
+      font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 700;
+      transition: all 0.3s;
+    }
+    .project:hover .project-name { letter-spacing: 0.02em; }
+    .project.animate-colors .project-name { animation: textColorShift 0.5s linear infinite; }
+    .project-tag {
+      font-size: 0.65rem; color: rgba(255,255,255,0.4);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      margin-bottom: 0.3rem;
+    }
+    .project-desc {
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      margin-top: 0.5rem; max-width: 90%;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s;
+    }
+    .project:hover .project-desc {
+      opacity: 1; transform: translateY(0);
+    }
 
     @keyframes textColorShift {
       0% { color: #6366f1; }
@@ -69,59 +110,26 @@
       100% { color: #6366f1; }
     }
 
-    .projects { display: flex; flex-direction: column; gap: 1.5rem; }
-    .project {
-      position: relative; border-radius: 16px; overflow: hidden;
-      height: 280px; cursor: default; transition: transform 0.3s;
+    .clients {
+      max-width: 1200px; margin: 3rem auto; padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
     }
-    .project:hover { transform: scale(1.02); }
-    .project video {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover; filter: brightness(0.4);
-      transition: filter 0.4s;
+    .clients img {
+      height: 24px; opacity: 0.2;
+      filter: grayscale(1) invert(1) brightness(1.5);
+      transition: all 0.3s;
     }
-    .project:hover video { filter: brightness(0.6); }
-    .project.animate-colors video { animation: videoColorShift 0.6s linear infinite; }
-    @keyframes videoColorShift {
-      0% { filter: brightness(0.5) hue-rotate(0deg) saturate(1.3); }
-      25% { filter: brightness(0.6) hue-rotate(90deg) saturate(1.5); }
-      50% { filter: brightness(0.5) hue-rotate(180deg) saturate(1.3); }
-      75% { filter: brightness(0.6) hue-rotate(270deg) saturate(1.5); }
-      100% { filter: brightness(0.5) hue-rotate(360deg) saturate(1.3); }
-    }
-    .project-content {
-      position: relative; z-index: 2; height: 100%;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 2rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
-    }
-    .project-name {
-      font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 700;
-      margin-bottom: 0.3rem; transition: all 0.3s;
-    }
-    .project.animate-colors .project-name { animation: textColorShift 0.5s linear infinite; }
-    .project-type {
-      font-size: 0.75rem; color: rgba(255,255,255,0.5);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem;
-    }
-    .project-desc {
-      font-size: 0.85rem; color: rgba(255,255,255,0.7);
-      max-width: 400px; line-height: 1.5;
-    }
+    .clients img:hover { opacity: 0.5; }
 
-    .clients { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-    .clients img { height: 22px; opacity: 0.25; filter: grayscale(1) invert(1) brightness(1.5); transition: all 0.3s; cursor: default; }
-    .clients img:hover { opacity: 0.5; filter: grayscale(0) invert(1) brightness(1.5) hue-rotate(180deg); }
-
-    footer { padding: 1.5rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+    footer { padding: 2rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
     footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-    @media (max-width: 700px) {
-      .project { height: 220px; }
-      .project-name { font-size: 1.4rem; }
-      .stats { gap: 1.5rem; flex-wrap: wrap; }
-      h1 { font-size: 1.5rem; }
-      .nav-links { gap: 1rem; }
+    @media (max-width: 800px) {
+      .projects { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .stats { gap: 2rem; }
+      .stat .n { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -131,81 +139,89 @@
     <div class="nav-links">
       <a href="/services" data-i18n="nav.services">Services</a>
       <a href="/portfolio" class="active" data-i18n="nav.portfolio">Projets</a>
-      <a href="/about" data-i18n="nav.about">À propos</a>
+      <a href="/about" data-i18n="nav.about">A propos</a>
       <a href="/#contact" data-i18n="nav.contact">Contact</a>
       <button class="lang-toggle" onclick="toggleLang()">EN</button>
     </div>
   </nav>
 
-  <div class="content">
-    <h1 data-i18n="portfolio.h1">Réalisations</h1>
-    <p class="sub" data-i18n="portfolio.sub">De la conception à l'analyse.</p>
-
+  <div class="hero">
+    <h1 data-i18n="portfolio.h1">Projets</h1>
+    <p class="sub" data-i18n="portfolio.sub">Selection de realisations.</p>
     <div class="stats">
-      <div class="stat"><div class="n">22</div><div class="l" data-i18n="stats.campaigns">Campagnes 2025</div></div>
-      <div class="stat"><div class="n">45M</div><div class="l" data-i18n="stats.views">Vues</div></div>
-      <div class="stat"><div class="n">7 ans</div><div class="l" data-i18n="stats.exp">Expérience</div></div>
-    </div>
-
-    <div class="projects">
-      <div class="project">
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/coc.mp4" type="video/mp4"></video>
-        <div class="project-content">
-          <div class="project-name">Court ou Crève</div>
-          <div class="project-type">YouTube · Série</div>
-          <div class="project-desc" data-i18n="project.coc">Production et montage de la série YouTube à succès.</div>
-        </div>
-      </div>
-
-      <div class="project">
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/winamax.mp4" type="video/mp4"></video>
-        <div class="project-content">
-          <div class="project-name">Winamax</div>
-          <div class="project-type">Poker · Campagnes</div>
-          <div class="project-desc" data-i18n="project.winamax">Création de contenus pour les campagnes poker et sport.</div>
-        </div>
-      </div>
-
-      <div class="project">
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/terrys.mp4" type="video/mp4"></video>
-        <div class="project-content">
-          <div class="project-name">Terry's</div>
-          <div class="project-type">Instagram · Restaurant</div>
-          <div class="project-desc" data-i18n="project.terrys">Stratégie social media et production vidéo food.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="clients">
-      <img src="/logos/winamax.png" alt="Winamax">
-      <img src="/logos/laposte.png" alt="La Poste">
-      <img src="/logos/francetv.png" alt="France TV">
-      <img src="/logos/macif.png" alt="Macif">
-      <img src="/logos/webedia.png" alt="Webedia">
-      <img src="/logos/primevideo.png" alt="Prime Video">
+      <div class="stat"><div class="n">45M+</div><div class="l" data-i18n="stats.views">Vues</div></div>
+      <div class="stat"><div class="n">7 ans</div><div class="l" data-i18n="stats.exp">Experience</div></div>
+      <div class="stat"><div class="n">20+</div><div class="l" data-i18n="stats.clients">Clients</div></div>
     </div>
   </div>
 
-  <footer>© 2018-2026 LDVK · <a href="/mentions-legales" data-i18n="footer.legal">Mentions légales</a></footer>
+  <div class="projects">
+    <div class="project">
+      <video autoplay muted loop playsinline><source src="/portfolio/videos/coc.mp4" type="video/mp4"></video>
+      <div class="project-overlay">
+        <div class="project-tag">YouTube Serie</div>
+        <div class="project-name">Court ou Creve</div>
+        <div class="project-desc" data-i18n="project.coc">Production complete de la serie YouTube a succes.</div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay muted loop playsinline><source src="/portfolio/videos/winamax.mp4" type="video/mp4"></video>
+      <div class="project-overlay">
+        <div class="project-tag">Campagnes Poker</div>
+        <div class="project-name">Winamax</div>
+        <div class="project-desc" data-i18n="project.winamax">Contenus pour les campagnes poker et sport.</div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay muted loop playsinline><source src="/portfolio/videos/terrys.mp4" type="video/mp4"></video>
+      <div class="project-overlay">
+        <div class="project-tag">Social Media</div>
+        <div class="project-name">Terry's</div>
+        <div class="project-desc" data-i18n="project.terrys">Strategie et production video food.</div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay muted loop playsinline><source src="/portfolio/videos/wina-botox.mp4" type="video/mp4"></video>
+      <div class="project-overlay">
+        <div class="project-tag">Spot TV</div>
+        <div class="project-name">Winamax Botox</div>
+        <div class="project-desc">Spot publicitaire poker.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clients">
+    <img src="/logos/winamax.png" alt="Winamax">
+    <img src="/logos/laposte.png" alt="La Poste">
+    <img src="/logos/francetv.png" alt="France TV">
+    <img src="/logos/macif.png" alt="Macif">
+    <img src="/logos/webedia.png" alt="Webedia">
+    <img src="/logos/primevideo.png" alt="Prime Video">
+  </div>
+
+  <footer>2018-2026 LDVK · <a href="/mentions-legales" data-i18n="footer.legal">Mentions legales</a></footer>
 
   <script>
     const translations = {
       fr: {
-        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
-        'portfolio.h1': 'Réalisations', 'portfolio.sub': 'De la conception à l\'analyse.',
-        'stats.campaigns': 'Campagnes 2025', 'stats.views': 'Vues', 'stats.exp': 'Expérience',
-        'project.coc': 'Production et montage de la série YouTube à succès.',
-        'project.winamax': 'Création de contenus pour les campagnes poker et sport.',
-        'project.terrys': 'Stratégie social media et production vidéo food.',
-        'footer.legal': 'Mentions légales'
+        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'A propos', 'nav.contact': 'Contact',
+        'portfolio.h1': 'Projets', 'portfolio.sub': 'Selection de realisations.',
+        'stats.views': 'Vues', 'stats.exp': 'Experience', 'stats.clients': 'Clients',
+        'project.coc': 'Production complete de la serie YouTube a succes.',
+        'project.winamax': 'Contenus pour les campagnes poker et sport.',
+        'project.terrys': 'Strategie et production video food.',
+        'footer.legal': 'Mentions legales'
       },
       en: {
         'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
-        'portfolio.h1': 'Our Work', 'portfolio.sub': 'From concept to analysis.',
-        'stats.campaigns': 'Campaigns 2025', 'stats.views': 'Views', 'stats.exp': 'Experience',
-        'project.coc': 'Production and editing of the hit YouTube series.',
-        'project.winamax': 'Content creation for poker and sports campaigns.',
-        'project.terrys': 'Social media strategy and food video production.',
+        'portfolio.h1': 'Projects', 'portfolio.sub': 'Selected work.',
+        'stats.views': 'Views', 'stats.exp': 'Experience', 'stats.clients': 'Clients',
+        'project.coc': 'Full production of the hit YouTube series.',
+        'project.winamax': 'Content for poker and sports campaigns.',
+        'project.terrys': 'Strategy and food video production.',
         'footer.legal': 'Legal notice'
       }
     };
@@ -221,21 +237,12 @@
     function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
     setLanguage(currentLang);
 
-    // Logo shuffle effect
+    // Logo shuffle
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
 
-    // Dynamic color hover effects
-    const h1 = document.querySelector('h1');
-    h1.addEventListener('mouseenter', () => h1.classList.add('animate-colors'));
-    h1.addEventListener('mouseleave', () => h1.classList.remove('animate-colors'));
-
-    document.querySelectorAll('.stat').forEach(stat => {
-      stat.addEventListener('mouseenter', () => stat.classList.add('animate-colors'));
-      stat.addEventListener('mouseleave', () => stat.classList.remove('animate-colors'));
-    });
-
+    // Multicolor hover on projects
     document.querySelectorAll('.project').forEach(project => {
       project.addEventListener('mouseenter', () => project.classList.add('animate-colors'));
       project.addEventListener('mouseleave', () => project.classList.remove('animate-colors'));
