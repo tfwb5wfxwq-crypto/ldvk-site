@@ -432,26 +432,52 @@
       box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
     }
 
-    /* Portfolio Grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-top: 30px;
+    /* Portfolio Carousel */
+    .portfolio-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 20px 0;
+      margin: 0 -3rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+
+    .portfolio-carousel::-webkit-scrollbar {
+      display: none;
     }
 
     .portfolio-item {
       position: relative;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
       aspect-ratio: 9/16;
-      cursor: pointer;
+      flex: 0 0 200px;
+      scroll-snap-align: start;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
 
-    .portfolio-item video {
+    .portfolio-item:hover {
+      transform: scale(1.05) translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .portfolio-item video,
+    .portfolio-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      pointer-events: none;
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-item:hover video,
+    .portfolio-item:hover img {
+      transform: scale(1.1);
     }
 
     .portfolio-item .overlay {
@@ -459,8 +485,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 20px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -468,24 +494,46 @@
 
     .portfolio-item .client-name {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .portfolio-item .project-type {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
       margin-top: 4px;
     }
 
-    .portfolio-item:hover video {
-      transform: scale(1.05);
-      transition: transform 0.5s ease;
+    .portfolio-scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      margin-top: 16px;
     }
 
-    @media (max-width: 500px) {
-      .portfolio-grid {
-        grid-template-columns: 1fr;
+    .portfolio-scroll-hint svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      animation: scrollHint 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollHint {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-carousel {
+        margin: 0 -1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .portfolio-item {
+        flex: 0 0 160px;
       }
     }
 
@@ -861,18 +909,18 @@
 
   <!-- Modal Portfolio -->
   <div class="modal" id="modal-portfolio">
-    <div class="modal-content" style="max-width: 500px;">
+    <div class="modal-content" style="max-width: 700px;">
       <button class="modal-close" onclick="closeModal('portfolio')">×</button>
       <h2 data-i18n="portfolio.title">Derniers Projets</h2>
       <p data-i18n="portfolio.desc">Contenus créatifs pour nos clients.</p>
-      <div class="portfolio-grid">
+      <div class="portfolio-carousel">
         <div class="portfolio-item">
           <video autoplay muted loop playsinline>
             <source src="portfolio/videos/winamax.mp4" type="video/mp4">
           </video>
           <div class="overlay">
             <span class="client-name">Winamax</span>
-            <span class="project-type">Contenu sponsorisé Instagram</span>
+            <span class="project-type">Sponsoring Instagram</span>
           </div>
         </div>
         <div class="portfolio-item">
@@ -880,10 +928,28 @@
             <source src="portfolio/videos/terrys.mp4" type="video/mp4">
           </video>
           <div class="overlay">
-            <span class="client-name">Terry's Chocolate</span>
-            <span class="project-type">Contenu sponsorisé Instagram</span>
+            <span class="client-name">Terry's</span>
+            <span class="project-type">Sponsoring Instagram</span>
           </div>
         </div>
+        <div class="portfolio-item">
+          <img src="portfolio/winamax-1.jpg" alt="Winamax">
+          <div class="overlay">
+            <span class="client-name">Winamax</span>
+            <span class="project-type">Série poker</span>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="portfolio/winamax-2.jpg" alt="Winamax">
+          <div class="overlay">
+            <span class="client-name">Winamax</span>
+            <span class="project-type">Série poker</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-scroll-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span data-i18n="portfolio.scroll">Glisse pour voir plus</span>
       </div>
     </div>
   </div>
@@ -997,6 +1063,7 @@
         'nav.contact': 'Contact',
         'portfolio.title': 'Derniers Projets',
         'portfolio.desc': 'Contenus créatifs pour nos clients.',
+        'portfolio.scroll': 'Glisse pour voir plus',
         'tagline.video': 'Production Vidéo',
         'tagline.data': 'Data',
         'video.title': 'Production Vidéo',
@@ -1050,6 +1117,7 @@
         'nav.contact': 'Contact',
         'portfolio.title': 'Latest Projects',
         'portfolio.desc': 'Creative content for our clients.',
+        'portfolio.scroll': 'Swipe to see more',
         'tagline.video': 'Video Production',
         'tagline.data': 'Data',
         'video.title': 'Video Production',
