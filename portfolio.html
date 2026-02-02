@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets — LDVK</title>
+  <meta name="description" content="Portfolio de LDVK : productions vidéo pour Winamax, Terry's, Court ou Crève et plus.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #050505;
+      color: #fff;
+      font-family: 'General Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(5,5,5,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-logo {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 140px 3rem 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-item {
+      text-align: left;
+    }
+
+    .stat-number {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* Portfolio Grid */
+    .portfolio {
+      padding: 40px 3rem 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .portfolio-item video,
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .portfolio-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 40%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .portfolio-item .client-name {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .portfolio-item .project-type {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 4px;
+    }
+
+    .portfolio-item .project-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* Clients */
+    .clients {
+      padding: 60px 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .clients-title {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .clients-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .clients-grid img {
+      height: 35px;
+      opacity: 0.4;
+      filter: grayscale(1) invert(1) brightness(1.5);
+      transition: opacity 0.3s;
+    }
+
+    .clients-grid img:hover {
+      opacity: 0.8;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 1000px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .stats {
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+      nav {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        gap: 1.5rem;
+      }
+      .hero, .portfolio {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .clients-grid {
+        gap: 2rem;
+      }
+      .clients-grid img {
+        height: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">LDVK</a>
+    <div class="nav-links">
+      <a href="/services.html">Services</a>
+      <a href="/portfolio.html" class="active">Projets</a>
+      <a href="/about.html">À propos</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Nos réalisations</h1>
+    <p>Contenus vidéo créés pour nos clients, de la conception à l'analyse des performances.</p>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">22</div>
+        <div class="stat-label">Campagnes 2025</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">45M</div>
+        <div class="stat-label">Vues générées</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">7 ans</div>
+        <div class="stat-label">D'expérience</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio">
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <video autoplay muted loop playsinline>
+          <source src="/portfolio/videos/coc.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">
+          <span class="client-name">Court ou Crève</span>
+          <span class="project-type">Série YouTube</span>
+          <span class="project-desc">Production complète de la série poker sur YouTube.</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <video autoplay muted loop playsinline>
+          <source src="/portfolio/videos/winamax.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">
+          <span class="client-name">Winamax</span>
+          <span class="project-type">Série poker</span>
+          <span class="project-desc">Contenus sponsorisés pour les réseaux sociaux.</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <video autoplay muted loop playsinline>
+          <source src="/portfolio/videos/terrys.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">
+          <span class="client-name">Terry's Chocolate</span>
+          <span class="project-type">Sponsoring Instagram</span>
+          <span class="project-desc">Campagne social media pour le lancement produit.</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <video autoplay muted loop playsinline>
+          <source src="/portfolio/videos/wina-aveugle.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">
+          <span class="client-name">Winamax</span>
+          <span class="project-type">Série poker</span>
+          <span class="project-desc">Épisode "L'Aveugle" de la série humoristique.</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <video autoplay muted loop playsinline>
+          <source src="/portfolio/videos/wina-botox.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">
+          <span class="client-name">Winamax</span>
+          <span class="project-type">Série poker</span>
+          <span class="project-desc">Épisode "Botox" de la série humoristique.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clients">
+    <div class="clients-title">Ils nous font confiance</div>
+    <div class="clients-grid">
+      <img src="/logos/winamax.png" alt="Winamax">
+      <img src="/logos/laposte.png" alt="La Poste">
+      <img src="/logos/francetv.png" alt="France TV">
+      <img src="/logos/macif.png" alt="Macif">
+      <img src="/logos/webedia.png" alt="Webedia">
+      <img src="/logos/primevideo.png" alt="Prime Video">
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2018-2026 LDVK SAS — SIRET 834 994 352 00021</span>
+    <a href="/mentions-legales.html">Mentions légales</a>
+  </footer>
+
+</body>
+</html>

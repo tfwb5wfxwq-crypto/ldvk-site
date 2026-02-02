@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — LDVK</title>
+  <meta name="description" content="Production vidéo et analyse de données pour optimiser vos campagnes. Création, analyse, adaptation.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #050505;
+      color: #fff;
+      font-family: 'General Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(5,5,5,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-logo {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 140px 3rem 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* Process Section */
+    .process {
+      padding: 80px 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .process-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #6366f1;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 3rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .process-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .process-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .process-number {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      opacity: 0.1;
+    }
+
+    .process-card:nth-child(1) .process-number { color: #6366f1; }
+    .process-card:nth-child(2) .process-number { color: #ec4899; }
+    .process-card:nth-child(3) .process-number { color: #10b981; }
+
+    .process-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .process-card:nth-child(1) .process-icon { background: rgba(99, 102, 241, 0.15); }
+    .process-card:nth-child(2) .process-icon { background: rgba(236, 72, 153, 0.15); }
+    .process-card:nth-child(3) .process-icon { background: rgba(16, 185, 129, 0.15); }
+
+    .process-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .process-card:nth-child(1) .process-icon svg { stroke: #6366f1; }
+    .process-card:nth-child(2) .process-icon svg { stroke: #ec4899; }
+    .process-card:nth-child(3) .process-icon svg { stroke: #10b981; }
+
+    .process-card h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .process-card p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .process-card ul {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .process-card li {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      padding: 0.4rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .process-card li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      opacity: 0.5;
+    }
+
+    /* Services Detail */
+    .services-detail {
+      padding: 80px 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding: 4rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .service-section:first-of-type {
+      border-top: none;
+    }
+
+    .service-content h2 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-content h2 span {
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .service-content p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .service-list {
+      list-style: none;
+      margin-top: 2rem;
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .service-list li:last-child {
+      border-bottom: none;
+    }
+
+    .service-list .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-list .icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: rgba(255,255,255,0.6);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .service-list .text {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+    }
+
+    .service-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-box {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .visual-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 100px 3rem;
+      text-align: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.05) 100%);
+    }
+
+    .cta-section h2 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+    }
+
+    .cta-button svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      nav {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        gap: 1.5rem;
+      }
+      .hero, .process, .services-detail {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">LDVK</a>
+    <div class="nav-links">
+      <a href="/services.html" class="active">Services</a>
+      <a href="/portfolio.html">Projets</a>
+      <a href="/about.html">À propos</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Création. Analyse. Adaptation.</h1>
+    <p>Une approche data-driven de la production vidéo. On ne se contente pas de créer — on mesure, on apprend, on optimise.</p>
+  </section>
+
+  <section class="process">
+    <div class="process-title">Notre méthode</div>
+    <div class="process-grid">
+      <div class="process-card">
+        <span class="process-number">01</span>
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h3>Création</h3>
+        <p>Production de contenus vidéo adaptés à vos objectifs et votre audience cible.</p>
+        <ul>
+          <li>Spots publicitaires</li>
+          <li>Contenus social media</li>
+          <li>Séries branded content</li>
+          <li>Motion design</li>
+        </ul>
+      </div>
+
+      <div class="process-card">
+        <span class="process-number">02</span>
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        </div>
+        <h3>Analyse</h3>
+        <p>Collecte et analyse de données publiques pour mesurer l'impact et comprendre le marché.</p>
+        <ul>
+          <li>Suivi des performances</li>
+          <li>Veille concurrentielle</li>
+          <li>Tendances marché</li>
+          <li>Analyse d'audience</li>
+        </ul>
+      </div>
+
+      <div class="process-card">
+        <span class="process-number">03</span>
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>
+        </div>
+        <h3>Adaptation</h3>
+        <p>Optimisation continue basée sur les données pour maximiser le ROI de vos campagnes.</p>
+        <ul>
+          <li>A/B testing créatif</li>
+          <li>Optimisation des formats</li>
+          <li>Ajustement du ciblage</li>
+          <li>Rapports personnalisés</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-detail">
+    <div class="service-section">
+      <div class="service-content">
+        <h2>Production <span>Vidéo</span></h2>
+        <p>De l'idée à la diffusion, nous produisons des contenus qui captent l'attention et génèrent de l'engagement.</p>
+        <p>Notre équipe gère l'ensemble du processus : conception créative, tournage, post-production et optimisation pour chaque plateforme.</p>
+        <ul class="service-list">
+          <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg></span>
+            <span class="text">Spots publicitaires et films de marque</span>
+          </li>
+          <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span>
+            <span class="text">Contenus social media (TikTok, Reels, Shorts, Stories)</span>
+          </li>
+          <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg></span>
+            <span class="text">Motion design et animation</span>
+          </li>
+        </ul>
+      </div>
+      <div class="service-visual">
+        <div class="visual-box">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+            <source src="/portfolio/videos/winamax.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-section">
+      <div class="service-visual">
+        <div class="visual-box" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); display: flex; flex-direction: column; padding: 2rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+            <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">TABLEAU DE BORD</span>
+            <span style="font-size: 0.65rem; padding: 3px 8px; background: rgba(16, 185, 129, 0.2); color: #10b981; border-radius: 20px;">Live</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; flex: 1;">
+            <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; text-align: center;">
+              <div style="font-family: 'Clash Display', sans-serif; font-size: 1.8rem; color: #10b981;">+247%</div>
+              <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5);">CROISSANCE</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; text-align: center;">
+              <div style="font-family: 'Clash Display', sans-serif; font-size: 1.8rem; color: #6366f1;">6.8%</div>
+              <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5);">ENGAGEMENT</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; text-align: center;">
+              <div style="font-family: 'Clash Display', sans-serif; font-size: 1.8rem; color: #ec4899;">2.4M</div>
+              <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5);">REACH</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; text-align: center;">
+              <div style="font-family: 'Clash Display', sans-serif; font-size: 1.8rem; color: #f59e0b;">18-34</div>
+              <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5);">CIBLE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="service-content">
+        <h2>Data & <span>Analytics</span></h2>
+        <p>Nous collectons et agrégeons des données publiquement accessibles pour vous donner une vision claire de vos performances et du marché.</p>
+        <p>Chaque campagne est suivie, analysée et optimisée en continu pour maximiser votre retour sur investissement.</p>
+        <ul class="service-list">
+          <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+            <span class="text">Rapports de performance : vues, engagement, progression</span>
+          </li>
+          <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            <span class="text">Veille concurrentielle et monitoring de marché</span>
+          </li>
+          <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+            <span class="text">Analyse d'audience et segmentation</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Prêt à lancer votre projet ?</h2>
+    <p>Discutons de vos objectifs et voyons comment on peut vous aider.</p>
+    <a href="/#contact" class="cta-button">
+      Nous contacter
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <footer>
+    <span>© 2018-2026 LDVK SAS — SIRET 834 994 352 00021</span>
+    <a href="/mentions-legales.html">Mentions légales</a>
+  </footer>
+
+</body>
+</html>
