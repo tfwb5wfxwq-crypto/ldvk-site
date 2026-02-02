@@ -668,22 +668,24 @@
 
     .bubble-status {
       text-align: right;
-      font-size: 0.7rem;
-      margin-top: 2px;
+      font-size: 0.75rem;
+      margin-top: 4px;
       margin-bottom: 0.5rem;
-      animation: fadeUp 0.2s ease;
+      padding-right: 4px;
+      animation: fadeUp 0.3s ease;
     }
 
     .bubble-status.sending {
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.6);
     }
 
     .bubble-status.delivered {
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.7);
     }
 
     .bubble-status.read {
       color: #007AFF;
+      font-weight: 500;
     }
 
     /* Mobile */
@@ -692,6 +694,12 @@
       .nav-links a { margin-left: 1rem; font-size: 0.8rem; }
       .modal-content { padding: 2rem 1.5rem; }
       .modal h2 { font-size: 1.5rem; }
+
+      .chat-container { max-width: 100%; }
+      .chat-header .avatar { width: 60px; height: 60px; font-size: 1.5rem; }
+      .chat-bubble { max-width: 90%; font-size: 0.9rem; }
+      .chat-input { font-size: 16px; } /* Prevents iOS zoom */
+      .bubble-status { font-size: 0.7rem; }
     }
 
     @media (hover: none) {
