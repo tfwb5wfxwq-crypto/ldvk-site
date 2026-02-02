@@ -1973,6 +1973,17 @@
     // Initialize language on load
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
+      // Open contact modal if #contact hash
+      if (window.location.hash === '#contact') {
+        openModal('contact');
+      }
+    });
+
+    // Also check on hash change
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#contact') {
+        openModal('contact');
+      }
     });
   </script>
 
