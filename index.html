@@ -432,17 +432,32 @@
       box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
     }
 
-    /* Logo Carousel */
+    /* Logo Carousel - Infinite Scroll */
     .logo-carousel {
       position: fixed;
       bottom: 2rem;
       left: 0;
       width: 100%;
       z-index: 10;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .logo-track {
       display: flex;
-      justify-content: center;
-      gap: 3rem;
-      padding: 0 2rem;
+      gap: 4rem;
+      animation: scroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .logo-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .logo-carousel img {
@@ -450,6 +465,7 @@
       opacity: 0.4;
       filter: grayscale(1) invert(1) brightness(1.5);
       transition: all 0.4s ease;
+      flex-shrink: 0;
     }
 
     .logo-carousel img[alt="Terry's"] {
@@ -744,17 +760,29 @@
     </p>
   </section>
 
-  <!-- Logo Carousel -->
+  <!-- Logo Carousel - Infinite Scroll -->
   <div class="logo-carousel">
-    <img src="logos/winamax.png" alt="Winamax">
-    <img src="logos/laposte.png" alt="La Poste">
-    <img src="logos/webedia.png" alt="Webedia">
-    <img src="logos/macif.png" alt="Macif">
-    <img src="logos/francetv.png" alt="France TV">
-    <img src="logos/terrys.svg" alt="Terry's">
-    <img src="logos/coc.png" alt="Court ou Crève">
-    <img src="logos/primevideo.png" alt="Prime Video">
-    <img src="logos/freaks.png" alt="Freaks">
+    <div class="logo-track">
+      <img src="logos/winamax.png" alt="Winamax">
+      <img src="logos/laposte.png" alt="La Poste">
+      <img src="logos/webedia.png" alt="Webedia">
+      <img src="logos/macif.png" alt="Macif">
+      <img src="logos/francetv.png" alt="France TV">
+      <img src="logos/terrys.svg" alt="Terry's">
+      <img src="logos/coc.png" alt="Court ou Crève">
+      <img src="logos/primevideo.png" alt="Prime Video">
+      <img src="logos/freaks.png" alt="Freaks">
+      <!-- Duplicate for seamless loop -->
+      <img src="logos/winamax.png" alt="Winamax">
+      <img src="logos/laposte.png" alt="La Poste">
+      <img src="logos/webedia.png" alt="Webedia">
+      <img src="logos/macif.png" alt="Macif">
+      <img src="logos/francetv.png" alt="France TV">
+      <img src="logos/terrys.svg" alt="Terry's">
+      <img src="logos/coc.png" alt="Court ou Crève">
+      <img src="logos/primevideo.png" alt="Prime Video">
+      <img src="logos/freaks.png" alt="Freaks">
+    </div>
   </div>
 
   <!-- Modal Video -->
