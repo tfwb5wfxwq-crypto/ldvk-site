@@ -4,189 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services — LDVK</title>
-  <meta name="description" content="Production vidéo et analyse de données pour optimiser vos campagnes.">
+  <meta name="description" content="Production vidéo et analyse de données.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: #050505;
-      color: #fff;
-      font-family: 'General Sans', sans-serif;
-      min-height: 100vh;
-    }
+    body { background: #050505; color: #fff; font-family: 'General Sans', sans-serif; min-height: 100vh; }
 
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      background: rgba(5,5,5,0.8);
-      backdrop-filter: blur(20px);
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 1.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; background: rgba(5,5,5,0.8); backdrop-filter: blur(20px);
     }
-
     .nav-logo {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.3);
-      text-decoration: none;
-      display: flex;
-      cursor: pointer;
+      font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 700;
+      color: rgba(255,255,255,0.25); text-decoration: none; display: flex; cursor: pointer;
     }
+    .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
 
-    .nav-logo span {
-      display: inline-block;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .content { max-width: 600px; margin: 0 auto; padding: 100px 2rem 60px; }
+
+    h1 { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .sub { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-bottom: 3rem; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
+    .card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px; padding: 1.2rem; transition: all 0.3s ease;
     }
+    .card:hover { background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+    .card .n { font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 700; opacity: 0.1; margin-bottom: 0.5rem; }
+    .card:nth-child(1) .n { color: #6366f1; }
+    .card:nth-child(2) .n { color: #ec4899; }
+    .card:nth-child(3) .n { color: #10b981; }
+    .card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .card p { color: rgba(255,255,255,0.4); font-size: 0.75rem; line-height: 1.5; }
 
-    .nav-links { display: flex; gap: 2.5rem; }
-
-    .nav-links a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
+    .list { list-style: none; }
+    .list li {
+      padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.85rem;
     }
+    .list li:last-child { border-bottom: none; }
+    .list .cat { font-size: 0.65rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; }
 
-    .nav-links a:hover { color: #fff; }
-    .nav-links a.active { color: #fff; }
-
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 120px 2rem 80px;
-    }
-
-    h1 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    .subtitle {
-      color: rgba(255,255,255,0.5);
-      font-size: 1.1rem;
-      margin-bottom: 4rem;
-    }
-
-    .process {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .process-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    .process-card:hover {
-      background: rgba(255,255,255,0.04);
-      transform: translateY(-4px);
-    }
-
-    .process-card .num {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      opacity: 0.15;
-      margin-bottom: 1rem;
-    }
-
-    .process-card:nth-child(1) .num { color: #6366f1; }
-    .process-card:nth-child(2) .num { color: #ec4899; }
-    .process-card:nth-child(3) .num { color: #10b981; }
-
-    .process-card h3 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .process-card p {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .services-list {
-      list-style: none;
-    }
-
-    .services-list li {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .services-list li:last-child { border-bottom: none; }
-
-    .service-name {
-      font-size: 1.1rem;
-      color: #fff;
-    }
-
-    .service-cat {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .cta {
-      margin-top: 4rem;
-      text-align: center;
-    }
-
+    .cta { margin-top: 3rem; text-align: center; }
     .cta a {
-      display: inline-block;
-      padding: 1rem 2rem;
+      display: inline-block; padding: 0.7rem 1.5rem;
       background: linear-gradient(135deg, #6366f1, #ec4899);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
+      color: #fff; text-decoration: none; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
     }
+    .cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
 
-    .cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-    }
+    footer { padding: 1.5rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-    footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-    }
-
-    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
-    footer a:hover { color: #fff; }
-
-    @media (max-width: 700px) {
-      .process { grid-template-columns: 1fr; }
-      h1 { font-size: 2rem; }
-      .nav-links { gap: 1.5rem; }
-      .nav-links a { font-size: 0.8rem; }
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
+      h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <a href="/" class="nav-logo"><span>L</span><span>D</span><span>V</span><span>K</span></a>
     <div class="nav-links">
@@ -199,69 +84,32 @@
 
   <div class="content">
     <h1>Création. Analyse. Adaptation.</h1>
-    <p class="subtitle">Une approche data-driven de la production vidéo.</p>
+    <p class="sub">Production vidéo data-driven.</p>
 
-    <div class="process">
-      <div class="process-card">
-        <div class="num">01</div>
-        <h3>Création</h3>
-        <p>Production de contenus vidéo adaptés à vos objectifs et votre audience.</p>
-      </div>
-      <div class="process-card">
-        <div class="num">02</div>
-        <h3>Analyse</h3>
-        <p>Collecte de données publiques pour mesurer l'impact et comprendre le marché.</p>
-      </div>
-      <div class="process-card">
-        <div class="num">03</div>
-        <h3>Adaptation</h3>
-        <p>Optimisation continue basée sur les performances mesurées.</p>
-      </div>
+    <div class="cards">
+      <div class="card"><div class="n">01</div><h3>Création</h3><p>Contenus vidéo adaptés à vos objectifs.</p></div>
+      <div class="card"><div class="n">02</div><h3>Analyse</h3><p>Données publiques pour mesurer l'impact.</p></div>
+      <div class="card"><div class="n">03</div><h3>Adaptation</h3><p>Optimisation continue des performances.</p></div>
     </div>
 
-    <ul class="services-list">
-      <li><span class="service-name">Spots publicitaires & films de marque</span><span class="service-cat">Vidéo</span></li>
-      <li><span class="service-name">Contenus social media</span><span class="service-cat">Vidéo</span></li>
-      <li><span class="service-name">Motion design & animation</span><span class="service-cat">Vidéo</span></li>
-      <li><span class="service-name">Rapports de performance</span><span class="service-cat">Data</span></li>
-      <li><span class="service-name">Veille concurrentielle</span><span class="service-cat">Data</span></li>
-      <li><span class="service-name">Analyse d'audience</span><span class="service-cat">Data</span></li>
+    <ul class="list">
+      <li><span>Spots publicitaires</span><span class="cat">Vidéo</span></li>
+      <li><span>Contenus social media</span><span class="cat">Vidéo</span></li>
+      <li><span>Motion design</span><span class="cat">Vidéo</span></li>
+      <li><span>Rapports de performance</span><span class="cat">Data</span></li>
+      <li><span>Veille concurrentielle</span><span class="cat">Data</span></li>
+      <li><span>Analyse d'audience</span><span class="cat">Data</span></li>
     </ul>
 
-    <div class="cta">
-      <a href="/#contact">Nous contacter</a>
-    </div>
+    <div class="cta"><a href="/#contact">Contact</a></div>
   </div>
 
-  <footer>
-    <span>© 2018-2026 LDVK SAS</span> · <a href="/mentions-legales">Mentions légales</a>
-  </footer>
+  <footer>© 2018-2026 LDVK · <a href="/mentions-legales">Mentions légales</a></footer>
 
   <script>
-    let hoverCount = 0;
-    let resetAt = 8 + Math.floor(Math.random() * 5);
-
-    function shuffleLogo() {
-      hoverCount++;
-      if (hoverCount >= resetAt) {
-        document.querySelectorAll('.nav-logo span').forEach(span => {
-          span.style.transform = 'translate(0, 0) rotate(0deg)';
-        });
-        hoverCount = 0;
-        resetAt = 8 + Math.floor(Math.random() * 5);
-      } else {
-        document.querySelectorAll('.nav-logo span').forEach(span => {
-          const x = (Math.random() - 0.5) * 30;
-          const y = (Math.random() - 0.5) * 20;
-          const rot = (Math.random() - 0.5) * 40;
-          span.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
-        });
-      }
-    }
-    shuffleLogo();
-    document.querySelector('.nav-logo').addEventListener('mouseenter', shuffleLogo);
-    document.querySelector('.nav-logo').addEventListener('click', shuffleLogo);
+    let c=0,r=8+Math.floor(Math.random()*5);
+    function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
+    s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
   </script>
-
 </body>
 </html>

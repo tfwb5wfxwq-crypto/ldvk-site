@@ -4,192 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>À propos — LDVK</title>
-  <meta name="description" content="LDVK est une agence française de production vidéo et d'analyse de données.">
+  <meta name="description" content="LDVK — Production vidéo et analyse de données.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: #050505;
-      color: #fff;
-      font-family: 'General Sans', sans-serif;
-      min-height: 100vh;
-    }
+    body { background: #050505; color: #fff; font-family: 'General Sans', sans-serif; min-height: 100vh; }
 
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      background: rgba(5,5,5,0.8);
-      backdrop-filter: blur(20px);
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 1.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; background: rgba(5,5,5,0.8); backdrop-filter: blur(20px);
     }
-
     .nav-logo {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.3);
-      text-decoration: none;
-      display: flex;
-      cursor: pointer;
+      font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 700;
+      color: rgba(255,255,255,0.25); text-decoration: none; display: flex; cursor: pointer;
     }
+    .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
 
-    .nav-logo span {
-      display: inline-block;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
+    .content { max-width: 550px; margin: 0 auto; padding: 100px 2rem 60px; }
 
-    .nav-links { display: flex; gap: 2.5rem; }
+    h1 { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; }
 
-    .nav-links a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover { color: #fff; }
-    .nav-links a.active { color: #fff; }
-
-    .content {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 120px 2rem 80px;
-    }
-
-    h1 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: #fff;
-    }
-
-    .intro {
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.8;
-      margin-bottom: 3rem;
-    }
-
+    .intro { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 2rem; }
     .intro strong { color: #fff; }
 
-    .info-row {
-      display: flex;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+    .row { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .row .item { flex: 1; }
+    .row .l { font-size: 0.6rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+    .row .v { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    .info-item {
-      flex: 1;
-    }
+    h2 { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+    h2 span { background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    .info-label {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
+    .text { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.5rem; }
 
-    .info-value {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #6366f1, #ec4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    h2 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    h2 span {
-      background: linear-gradient(135deg, #10b981, #06b6d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .text {
-      color: rgba(255,255,255,0.6);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .list {
-      list-style: none;
-      margin-bottom: 3rem;
-    }
-
-    .list li {
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.7);
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
+    .list { list-style: none; margin-bottom: 2rem; }
+    .list li { padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); font-size: 0.8rem; display: flex; gap: 0.8rem; align-items: flex-start; }
     .list li:last-child { border-bottom: none; }
+    .list .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; margin-top: 6px; flex-shrink: 0; }
 
-    .list .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      margin-top: 8px;
-      flex-shrink: 0;
-    }
-
-    .cta {
-      text-align: center;
-      padding-top: 2rem;
-    }
-
+    .cta { text-align: center; }
     .cta a {
-      display: inline-block;
-      padding: 1rem 2rem;
+      display: inline-block; padding: 0.7rem 1.5rem;
       background: linear-gradient(135deg, #6366f1, #ec4899);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
+      color: #fff; text-decoration: none; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
     }
+    .cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
 
-    .cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-    }
+    footer { padding: 1.5rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-    footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-    }
-
-    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
-    footer a:hover { color: #fff; }
-
-    @media (max-width: 600px) {
-      .info-row { flex-direction: column; gap: 1.5rem; }
-      h1 { font-size: 2rem; }
+    @media (max-width: 500px) {
+      .row { flex-direction: column; gap: 1rem; }
+      h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <a href="/" class="nav-logo"><span>L</span><span>D</span><span>V</span><span>K</span></a>
     <div class="nav-links">
@@ -201,73 +78,34 @@
   </nav>
 
   <div class="content">
-    <h1>Production vidéo + Data</h1>
+    <h1>Vidéo + Data</h1>
 
-    <p class="intro">
-      <strong>LDVK</strong> est une agence française spécialisée dans la production de contenus vidéo et l'analyse de données pour les marques. Depuis 2018, nous combinons créativité et data pour optimiser chaque campagne.
-    </p>
+    <p class="intro"><strong>LDVK</strong> — Agence française de production vidéo et d'analyse de données. Depuis 2018, créativité et data pour optimiser chaque campagne.</p>
 
-    <div class="info-row">
-      <div class="info-item">
-        <div class="info-label">Création</div>
-        <div class="info-value">2018</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Structure</div>
-        <div class="info-value">SAS</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Activité</div>
-        <div class="info-value">5911B</div>
-      </div>
+    <div class="row">
+      <div class="item"><div class="l">Création</div><div class="v">2018</div></div>
+      <div class="item"><div class="l">Structure</div><div class="v">SAS</div></div>
+      <div class="item"><div class="l">Activité</div><div class="v">5911B</div></div>
     </div>
 
-    <h2>Notre approche <span>Data</span></h2>
-
-    <p class="text">
-      Nous ne nous contentons pas de produire des vidéos — nous mesurons leur impact et optimisons en continu. Notre équipe collecte et agrège des données publiquement accessibles sur le web pour fournir des insights actionnables.
-    </p>
+    <h2>Approche <span>Data</span></h2>
+    <p class="text">Mesure d'impact et optimisation continue. Collecte et agrégation de données publiques pour des insights actionnables.</p>
 
     <ul class="list">
-      <li><span class="dot"></span>Collecte de données publiques — statistiques de vues, tendances, métriques d'engagement</li>
-      <li><span class="dot"></span>Agrégation et analyse — transformation en rapports personnalisés</li>
+      <li><span class="dot"></span>Collecte de données publiques — vues, tendances, engagement</li>
+      <li><span class="dot"></span>Agrégation et analyse — rapports personnalisés</li>
       <li><span class="dot"></span>Optimisation continue — ajustement basé sur les performances</li>
     </ul>
 
-    <div class="cta">
-      <a href="/#contact">Nous contacter</a>
-    </div>
+    <div class="cta"><a href="/#contact">Contact</a></div>
   </div>
 
-  <footer>
-    <span>© 2018-2026 LDVK SAS</span> · <a href="/mentions-legales">Mentions légales</a>
-  </footer>
+  <footer>© 2018-2026 LDVK · <a href="/mentions-legales">Mentions légales</a></footer>
 
   <script>
-    let hoverCount = 0;
-    let resetAt = 8 + Math.floor(Math.random() * 5);
-
-    function shuffleLogo() {
-      hoverCount++;
-      if (hoverCount >= resetAt) {
-        document.querySelectorAll('.nav-logo span').forEach(span => {
-          span.style.transform = 'translate(0, 0) rotate(0deg)';
-        });
-        hoverCount = 0;
-        resetAt = 8 + Math.floor(Math.random() * 5);
-      } else {
-        document.querySelectorAll('.nav-logo span').forEach(span => {
-          const x = (Math.random() - 0.5) * 30;
-          const y = (Math.random() - 0.5) * 20;
-          const rot = (Math.random() - 0.5) * 40;
-          span.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
-        });
-      }
-    }
-    shuffleLogo();
-    document.querySelector('.nav-logo').addEventListener('mouseenter', shuffleLogo);
-    document.querySelector('.nav-logo').addEventListener('click', shuffleLogo);
+    let c=0,r=8+Math.floor(Math.random()*5);
+    function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
+    s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
   </script>
-
 </body>
 </html>
