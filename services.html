@@ -22,9 +22,16 @@
       color: rgba(255,255,255,0.25); text-decoration: none; display: flex; cursor: pointer;
     }
     .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; cursor: pointer; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .lang-toggle {
+      margin-left: 1rem; padding: 0.3rem 0.6rem;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 5px; color: rgba(255,255,255,0.5); font-size: 0.7rem;
+      font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: inherit;
+    }
+    .lang-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
     .content { max-width: 600px; margin: 0 auto; padding: 100px 2rem 60px; }
 
@@ -70,6 +77,7 @@
     @media (max-width: 600px) {
       .cards { grid-template-columns: 1fr; }
       h1 { font-size: 1.5rem; }
+      .nav-links { gap: 1rem; }
     }
   </style>
 </head>
@@ -77,38 +85,73 @@
   <nav>
     <a href="/" class="nav-logo"><span>L</span><span>D</span><span>V</span><span>K</span></a>
     <div class="nav-links">
-      <a href="/services" class="active">Services</a>
-      <a href="/portfolio">Projets</a>
-      <a href="/about">À propos</a>
-      <a href="/#contact">Contact</a>
+      <a href="/services" class="active" data-i18n="nav.services">Services</a>
+      <a href="/portfolio" data-i18n="nav.portfolio">Projets</a>
+      <a href="/about" data-i18n="nav.about">À propos</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+      <button class="lang-toggle" onclick="toggleLang()">EN</button>
     </div>
   </nav>
 
   <div class="content">
-    <h1>Création. Analyse. Adaptation.</h1>
-    <p class="sub">Production vidéo data-driven.</p>
+    <h1 data-i18n="services.h1">Création. Analyse. Adaptation.</h1>
+    <p class="sub" data-i18n="services.sub">Production vidéo data-driven.</p>
 
     <div class="cards">
-      <div class="card"><div class="n">01</div><h3>Création</h3><p>Contenus vidéo adaptés à vos objectifs.</p></div>
-      <div class="card"><div class="n">02</div><h3>Analyse</h3><p>Données publiques pour mesurer l'impact.</p></div>
-      <div class="card"><div class="n">03</div><h3>Adaptation</h3><p>Optimisation continue des performances.</p></div>
+      <div class="card"><div class="n">01</div><h3 data-i18n="services.c1">Création</h3><p data-i18n="services.c1d">Contenus vidéo adaptés à vos objectifs.</p></div>
+      <div class="card"><div class="n">02</div><h3 data-i18n="services.c2">Analyse</h3><p data-i18n="services.c2d">Données publiques pour mesurer l'impact.</p></div>
+      <div class="card"><div class="n">03</div><h3 data-i18n="services.c3">Adaptation</h3><p data-i18n="services.c3d">Optimisation continue des performances.</p></div>
     </div>
 
     <ul class="list">
-      <li><span>Spots publicitaires</span><span class="cat">Vidéo</span></li>
-      <li><span>Contenus social media</span><span class="cat">Vidéo</span></li>
-      <li><span>Motion design</span><span class="cat">Vidéo</span></li>
-      <li><span>Rapports de performance</span><span class="cat">Data</span></li>
-      <li><span>Veille concurrentielle</span><span class="cat">Data</span></li>
-      <li><span>Analyse d'audience</span><span class="cat">Data</span></li>
+      <li><span data-i18n="services.l1">Spots publicitaires</span><span class="cat" data-i18n="services.video">Vidéo</span></li>
+      <li><span data-i18n="services.l2">Contenus social media</span><span class="cat" data-i18n="services.video">Vidéo</span></li>
+      <li><span data-i18n="services.l3">Motion design</span><span class="cat" data-i18n="services.video">Vidéo</span></li>
+      <li><span data-i18n="services.l4">Rapports de performance</span><span class="cat">Data</span></li>
+      <li><span data-i18n="services.l5">Veille concurrentielle</span><span class="cat">Data</span></li>
+      <li><span data-i18n="services.l6">Analyse d'audience</span><span class="cat">Data</span></li>
     </ul>
 
-    <div class="cta"><a href="/#contact">Discutons</a></div>
+    <div class="cta"><a href="/#contact" data-i18n="cta">Discutons</a></div>
   </div>
 
-  <footer>© 2018-2026 LDVK · <a href="/mentions-legales">Mentions légales</a></footer>
+  <footer>© 2018-2026 LDVK · <a href="/mentions-legales" data-i18n="footer.legal">Mentions légales</a></footer>
 
   <script>
+    const translations = {
+      fr: {
+        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
+        'services.h1': 'Création. Analyse. Adaptation.', 'services.sub': 'Production vidéo data-driven.',
+        'services.c1': 'Création', 'services.c1d': 'Contenus vidéo adaptés à vos objectifs.',
+        'services.c2': 'Analyse', 'services.c2d': 'Données publiques pour mesurer l\'impact.',
+        'services.c3': 'Adaptation', 'services.c3d': 'Optimisation continue des performances.',
+        'services.l1': 'Spots publicitaires', 'services.l2': 'Contenus social media', 'services.l3': 'Motion design',
+        'services.l4': 'Rapports de performance', 'services.l5': 'Veille concurrentielle', 'services.l6': 'Analyse d\'audience',
+        'services.video': 'Vidéo', 'cta': 'Discutons', 'footer.legal': 'Mentions légales'
+      },
+      en: {
+        'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
+        'services.h1': 'Create. Analyze. Adapt.', 'services.sub': 'Data-driven video production.',
+        'services.c1': 'Create', 'services.c1d': 'Video content tailored to your goals.',
+        'services.c2': 'Analyze', 'services.c2d': 'Public data to measure impact.',
+        'services.c3': 'Adapt', 'services.c3d': 'Continuous performance optimization.',
+        'services.l1': 'Commercials', 'services.l2': 'Social media content', 'services.l3': 'Motion design',
+        'services.l4': 'Performance reports', 'services.l5': 'Competitive intelligence', 'services.l6': 'Audience analysis',
+        'services.video': 'Video', 'cta': 'Let\'s talk', 'footer.legal': 'Legal notice'
+      }
+    };
+    let currentLang = localStorage.getItem('ldvk-lang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+    function setLanguage(lang) {
+      currentLang = lang; localStorage.setItem('ldvk-lang', lang); document.documentElement.lang = lang;
+      document.querySelector('.lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+    }
+    function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
+    setLanguage(currentLang);
+
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);

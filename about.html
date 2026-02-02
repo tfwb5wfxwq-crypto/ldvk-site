@@ -22,9 +22,16 @@
       color: rgba(255,255,255,0.25); text-decoration: none; display: flex; cursor: pointer;
     }
     .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; cursor: pointer; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .lang-toggle {
+      margin-left: 1rem; padding: 0.3rem 0.6rem;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 5px; color: rgba(255,255,255,0.5); font-size: 0.7rem;
+      font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: inherit;
+    }
+    .lang-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
     .content { max-width: 550px; margin: 0 auto; padding: 100px 2rem 60px; }
 
@@ -65,6 +72,7 @@
     @media (max-width: 500px) {
       .row { flex-direction: column; gap: 1rem; }
       h1 { font-size: 1.5rem; }
+      .nav-links { gap: 1rem; }
     }
   </style>
 </head>
@@ -72,39 +80,78 @@
   <nav>
     <a href="/" class="nav-logo"><span>L</span><span>D</span><span>V</span><span>K</span></a>
     <div class="nav-links">
-      <a href="/services">Services</a>
-      <a href="/portfolio">Projets</a>
-      <a href="/about" class="active">À propos</a>
-      <a href="/#contact">Contact</a>
+      <a href="/services" data-i18n="nav.services">Services</a>
+      <a href="/portfolio" data-i18n="nav.portfolio">Projets</a>
+      <a href="/about" class="active" data-i18n="nav.about">À propos</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+      <button class="lang-toggle" onclick="toggleLang()">EN</button>
     </div>
   </nav>
 
   <div class="content">
-    <h1>Vidéo + Data</h1>
+    <h1 data-i18n="about.h1">Vidéo + Data</h1>
 
-    <p class="intro"><strong>LDVK</strong> — Agence française de production vidéo et d'analyse de données. Depuis 2018, créativité et data pour optimiser chaque campagne.</p>
+    <p class="intro"><strong>LDVK</strong> — <span data-i18n="about.intro">Agence française de production vidéo et d'analyse de données. Depuis 2018, créativité et data pour optimiser chaque campagne.</span></p>
 
     <div class="row">
-      <div class="item"><div class="l">Création</div><div class="v">2018</div></div>
-      <div class="item"><div class="l">Structure</div><div class="v">SAS</div></div>
-      <div class="item"><div class="l">Activité</div><div class="v">5911B</div></div>
+      <div class="item"><div class="l" data-i18n="about.created">Création</div><div class="v">2018</div></div>
+      <div class="item"><div class="l" data-i18n="about.structure">Structure</div><div class="v">SAS</div></div>
+      <div class="item"><div class="l" data-i18n="about.activity">Activité</div><div class="v">5911B</div></div>
     </div>
 
-    <h2>Approche <span>Data</span></h2>
-    <p class="text">Mesure d'impact et optimisation continue. Collecte et agrégation de données publiques pour des insights actionnables.</p>
+    <h2><span data-i18n="about.approach">Approche</span> <span>Data</span></h2>
+    <p class="text" data-i18n="about.text">Mesure d'impact et optimisation continue. Collecte et agrégation de données publiques pour des insights actionnables.</p>
 
     <ul class="list">
-      <li><span class="dot"></span>Collecte de données publiques — vues, tendances, engagement</li>
-      <li><span class="dot"></span>Agrégation et analyse — rapports personnalisés</li>
-      <li><span class="dot"></span>Optimisation continue — ajustement basé sur les performances</li>
+      <li><span class="dot"></span><span data-i18n="about.l1">Collecte de données publiques — vues, tendances, engagement</span></li>
+      <li><span class="dot"></span><span data-i18n="about.l2">Agrégation et analyse — rapports personnalisés</span></li>
+      <li><span class="dot"></span><span data-i18n="about.l3">Optimisation continue — ajustement basé sur les performances</span></li>
     </ul>
 
-    <div class="cta"><a href="/#contact">Discutons</a></div>
+    <div class="cta"><a href="/#contact" data-i18n="cta">Discutons</a></div>
   </div>
 
-  <footer>© 2018-2026 LDVK · <a href="/mentions-legales">Mentions légales</a></footer>
+  <footer>© 2018-2026 LDVK · <a href="/mentions-legales" data-i18n="footer.legal">Mentions légales</a></footer>
 
   <script>
+    const translations = {
+      fr: {
+        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
+        'about.h1': 'Vidéo + Data',
+        'about.intro': 'Agence française de production vidéo et d\'analyse de données. Depuis 2018, créativité et data pour optimiser chaque campagne.',
+        'about.created': 'Création', 'about.structure': 'Structure', 'about.activity': 'Activité',
+        'about.approach': 'Approche',
+        'about.text': 'Mesure d\'impact et optimisation continue. Collecte et agrégation de données publiques pour des insights actionnables.',
+        'about.l1': 'Collecte de données publiques — vues, tendances, engagement',
+        'about.l2': 'Agrégation et analyse — rapports personnalisés',
+        'about.l3': 'Optimisation continue — ajustement basé sur les performances',
+        'cta': 'Discutons', 'footer.legal': 'Mentions légales'
+      },
+      en: {
+        'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
+        'about.h1': 'Video + Data',
+        'about.intro': 'French video production and data analysis agency. Since 2018, creativity and data to optimize every campaign.',
+        'about.created': 'Founded', 'about.structure': 'Structure', 'about.activity': 'Activity',
+        'about.approach': 'Our',
+        'about.text': 'Impact measurement and continuous optimization. Collection and aggregation of public data for actionable insights.',
+        'about.l1': 'Public data collection — views, trends, engagement',
+        'about.l2': 'Aggregation and analysis — custom reports',
+        'about.l3': 'Continuous optimization — performance-based adjustments',
+        'cta': 'Let\'s talk', 'footer.legal': 'Legal notice'
+      }
+    };
+    let currentLang = localStorage.getItem('ldvk-lang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+    function setLanguage(lang) {
+      currentLang = lang; localStorage.setItem('ldvk-lang', lang); document.documentElement.lang = lang;
+      document.querySelector('.lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+    }
+    function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
+    setLanguage(currentLang);
+
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
