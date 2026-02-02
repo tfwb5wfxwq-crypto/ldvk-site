@@ -666,6 +666,26 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .bubble-status {
+      text-align: right;
+      font-size: 0.7rem;
+      margin-top: 2px;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.2s ease;
+    }
+
+    .bubble-status.sending {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .bubble-status.delivered {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .bubble-status.read {
+      color: #007AFF;
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -1057,8 +1077,19 @@
           }, 500);
         }, 800);
       } else {
-        // Send to server
-        showTyping();
+        // Send to server - hide input area
+        const inputArea = document.querySelector('.chat-input-area');
+        inputArea.style.transition = 'all 0.3s ease';
+        inputArea.style.opacity = '0';
+        inputArea.style.transform = 'translateY(20px)';
+        setTimeout(() => inputArea.style.display = 'none', 300);
+
+        // Mark last bubble as "sending"
+        const lastBubble = document.querySelector('.chat-messages .chat-bubble:last-child');
+        if (lastBubble) {
+          lastBubble.insertAdjacentHTML('afterend', '<div class="bubble-status sending">Envoi...</div>');
+        }
+
         const formData = new FormData();
         formData.append('name', chatData.name);
         formData.append('email', chatData.email);
@@ -1069,19 +1100,47 @@
           method: 'POST',
           body: formData
         }).then(() => {
-          setTimeout(() => {
-            hideTyping();
-            addBubble('Message envoyé ! Je te réponds très vite.', 'received', 'success');
+          // Update status to "delivered"
+          const status = document.querySelector('.bubble-status');
+          if (status) {
+            status.className = 'bubble-status delivered';
+            status.innerHTML = 'Distribué ✓';
+          }
 
-            // Auto close after 3s
+          setTimeout(() => {
+            if (status) {
+              status.className = 'bubble-status read';
+              status.innerHTML = 'Lu ✓✓';
+            }
+
+            // Show response after "read"
             setTimeout(() => {
-              closeModal('contact');
-              // Reset chat
-              setTimeout(resetChat, 500);
-            }, 3000);
-          }, 1000);
+              showTyping();
+              setTimeout(() => {
+                hideTyping();
+                addBubble('Bien reçu ! Je te réponds vite 🤙', 'received', 'success');
+
+                // Fade out the whole chat
+                setTimeout(() => {
+                  const container = document.getElementById('chatContainer');
+                  container.style.transition = 'all 0.5s ease';
+                  container.style.opacity = '0';
+                  container.style.transform = 'scale(0.95)';
+
+                  setTimeout(() => {
+                    closeModal('contact');
+                    setTimeout(resetChat, 500);
+                  }, 500);
+                }, 2000);
+              }, 800);
+            }, 600);
+          }, 800);
         }).catch(() => {
-          hideTyping();
+          const status = document.querySelector('.bubble-status');
+          if (status) status.remove();
+          inputArea.style.display = '';
+          inputArea.style.opacity = '1';
+          inputArea.style.transform = '';
           addBubble('Oups, erreur... Réessaie !', 'received');
         });
       }
@@ -1090,14 +1149,28 @@
     function resetChat() {
       chatStep = 0;
       chatData = { name: '', email: '', message: '' };
+
+      // Reset messages
       const messages = document.getElementById('chatMessages');
       messages.innerHTML = '<div class="chat-bubble received">Hey ! Tu veux discuter d\'un projet ?</div>';
+
+      // Reset input area
+      const inputArea = document.querySelector('.chat-input-area');
+      inputArea.style.display = '';
+      inputArea.style.opacity = '1';
+      inputArea.style.transform = '';
+
       const wrapper = document.querySelector('.chat-input-wrapper');
       wrapper.innerHTML = '<input type="text" class="chat-input" id="chatName" placeholder="Ton nom..." data-step="name">';
       const input = wrapper.querySelector('.chat-input');
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') sendChatMessage();
       });
+
+      // Reset container
+      const container = document.getElementById('chatContainer');
+      container.style.opacity = '1';
+      container.style.transform = '';
     }
 
     // Enter key to send
