@@ -28,7 +28,8 @@
 
     .content { max-width: 600px; margin: 0 auto; padding: 100px 2rem 60px; }
 
-    h1 { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+    h1 { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; transition: all 0.3s ease; cursor: default; }
+    h1:hover { transform: scale(1.02); letter-spacing: 0.02em; }
     .sub { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-bottom: 3rem; }
 
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
@@ -41,7 +42,8 @@
     .card:nth-child(1) .n { color: #6366f1; }
     .card:nth-child(2) .n { color: #ec4899; }
     .card:nth-child(3) .n { color: #10b981; }
-    .card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; transition: all 0.3s ease; }
+    .card:hover h3 { letter-spacing: 0.03em; }
     .card p { color: rgba(255,255,255,0.4); font-size: 0.75rem; line-height: 1.5; }
 
     .list { list-style: none; }
