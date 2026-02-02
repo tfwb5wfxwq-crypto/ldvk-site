@@ -213,26 +213,11 @@
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       padding: 0.5rem 0;
-      position: relative;
-    }
-
-    .tagline-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: currentColor;
-      transition: width 0.3s ease;
-    }
-
-    .tagline-link:hover::after {
-      width: 100%;
     }
 
     .tagline-link:hover {
-      color: #fff;
+      transform: scale(1.1);
+      letter-spacing: 0.25em;
     }
 
     .tagline-link.video {
@@ -669,7 +654,7 @@
     </h1>
     <p class="tagline">
       <span class="tagline-link video" onclick="openModal('video')" data-i18n="tagline.video">Production Vidéo</span>
-      <span class="tagline-sep">&</span>
+      <span class="tagline-sep">·</span>
       <span class="tagline-link data" onclick="openModal('data')" data-i18n="tagline.data">Data</span>
     </p>
   </section>
