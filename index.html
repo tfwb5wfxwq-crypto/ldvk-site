@@ -503,6 +503,18 @@
       box-shadow: none;
     }
 
+    .contact-form input.error,
+    .contact-form textarea.error {
+      border-color: #ec4899;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
     .contact-form textarea {
       min-height: 80px;
       max-height: 150px;
@@ -743,7 +755,7 @@
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('contact')">×</button>
       <h2 data-i18n="contact.title">On discute ?</h2>
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" novalidate>
         <input type="hidden" name="_subject" value="Nouveau message LDVK">
         <input type="hidden" name="_next" value="https://ldvk.fr">
         <input type="text" name="name" placeholder="Nom" required>
@@ -905,6 +917,23 @@
       e.preventDefault();
       const btn = this.querySelector('button');
       const form = this;
+      const inputs = form.querySelectorAll('input:not([type="hidden"]), textarea');
+
+      // Custom validation
+      let valid = true;
+      inputs.forEach(input => {
+        input.classList.remove('error');
+        if (!input.value.trim()) {
+          input.classList.add('error');
+          valid = false;
+        }
+        if (input.type === 'email' && input.value && !input.value.includes('@')) {
+          input.classList.add('error');
+          valid = false;
+        }
+      });
+
+      if (!valid) return;
 
       btn.textContent = 'Envoi...';
       btn.classList.add('sending');
