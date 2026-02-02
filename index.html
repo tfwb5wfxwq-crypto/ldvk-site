@@ -913,6 +913,8 @@
           body: formData
         });
 
+        // Hide title and show success
+        form.parentElement.querySelector('h2').style.display = 'none';
         form.innerHTML = `
           <div class="form-success">
             <div class="icon-wrap">
@@ -925,6 +927,23 @@
             <p>On revient vers vous rapidement.</p>
           </div>
         `;
+
+        // Auto close after 3 seconds
+        setTimeout(() => {
+          closeModal('contact');
+          // Reset form for next time
+          setTimeout(() => {
+            form.parentElement.querySelector('h2').style.display = '';
+            form.innerHTML = `
+              <input type="hidden" name="_subject" value="Nouveau message LDVK">
+              <input type="hidden" name="_next" value="https://ldvk.fr">
+              <input type="text" name="name" placeholder="Nom" required>
+              <input type="email" name="email" placeholder="Email" required>
+              <textarea name="message" placeholder="Message" required></textarea>
+              <button type="submit">Envoyer</button>
+            `;
+          }, 500);
+        }, 3000);
       } catch (err) {
         btn.textContent = 'Envoyer';
         btn.classList.remove('sending');
