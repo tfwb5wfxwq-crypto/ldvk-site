@@ -531,6 +531,14 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
+    .analytics-desc {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
@@ -1285,6 +1293,7 @@
           <span class="analytics-title" data-i18n="portfolio.analytics">Tableau de bord client</span>
           <span class="analytics-badge">Live</span>
         </div>
+        <p class="analytics-desc" data-i18n="portfolio.analytics.desc">Ciblage géolocalisé • Analyse d'audience • Suivi marché en temps réel</p>
 
         <div class="dashboard-grid">
           <!-- Engagement Ring -->
@@ -1298,9 +1307,9 @@
                   </linearGradient>
                 </defs>
                 <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                <path class="ring-fill" stroke-dasharray="78, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                <path class="ring-fill" stroke-dasharray="68, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
               </svg>
-              <span class="ring-value" data-base="78" data-suffix="%">0%</span>
+              <span class="ring-value" data-base="6.8" data-suffix="%" data-decimal="true">0%</span>
             </div>
             <span class="dash-label">Taux d'engagement</span>
           </div>
@@ -1458,6 +1467,7 @@
         'portfolio.title': 'Derniers Projets',
         'portfolio.desc': 'Contenus créatifs pour nos clients.',
         'portfolio.analytics': 'Tableau de bord client',
+        'portfolio.analytics.desc': 'Ciblage géolocalisé • Analyse d\'audience • Suivi marché en temps réel',
         'portfolio.cta': 'Votre projet commence ici',
         'tagline.video': 'Production Vidéo',
         'tagline.data': 'Data',
@@ -1516,6 +1526,7 @@
         'portfolio.title': 'Latest Projects',
         'portfolio.desc': 'Creative content for our clients.',
         'portfolio.analytics': 'Client dashboard',
+        'portfolio.analytics.desc': 'Geo-targeted • Audience analysis • Real-time market tracking',
         'portfolio.cta': 'Your project starts here',
         'tagline.video': 'Video Production',
         'tagline.data': 'Data',
@@ -1621,9 +1632,10 @@
     function animateDashboard() {
       const dashValues = document.querySelectorAll('[data-base]');
       dashValues.forEach(el => {
-        const base = parseInt(el.dataset.base);
+        const base = parseFloat(el.dataset.base);
         const prefix = el.dataset.prefix || '';
         const suffix = el.dataset.suffix || '';
+        const isDecimal = el.dataset.decimal === 'true';
         const duration = 1500;
         const start = performance.now();
 
@@ -1631,14 +1643,14 @@
           const elapsed = currentTime - start;
           const progress = Math.min(elapsed / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          const current = Math.floor(eased * base);
-          el.textContent = prefix + current + suffix;
+          const current = eased * base;
+          el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
           if (progress < 1) {
             requestAnimationFrame(update);
           } else {
-            el.textContent = prefix + base + suffix;
+            el.textContent = prefix + (isDecimal ? base.toFixed(1) : base) + suffix;
             // Start live fluctuation
-            startLiveUpdate(el, base, prefix, suffix);
+            startLiveUpdate(el, base, prefix, suffix, isDecimal);
           }
         }
         requestAnimationFrame(update);
@@ -1646,10 +1658,12 @@
     }
 
     // Simulate live data updates
-    function startLiveUpdate(el, base, prefix, suffix) {
+    function startLiveUpdate(el, base, prefix, suffix, isDecimal) {
       setInterval(() => {
-        const fluctuation = Math.floor((Math.random() - 0.3) * 3);
-        const newVal = Math.max(base - 2, Math.min(base + 3, base + fluctuation));
+        const fluctuation = (Math.random() - 0.3) * (isDecimal ? 0.4 : 3);
+        const newVal = isDecimal
+          ? Math.max(base - 0.3, Math.min(base + 0.5, base + fluctuation)).toFixed(1)
+          : Math.max(base - 2, Math.min(base + 3, Math.floor(base + fluctuation)));
         el.style.transition = 'opacity 0.2s';
         el.style.opacity = '0.7';
         setTimeout(() => {
