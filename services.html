@@ -33,102 +33,63 @@
     }
     .lang-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-    .content { max-width: 900px; margin: 0 auto; padding: 100px 2rem 60px; }
+    .content { max-width: 700px; margin: 0 auto; padding: 120px 2rem 80px; }
 
     h1 {
-      font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600;
-      margin-bottom: 0.5rem; cursor: default;
-      background: linear-gradient(135deg, #fff, #fff);
+      font-family: 'Clash Display', sans-serif; font-size: 2.5rem; font-weight: 600;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      transition: transform 0.3s ease, letter-spacing 0.3s ease;
     }
-    h1:hover { transform: scale(1.05); letter-spacing: 0.05em; }
-    h1.animate-colors {
-      animation: colorShift 0.8s linear infinite;
-    }
-    .sub { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-bottom: 3rem; }
+    .sub { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 4rem; }
 
-    @keyframes colorShift {
-      0% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
-      25% { background: linear-gradient(135deg, #ec4899, #10b981, #6366f1); -webkit-background-clip: text; background-clip: text; }
-      50% { background: linear-gradient(135deg, #10b981, #6366f1, #ec4899); -webkit-background-clip: text; background-clip: text; }
-      75% { background: linear-gradient(135deg, #6366f1, #10b981, #ec4899); -webkit-background-clip: text; background-clip: text; }
-      100% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
+    .services-grid { display: flex; flex-direction: column; gap: 3rem; }
+
+    .service {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .service:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .service-num {
+      font-family: 'Clash Display', sans-serif; font-size: 3rem; font-weight: 700;
+      line-height: 1; opacity: 0.15;
+      min-width: 60px;
+    }
+    .service:nth-child(1) .service-num { color: #6366f1; }
+    .service:nth-child(2) .service-num { color: #ec4899; }
+    .service:nth-child(3) .service-num { color: #10b981; }
+
+    .service-content h2 {
+      font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    .service:hover .service-content h2 { color: #fff; }
+    .service-content p { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.6; }
+
+    .tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      padding: 0.3rem 0.7rem; font-size: 0.7rem;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; color: rgba(255,255,255,0.5);
     }
 
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
-    .card {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px; overflow: hidden; transition: all 0.3s ease;
-    }
-    .card:hover { background: rgba(255,255,255,0.04); transform: translateY(-4px); }
-    .card-img {
-      width: 100%; height: 180px; object-fit: cover;
-      filter: grayscale(0.3);
-      transition: all 0.4s ease;
-    }
-    .card:hover .card-img {
-      filter: grayscale(0) brightness(1.1);
-    }
-    .card.animate-img .card-img {
-      animation: imgColorShift 0.6s linear infinite;
-    }
-    @keyframes imgColorShift {
-      0% { filter: hue-rotate(0deg) saturate(1.3) brightness(1.1); }
-      25% { filter: hue-rotate(90deg) saturate(1.5) brightness(1.2); }
-      50% { filter: hue-rotate(180deg) saturate(1.3) brightness(1.1); }
-      75% { filter: hue-rotate(270deg) saturate(1.5) brightness(1.2); }
-      100% { filter: hue-rotate(360deg) saturate(1.3) brightness(1.1); }
-    }
-    .card-content { padding: 1.2rem; }
-    .card .n { font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 700; opacity: 0.1; margin-bottom: 0.5rem; }
-    .card:nth-child(1) .n { color: #6366f1; }
-    .card:nth-child(2) .n { color: #ec4899; }
-    .card:nth-child(3) .n { color: #10b981; }
-    .card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; transition: all 0.3s ease; }
-    .card:hover h3 { letter-spacing: 0.03em; color: #fff; }
-    .card.animate-img h3 { animation: textColorShift 0.6s linear infinite; }
-    @keyframes textColorShift {
-      0% { color: #6366f1; }
-      33% { color: #ec4899; }
-      66% { color: #10b981; }
-      100% { color: #6366f1; }
-    }
-    .card p { color: rgba(255,255,255,0.4); font-size: 0.75rem; line-height: 1.5; }
-
-    .list { list-style: none; }
-    .list li {
-      padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.85rem; transition: all 0.3s ease; cursor: default;
-    }
-    .list li:last-child { border-bottom: none; }
-    .list li:hover { padding-left: 0.5rem; }
-    .list li.animate-colors span:first-child { animation: textColorShift 0.5s linear infinite; }
-    .list .cat { font-size: 0.65rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; }
-
-    .cta { margin-top: 3rem; text-align: center; }
+    .cta { margin-top: 4rem; text-align: center; }
     .cta a {
-      display: inline-block; padding: 0.7rem 1.5rem;
+      display: inline-block; padding: 0.8rem 2rem;
       background: linear-gradient(135deg, #6366f1, #ec4899);
       color: #fff; text-decoration: none; border-radius: 8px;
-      font-size: 0.8rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 0.85rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
     }
     .cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
-    .cta a.animate-colors { animation: btnColorShift 0.5s linear infinite; }
-    @keyframes btnColorShift {
-      0% { background: linear-gradient(135deg, #6366f1, #ec4899); }
-      33% { background: linear-gradient(135deg, #ec4899, #10b981); }
-      66% { background: linear-gradient(135deg, #10b981, #6366f1); }
-      100% { background: linear-gradient(135deg, #6366f1, #ec4899); }
-    }
 
-    footer { padding: 1.5rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+    footer { padding: 2rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
     footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-    @media (max-width: 700px) {
-      .cards { grid-template-columns: 1fr; }
-      h1 { font-size: 1.5rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .service { flex-direction: column; gap: 0.5rem; }
+      .service-num { font-size: 2rem; min-width: auto; }
       .nav-links { gap: 1rem; }
     }
   </style>
@@ -139,78 +100,79 @@
     <div class="nav-links">
       <a href="/services" class="active" data-i18n="nav.services">Services</a>
       <a href="/portfolio" data-i18n="nav.portfolio">Projets</a>
-      <a href="/about" data-i18n="nav.about">À propos</a>
+      <a href="/about" data-i18n="nav.about">A propos</a>
       <a href="/#contact" data-i18n="nav.contact">Contact</a>
       <button class="lang-toggle" onclick="toggleLang()">EN</button>
     </div>
   </nav>
 
   <div class="content">
-    <h1 data-i18n="services.h1">Création. Analyse. Adaptation.</h1>
-    <p class="sub" data-i18n="services.sub">Production vidéo data-driven.</p>
+    <h1 data-i18n="services.h1">Services</h1>
+    <p class="sub" data-i18n="services.sub">Production video et analyse de donnees.</p>
 
-    <div class="cards">
-      <div class="card">
-        <img src="/img/creation.png" alt="Tournage vidéo" class="card-img">
-        <div class="card-content">
-          <div class="n">01</div>
-          <h3 data-i18n="services.c1">Création</h3>
-          <p data-i18n="services.c1d">Contenus vidéo adaptés à vos objectifs.</p>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-num">01</div>
+        <div class="service-content">
+          <h2 data-i18n="services.c1">Creation</h2>
+          <p data-i18n="services.c1d">Spots publicitaires, contenus social media, motion design. Des videos adaptees a vos objectifs et votre audience.</p>
+          <div class="tags">
+            <span class="tag">Spots TV</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Motion Design</span>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <img src="/img/analyse.png" alt="Analyse de données" class="card-img">
-        <div class="card-content">
-          <div class="n">02</div>
-          <h3 data-i18n="services.c2">Analyse</h3>
-          <p data-i18n="services.c2d">Données publiques pour mesurer l'impact.</p>
+
+      <div class="service">
+        <div class="service-num">02</div>
+        <div class="service-content">
+          <h2 data-i18n="services.c2">Analyse</h2>
+          <p data-i18n="services.c2d">Collecte et analyse de donnees publiques pour mesurer l'impact de vos contenus et comprendre votre audience.</p>
+          <div class="tags">
+            <span class="tag">Performance</span>
+            <span class="tag">Audience</span>
+            <span class="tag">Veille</span>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <img src="/img/adaptation.png" alt="Montage vidéo" class="card-img">
-        <div class="card-content">
-          <div class="n">03</div>
-          <h3 data-i18n="services.c3">Adaptation</h3>
-          <p data-i18n="services.c3d">Optimisation continue des performances.</p>
+
+      <div class="service">
+        <div class="service-num">03</div>
+        <div class="service-content">
+          <h2 data-i18n="services.c3">Adaptation</h2>
+          <p data-i18n="services.c3d">Optimisation continue basee sur les donnees. Chaque iteration ameliore les performances.</p>
+          <div class="tags">
+            <span class="tag">A/B Testing</span>
+            <span class="tag">Optimisation</span>
+            <span class="tag">Iteration</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <ul class="list">
-      <li><span data-i18n="services.l1">Spots publicitaires</span><span class="cat" data-i18n="services.video">Vidéo</span></li>
-      <li><span data-i18n="services.l2">Contenus social media</span><span class="cat" data-i18n="services.video">Vidéo</span></li>
-      <li><span data-i18n="services.l3">Motion design</span><span class="cat" data-i18n="services.video">Vidéo</span></li>
-      <li><span data-i18n="services.l4">Rapports de performance</span><span class="cat">Data</span></li>
-      <li><span data-i18n="services.l5">Veille concurrentielle</span><span class="cat">Data</span></li>
-      <li><span data-i18n="services.l6">Analyse d'audience</span><span class="cat">Data</span></li>
-    </ul>
-
     <div class="cta"><a href="/#contact" data-i18n="cta">Discutons</a></div>
   </div>
 
-  <footer>© 2018-2026 LDVK · <a href="/mentions-legales" data-i18n="footer.legal">Mentions légales</a></footer>
+  <footer>© 2018-2026 LDVK · <a href="/mentions-legales" data-i18n="footer.legal">Mentions legales</a></footer>
 
   <script>
     const translations = {
       fr: {
-        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
-        'services.h1': 'Création. Analyse. Adaptation.', 'services.sub': 'Production vidéo data-driven.',
-        'services.c1': 'Création', 'services.c1d': 'Contenus vidéo adaptés à vos objectifs.',
-        'services.c2': 'Analyse', 'services.c2d': 'Données publiques pour mesurer l\'impact.',
-        'services.c3': 'Adaptation', 'services.c3d': 'Optimisation continue des performances.',
-        'services.l1': 'Spots publicitaires', 'services.l2': 'Contenus social media', 'services.l3': 'Motion design',
-        'services.l4': 'Rapports de performance', 'services.l5': 'Veille concurrentielle', 'services.l6': 'Analyse d\'audience',
-        'services.video': 'Vidéo', 'cta': 'Discutons', 'footer.legal': 'Mentions légales'
+        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'A propos', 'nav.contact': 'Contact',
+        'services.h1': 'Services', 'services.sub': 'Production video et analyse de donnees.',
+        'services.c1': 'Creation', 'services.c1d': 'Spots publicitaires, contenus social media, motion design. Des videos adaptees a vos objectifs et votre audience.',
+        'services.c2': 'Analyse', 'services.c2d': 'Collecte et analyse de donnees publiques pour mesurer l\'impact de vos contenus et comprendre votre audience.',
+        'services.c3': 'Adaptation', 'services.c3d': 'Optimisation continue basee sur les donnees. Chaque iteration ameliore les performances.',
+        'cta': 'Discutons', 'footer.legal': 'Mentions legales'
       },
       en: {
         'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
-        'services.h1': 'Create. Analyze. Adapt.', 'services.sub': 'Data-driven video production.',
-        'services.c1': 'Create', 'services.c1d': 'Video content tailored to your goals.',
-        'services.c2': 'Analyze', 'services.c2d': 'Public data to measure impact.',
-        'services.c3': 'Adapt', 'services.c3d': 'Continuous performance optimization.',
-        'services.l1': 'Commercials', 'services.l2': 'Social media content', 'services.l3': 'Motion design',
-        'services.l4': 'Performance reports', 'services.l5': 'Competitive intelligence', 'services.l6': 'Audience analysis',
-        'services.video': 'Video', 'cta': 'Let\'s talk', 'footer.legal': 'Legal notice'
+        'services.h1': 'Services', 'services.sub': 'Video production and data analysis.',
+        'services.c1': 'Create', 'services.c1d': 'Commercials, social media content, motion design. Videos tailored to your goals and audience.',
+        'services.c2': 'Analyze', 'services.c2d': 'Public data collection and analysis to measure content impact and understand your audience.',
+        'services.c3': 'Adapt', 'services.c3d': 'Continuous data-driven optimization. Each iteration improves performance.',
+        'cta': 'Let\'s talk', 'footer.legal': 'Legal notice'
       }
     };
     let currentLang = localStorage.getItem('ldvk-lang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
@@ -225,29 +187,10 @@
     function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
     setLanguage(currentLang);
 
-    // Logo shuffle effect
+    // Logo shuffle
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
-
-    // Dynamic color hover effects
-    const h1 = document.querySelector('h1');
-    h1.addEventListener('mouseenter', () => h1.classList.add('animate-colors'));
-    h1.addEventListener('mouseleave', () => h1.classList.remove('animate-colors'));
-
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mouseenter', () => card.classList.add('animate-img'));
-      card.addEventListener('mouseleave', () => card.classList.remove('animate-img'));
-    });
-
-    document.querySelectorAll('.list li').forEach(li => {
-      li.addEventListener('mouseenter', () => li.classList.add('animate-colors'));
-      li.addEventListener('mouseleave', () => li.classList.remove('animate-colors'));
-    });
-
-    const ctaLink = document.querySelector('.cta a');
-    ctaLink.addEventListener('mouseenter', () => ctaLink.classList.add('animate-colors'));
-    ctaLink.addEventListener('mouseleave', () => ctaLink.classList.remove('animate-colors'));
   </script>
 </body>
 </html>
