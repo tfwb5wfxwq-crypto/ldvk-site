@@ -821,11 +821,11 @@
           <div class="name">LDVK</div>
         </div>
         <div class="chat-messages" id="chatMessages">
-          <div class="chat-bubble received">Hey ! Tu veux discuter d'un projet ?</div>
+          <div class="chat-bubble received" id="greetingBubble">Hey ! Tu veux discuter d'un projet ?</div>
         </div>
         <div class="chat-input-area">
           <div class="chat-input-wrapper">
-            <input type="text" class="chat-input" id="chatName" placeholder="Ton nom..." data-step="name">
+            <input type="text" class="chat-input" id="chatName" placeholder="Ton prénom..." data-step="name">
           </div>
           <button class="chat-send" id="chatSend" onclick="sendChatMessage()">
             <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
@@ -902,7 +902,20 @@
         'about.3': 'Nous collectons et agrégeons des données publiques web pour fournir des rapports personnalisés à nos clients dans divers secteurs (média, transport, e-commerce, etc.).',
         'about.4': 'Basés en France — Actifs depuis 2019',
         'contact.title': 'On discute ?',
-        'contact.desc': 'Un projet ? Une question sur nos services d\'analyse ou de production ?'
+        'contact.desc': 'Un projet ? Une question sur nos services d\'analyse ou de production ?',
+        'chat.greeting': 'Hey ! Tu veux discuter d\'un projet ?',
+        'chat.nice': 'Enchanté',
+        'chat.noted': 'Parfait, noté.',
+        'chat.askEmail': 'Et ton email pour te répondre ?',
+        'chat.askMessage': 'Super ! Dis-moi tout, c\'est quoi ton projet ?',
+        'chat.sending': 'Envoi...',
+        'chat.delivered': 'Distribué ✓',
+        'chat.read': 'Lu ✓✓',
+        'chat.success': 'Bien reçu ! Je te réponds vite 🤙',
+        'chat.error': 'Oups, erreur... Réessaie !',
+        'chat.namePlaceholder': 'Ton prénom...',
+        'chat.emailPlaceholder': 'Ton email...',
+        'chat.messagePlaceholder': 'Ton message...'
       },
       en: {
         'nav.services': 'Services',
@@ -938,8 +951,21 @@
         'about.2': 'Our analytics service helps clients track campaign results: views, engagement, growth, and market positioning.',
         'about.3': 'We collect and aggregate public web data to provide custom reports for clients across various industries (media, transport, e-commerce, etc.).',
         'about.4': 'Based in France — Active since 2019',
-        'contact.title': 'On discute ?',
-        'contact.desc': 'Have a project? A question about our analysis or production services?'
+        'contact.title': 'Let\'s chat?',
+        'contact.desc': 'Have a project? A question about our analysis or production services?',
+        'chat.greeting': 'Hey! Want to chat about a project?',
+        'chat.nice': 'Nice to meet you',
+        'chat.noted': 'Perfect, noted.',
+        'chat.askEmail': 'And your email so I can reply?',
+        'chat.askMessage': 'Great! Tell me about your project.',
+        'chat.sending': 'Sending...',
+        'chat.delivered': 'Delivered ✓',
+        'chat.read': 'Read ✓✓',
+        'chat.success': 'Got it! I\'ll reply soon 🤙',
+        'chat.error': 'Oops, error... Try again!',
+        'chat.namePlaceholder': 'Your first name...',
+        'chat.emailPlaceholder': 'Your email...',
+        'chat.messagePlaceholder': 'Your message...'
       }
     };
 
@@ -967,6 +993,16 @@
           el.textContent = translations[lang][key];
         }
       });
+
+      // Update chat greeting and placeholder if not mid-conversation
+      const greetingBubble = document.getElementById('greetingBubble');
+      if (greetingBubble && chatStep === 0) {
+        greetingBubble.textContent = translations[lang]['chat.greeting'];
+      }
+      const nameInput = document.getElementById('chatName');
+      if (nameInput) {
+        nameInput.placeholder = translations[lang]['chat.namePlaceholder'];
+      }
     }
 
     function toggleLang() {
@@ -987,11 +1023,10 @@
     let chatStep = 0;
     let chatData = { name: '', email: '', message: '' };
     const chatSteps = ['name', 'email', 'message'];
-    const chatPrompts = {
-      name: { placeholder: 'Ton nom...', response: (v) => `Enchanté ${v} !` },
-      email: { placeholder: 'Ton email...', response: (v) => `Parfait, noté.` },
-      message: { placeholder: 'Ton message...', response: null }
-    };
+
+    function t(key) {
+      return translations[currentLang][key] || translations['fr'][key] || key;
+    }
 
     function addBubble(text, type, extraClass = '') {
       const messages = document.getElementById('chatMessages');
@@ -1044,24 +1079,27 @@
         showTyping();
         setTimeout(() => {
           hideTyping();
-          const response = chatPrompts[currentStep].response;
-          if (response) addBubble(response(value), 'received');
+          // Response based on step
+          if (currentStep === 'name') {
+            addBubble(`${t('chat.nice')} ${value} !`, 'received');
+          } else if (currentStep === 'email') {
+            addBubble(t('chat.noted'), 'received');
+          }
 
           // Ask next question
           setTimeout(() => {
             const nextStep = chatSteps[chatStep];
-            const questions = {
-              email: 'Et ton email pour te répondre ?',
-              message: 'Super ! Dis-moi tout, c\'est quoi ton projet ?'
-            };
-            addBubble(questions[nextStep], 'received');
-            input.placeholder = chatPrompts[nextStep].placeholder;
-            if (nextStep === 'message') {
+            if (nextStep === 'email') {
+              addBubble(t('chat.askEmail'), 'received');
+              input.placeholder = t('chat.emailPlaceholder');
+              input.focus();
+            } else if (nextStep === 'message') {
+              addBubble(t('chat.askMessage'), 'received');
               // Convert to textarea for message
               const wrapper = input.parentElement;
               const textarea = document.createElement('textarea');
               textarea.className = 'chat-input';
-              textarea.placeholder = chatPrompts[nextStep].placeholder;
+              textarea.placeholder = t('chat.messagePlaceholder');
               textarea.style.minHeight = '60px';
               textarea.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
@@ -1071,8 +1109,6 @@
               });
               wrapper.replaceChild(textarea, input);
               textarea.focus();
-            } else {
-              input.focus();
             }
           }, 500);
         }, 800);
@@ -1087,7 +1123,7 @@
         // Mark last bubble as "sending"
         const lastBubble = document.querySelector('.chat-messages .chat-bubble:last-child');
         if (lastBubble) {
-          lastBubble.insertAdjacentHTML('afterend', '<div class="bubble-status sending">Envoi...</div>');
+          lastBubble.insertAdjacentHTML('afterend', `<div class="bubble-status sending">${t('chat.sending')}</div>`);
         }
 
         const formData = new FormData();
@@ -1104,13 +1140,13 @@
           const status = document.querySelector('.bubble-status');
           if (status) {
             status.className = 'bubble-status delivered';
-            status.innerHTML = 'Distribué ✓';
+            status.innerHTML = t('chat.delivered');
           }
 
           setTimeout(() => {
             if (status) {
               status.className = 'bubble-status read';
-              status.innerHTML = 'Lu ✓✓';
+              status.innerHTML = t('chat.read');
             }
 
             // Show response after "read"
@@ -1118,7 +1154,7 @@
               showTyping();
               setTimeout(() => {
                 hideTyping();
-                addBubble('Bien reçu ! Je te réponds vite 🤙', 'received', 'success');
+                addBubble(t('chat.success'), 'received');
 
                 // Fade out the whole chat
                 setTimeout(() => {
@@ -1152,7 +1188,7 @@
 
       // Reset messages
       const messages = document.getElementById('chatMessages');
-      messages.innerHTML = '<div class="chat-bubble received">Hey ! Tu veux discuter d\'un projet ?</div>';
+      messages.innerHTML = `<div class="chat-bubble received" id="greetingBubble">${t('chat.greeting')}</div>`;
 
       // Reset input area
       const inputArea = document.querySelector('.chat-input-area');
@@ -1161,7 +1197,7 @@
       inputArea.style.transform = '';
 
       const wrapper = document.querySelector('.chat-input-wrapper');
-      wrapper.innerHTML = '<input type="text" class="chat-input" id="chatName" placeholder="Ton nom..." data-step="name">';
+      wrapper.innerHTML = `<input type="text" class="chat-input" id="chatName" placeholder="${t('chat.namePlaceholder')}" data-step="name">`;
       const input = wrapper.querySelector('.chat-input');
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') sendChatMessage();
