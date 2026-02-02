@@ -499,12 +499,12 @@
       }
     }
 
-    /* Analytics Preview */
-    .analytics-preview {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+    /* Analytics Dashboard */
+    .analytics-dashboard {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 16px;
-      padding: 20px;
+      padding: 16px;
       margin-top: 20px;
     }
 
@@ -512,18 +512,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .analytics-title {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.7);
     }
 
     .analytics-badge {
-      font-size: 0.65rem;
-      padding: 4px 10px;
+      font-size: 0.6rem;
+      padding: 3px 8px;
       background: rgba(16, 185, 129, 0.2);
       color: #10b981;
       border-radius: 20px;
@@ -533,65 +533,207 @@
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
+      50% { opacity: 0.5; }
     }
 
-    .analytics-chart {
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .dash-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      padding: 12px;
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
+      align-items: center;
       gap: 8px;
-      height: 80px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .chart-bar {
-      flex: 1;
-      height: var(--height);
-      background: linear-gradient(to top, #6366f1, #ec4899);
-      border-radius: 4px 4px 0 0;
-      position: relative;
-      animation: barGrow 1s ease-out forwards;
-      transform-origin: bottom;
-    }
-
-    @keyframes barGrow {
-      from { transform: scaleY(0); }
-      to { transform: scaleY(1); }
-    }
-
-    .chart-bar span {
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
+    .dash-label {
       font-size: 0.6rem;
       color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .analytics-metrics {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 24px;
+    /* Ring Chart */
+    .ring-chart {
+      position: relative;
+      width: 60px;
+      height: 60px;
     }
 
-    .metric {
-      text-align: center;
+    .ring-chart svg {
+      transform: rotate(-90deg);
     }
 
-    .metric-value {
-      display: block;
+    .ring-bg {
+      fill: none;
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 3;
+    }
+
+    .ring-fill {
+      fill: none;
+      stroke: url(#ringGradient);
+      stroke-width: 3;
+      stroke-linecap: round;
+      animation: ringFill 1.5s ease-out forwards;
+    }
+
+    @keyframes ringFill {
+      from { stroke-dasharray: 0, 100; }
+    }
+
+    .ring-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-family: 'Clash Display', sans-serif;
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #fff;
     }
 
-    .metric-label {
+    /* Platform Bars */
+    .platform-bars {
+      width: 100%;
+    }
+
+    .platform-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
       font-size: 0.65rem;
+    }
+
+    .platform-icon {
+      width: 14px;
+      text-align: center;
       color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    }
+
+    .platform-name {
+      width: 55px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .platform-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .platform-bar div {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #ec4899);
+      border-radius: 2px;
+      animation: barGrow 1s ease-out forwards;
+      transform-origin: left;
+    }
+
+    @keyframes barGrow {
+      from { transform: scaleX(0); }
+    }
+
+    .platform-pct {
+      width: 28px;
+      text-align: right;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Audience Demo */
+    .audience-demo {
+      width: 100%;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .demo-age {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.5);
+      width: 32px;
+    }
+
+    .demo-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-bar::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: var(--w);
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+      border-radius: 3px;
+      animation: barGrow 1.2s ease-out forwards;
+      transform-origin: left;
+    }
+
+    /* Growth Card */
+    .growth-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+    }
+
+    .growth-value {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    .growth-trend {
+      width: 100%;
+      height: 24px;
+    }
+
+    .sparkline {
+      width: 100%;
+      height: 100%;
+    }
+
+    .sparkline polyline {
+      fill: none;
+      stroke: #10b981;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: drawLine 2s ease-out forwards;
+    }
+
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @media (max-width: 500px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .dash-card {
+        padding: 10px;
+      }
     }
 
     /* CTA 2026 */
@@ -1122,24 +1264,63 @@
         </div>
       </div>
 
-      <!-- Analytics Preview -->
-      <div class="analytics-preview">
+      <!-- Analytics Dashboard -->
+      <div class="analytics-dashboard">
         <div class="analytics-header">
-          <span class="analytics-title" data-i18n="portfolio.analytics">Suivi de performance</span>
+          <span class="analytics-title" data-i18n="portfolio.analytics">Tableau de bord client</span>
           <span class="analytics-badge">Live</span>
         </div>
-        <div class="analytics-chart">
-          <div class="chart-bar" style="--height: 45%"><span>Jan</span></div>
-          <div class="chart-bar" style="--height: 62%"><span>Fév</span></div>
-          <div class="chart-bar" style="--height: 78%"><span>Mar</span></div>
-          <div class="chart-bar" style="--height: 55%"><span>Avr</span></div>
-          <div class="chart-bar" style="--height: 89%"><span>Mai</span></div>
-          <div class="chart-bar" style="--height: 95%"><span>Juin</span></div>
-        </div>
-        <div class="analytics-metrics">
-          <div class="metric"><span class="metric-value">+127%</span><span class="metric-label">Engagement</span></div>
-          <div class="metric"><span class="metric-value">2.4M</span><span class="metric-label">Reach</span></div>
-          <div class="metric"><span class="metric-value">18-34</span><span class="metric-label">Cible</span></div>
+
+        <div class="dashboard-grid">
+          <!-- Engagement Ring -->
+          <div class="dash-card">
+            <div class="ring-chart">
+              <svg viewBox="0 0 36 36">
+                <defs>
+                  <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#6366f1"/>
+                    <stop offset="100%" stop-color="#ec4899"/>
+                  </linearGradient>
+                </defs>
+                <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                <path class="ring-fill" stroke-dasharray="78, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              </svg>
+              <span class="ring-value">78%</span>
+            </div>
+            <span class="dash-label">Taux d'engagement</span>
+          </div>
+
+          <!-- Platform Split -->
+          <div class="dash-card">
+            <div class="platform-bars">
+              <div class="platform-row"><span class="platform-icon">▶</span><span class="platform-name">YouTube</span><div class="platform-bar"><div style="width: 45%"></div></div><span class="platform-pct">45%</span></div>
+              <div class="platform-row"><span class="platform-icon">◉</span><span class="platform-name">Instagram</span><div class="platform-bar"><div style="width: 35%"></div></div><span class="platform-pct">35%</span></div>
+              <div class="platform-row"><span class="platform-icon">♪</span><span class="platform-name">TikTok</span><div class="platform-bar"><div style="width: 20%"></div></div><span class="platform-pct">20%</span></div>
+            </div>
+            <span class="dash-label">Répartition plateformes</span>
+          </div>
+
+          <!-- Audience -->
+          <div class="dash-card">
+            <div class="audience-demo">
+              <div class="demo-row"><span class="demo-age">18-24</span><div class="demo-bar" style="--w: 35%"></div></div>
+              <div class="demo-row"><span class="demo-age">25-34</span><div class="demo-bar" style="--w: 45%"></div></div>
+              <div class="demo-row"><span class="demo-age">35-44</span><div class="demo-bar" style="--w: 15%"></div></div>
+              <div class="demo-row"><span class="demo-age">45+</span><div class="demo-bar" style="--w: 5%"></div></div>
+            </div>
+            <span class="dash-label">Démographie audience</span>
+          </div>
+
+          <!-- Growth -->
+          <div class="dash-card growth-card">
+            <div class="growth-value">+247%</div>
+            <div class="growth-trend">
+              <svg viewBox="0 0 100 30" class="sparkline">
+                <polyline points="0,25 15,22 30,18 45,20 60,12 75,8 100,2"/>
+              </svg>
+            </div>
+            <span class="dash-label">Croissance YoY</span>
+          </div>
         </div>
       </div>
 
@@ -1261,7 +1442,7 @@
         'nav.contact': 'Contact',
         'portfolio.title': 'Derniers Projets',
         'portfolio.desc': 'Contenus créatifs pour nos clients.',
-        'portfolio.analytics': 'Suivi de performance',
+        'portfolio.analytics': 'Tableau de bord client',
         'portfolio.cta': 'Votre projet commence ici',
         'tagline.video': 'Production Vidéo',
         'tagline.data': 'Data',
@@ -1319,7 +1500,7 @@
         'nav.contact': 'Contact',
         'portfolio.title': 'Latest Projects',
         'portfolio.desc': 'Creative content for our clients.',
-        'portfolio.analytics': 'Performance tracking',
+        'portfolio.analytics': 'Client dashboard',
         'portfolio.cta': 'Your project starts here',
         'tagline.video': 'Video Production',
         'tagline.data': 'Data',
