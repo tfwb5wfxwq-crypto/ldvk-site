@@ -35,8 +35,37 @@
 
     .content { max-width: 550px; margin: 0 auto; padding: 100px 2rem 60px; }
 
-    h1 { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: default; background: linear-gradient(135deg, #fff, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    h1:hover { transform: scale(1.05); letter-spacing: 0.05em; background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
+    h1 {
+      font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600;
+      margin-bottom: 1.5rem; cursor: default;
+      background: linear-gradient(135deg, #fff, #fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      transition: transform 0.3s ease, letter-spacing 0.3s ease;
+    }
+    h1:hover { transform: scale(1.05); letter-spacing: 0.05em; }
+    h1.animate-colors { animation: colorShift 0.8s linear infinite; }
+
+    @keyframes colorShift {
+      0% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
+      25% { background: linear-gradient(135deg, #ec4899, #10b981, #6366f1); -webkit-background-clip: text; background-clip: text; }
+      50% { background: linear-gradient(135deg, #10b981, #6366f1, #ec4899); -webkit-background-clip: text; background-clip: text; }
+      75% { background: linear-gradient(135deg, #6366f1, #10b981, #ec4899); -webkit-background-clip: text; background-clip: text; }
+      100% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
+    }
+
+    @keyframes textColorShift {
+      0% { color: #6366f1; }
+      33% { color: #ec4899; }
+      66% { color: #10b981; }
+      100% { color: #6366f1; }
+    }
+
+    @keyframes btnColorShift {
+      0% { background: linear-gradient(135deg, #6366f1, #ec4899); }
+      33% { background: linear-gradient(135deg, #ec4899, #10b981); }
+      66% { background: linear-gradient(135deg, #10b981, #6366f1); }
+      100% { background: linear-gradient(135deg, #6366f1, #ec4899); }
+    }
 
     .intro { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 2rem; }
     .intro strong { color: #fff; }
@@ -46,16 +75,35 @@
     .row .l { font-size: 0.6rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
     .row .v { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    h2 { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; transition: all 0.3s ease; cursor: default; }
+    h2 {
+      font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 600;
+      margin-bottom: 1rem; cursor: default;
+      transition: letter-spacing 0.3s ease, transform 0.3s ease;
+    }
     h2:hover { letter-spacing: 0.03em; transform: scale(1.02); }
     h2 span { background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    h2.animate-colors span { animation: textColorShift 0.5s linear infinite; -webkit-background-clip: unset; -webkit-text-fill-color: unset; }
 
     .text { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.5rem; }
 
     .list { list-style: none; margin-bottom: 2rem; }
-    .list li { padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); font-size: 0.8rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+    .list li {
+      padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.6); font-size: 0.8rem;
+      display: flex; gap: 0.8rem; align-items: flex-start;
+      transition: all 0.3s ease; cursor: default;
+    }
     .list li:last-child { border-bottom: none; }
-    .list .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; margin-top: 6px; flex-shrink: 0; }
+    .list li:hover { padding-left: 0.5rem; }
+    .list li.animate-colors span:last-child { animation: textColorShift 0.5s linear infinite; }
+    .list .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; margin-top: 6px; flex-shrink: 0; transition: background 0.3s; }
+    .list li.animate-colors .dot { animation: dotColorShift 0.5s linear infinite; }
+    @keyframes dotColorShift {
+      0% { background: #6366f1; }
+      33% { background: #ec4899; }
+      66% { background: #10b981; }
+      100% { background: #6366f1; }
+    }
 
     .cta { text-align: center; }
     .cta a {
@@ -65,6 +113,7 @@
       font-size: 0.8rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
     }
     .cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
+    .cta a.animate-colors { animation: btnColorShift 0.5s linear infinite; }
 
     footer { padding: 1.5rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
     footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
@@ -152,9 +201,28 @@
     function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
     setLanguage(currentLang);
 
+    // Logo shuffle effect
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
+
+    // Dynamic color hover effects
+    const h1 = document.querySelector('h1');
+    h1.addEventListener('mouseenter', () => h1.classList.add('animate-colors'));
+    h1.addEventListener('mouseleave', () => h1.classList.remove('animate-colors'));
+
+    const h2 = document.querySelector('h2');
+    h2.addEventListener('mouseenter', () => h2.classList.add('animate-colors'));
+    h2.addEventListener('mouseleave', () => h2.classList.remove('animate-colors'));
+
+    document.querySelectorAll('.list li').forEach(li => {
+      li.addEventListener('mouseenter', () => li.classList.add('animate-colors'));
+      li.addEventListener('mouseleave', () => li.classList.remove('animate-colors'));
+    });
+
+    const ctaLink = document.querySelector('.cta a');
+    ctaLink.addEventListener('mouseenter', () => ctaLink.classList.add('animate-colors'));
+    ctaLink.addEventListener('mouseleave', () => ctaLink.classList.remove('animate-colors'));
   </script>
 </body>
 </html>
