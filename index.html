@@ -289,6 +289,7 @@
     }
 
     .modal-content {
+      position: relative;
       max-width: 800px;
       max-height: 90vh;
       overflow-y: auto;
@@ -308,14 +309,16 @@
     }
 
     .modal-close {
-      position: fixed;
-      top: 2rem; right: 2rem;
-      font-size: 2rem;
-      color: rgba(255,255,255,0.5);
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.4);
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: none;
       border: none;
+      z-index: 10;
     }
 
     .modal-close:hover {
@@ -528,6 +531,50 @@
       box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
     }
 
+    .contact-form button.sending {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .contact-form button.sent {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    .form-success {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .form-success .checkmark {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .form-success .checkmark svg {
+      width: 30px;
+      height: 30px;
+      stroke: #fff;
+      stroke-width: 3;
+      fill: none;
+    }
+
+    .form-success p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -591,8 +638,8 @@
 
   <!-- Modal Video -->
   <div class="modal" id="modal-video">
-    <button class="modal-close" onclick="closeModal('video')">×</button>
     <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('video')">×</button>
       <h2 data-i18n="video.title">Production Vidéo</h2>
       <p data-i18n="video.desc">Création de contenus audiovisuels pour les marques et créateurs.</p>
       <ul>
@@ -607,8 +654,8 @@
 
   <!-- Modal Data -->
   <div class="modal" id="modal-data">
-    <button class="modal-close" onclick="closeModal('data')">×</button>
     <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('data')">×</button>
       <h2 data-i18n="data.title">Data & Analytics</h2>
       <p data-i18n="data.desc">Suivi et analyse des performances de vos contenus vidéo.</p>
       <ul>
@@ -623,8 +670,8 @@
 
   <!-- Modal Services (all) -->
   <div class="modal" id="modal-services">
-    <button class="modal-close" onclick="closeModal('services')">×</button>
     <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('services')">×</button>
       <h2 data-i18n="services.title">Tous nos services</h2>
       <p data-i18n="services.desc">Production vidéo et suivi de performance pour nos clients.</p>
       <ul>
@@ -640,8 +687,8 @@
 
   <!-- Modal About -->
   <div class="modal" id="modal-about">
-    <button class="modal-close" onclick="closeModal('about')">×</button>
     <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('about')">×</button>
       <h2 data-i18n="about.title">À propos</h2>
       <p data-i18n="about.1">LDVK est une agence française de production vidéo et de conseil data. Nous créons des contenus pour les marques et analysons leurs performances.</p>
       <p data-i18n="about.2">Notre service d'analyse permet à nos clients de suivre les résultats de leurs campagnes : vues, engagement, progression, et positionnement sur le marché.</p>
@@ -652,10 +699,10 @@
 
   <!-- Modal Contact -->
   <div class="modal" id="modal-contact">
-    <button class="modal-close" onclick="closeModal('contact')">×</button>
     <div class="modal-content">
-      <h2 data-i18n="contact.title">Contact</h2>
-      <form class="contact-form" action="https://formsubmit.co/ldvk@me.com" method="POST">
+      <button class="modal-close" onclick="closeModal('contact')">×</button>
+      <h2 data-i18n="contact.title">On discute ?</h2>
+      <form class="contact-form" id="contactForm">
         <input type="hidden" name="_subject" value="Nouveau message LDVK">
         <input type="hidden" name="_next" value="https://ldvk.fr">
         <input type="text" name="name" placeholder="Nom" required>
@@ -811,6 +858,38 @@
       document.getElementById('modal-' + name).classList.remove('open');
       document.body.style.overflow = '';
     }
+
+    // Contact form handling
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      const form = this;
+
+      btn.textContent = 'Envoi...';
+      btn.classList.add('sending');
+
+      const formData = new FormData(form);
+
+      try {
+        await fetch('https://formsubmit.co/ajax/ldvk@me.com', {
+          method: 'POST',
+          body: formData
+        });
+
+        form.innerHTML = `
+          <div class="form-success">
+            <div class="checkmark">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p>Message envoyé !</p>
+          </div>
+        `;
+      } catch (err) {
+        btn.textContent = 'Envoyer';
+        btn.classList.remove('sending');
+        alert('Erreur, réessaie !');
+      }
+    });
 
     // Close modal on Escape key
     document.addEventListener('keydown', (e) => {
