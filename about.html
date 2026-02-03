@@ -78,6 +78,20 @@
     .list li:hover { padding-left: 0.5rem; color: rgba(255,255,255,0.7); }
     .list .dot { width: 5px; height: 5px; border-radius: 50%; background: #6366f1; }
 
+    .founder {
+      margin-top: 3rem; padding: 2rem;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+    }
+    .founder-label { font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+    .founder-name {
+      font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 600;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .founder-bio { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; }
+
     .cta { text-align: center; margin-top: 3rem; }
     .cta a {
       display: inline-block; padding: 0.8rem 2rem;
@@ -134,6 +148,12 @@
       </ul>
     </div>
 
+    <div class="founder">
+      <div class="founder-label" data-i18n="about.founder">Fondateur</div>
+      <div class="founder-name">Ludo</div>
+      <p class="founder-bio" data-i18n="about.founder.bio">7 ans d'expérience en production vidéo et analyse de données pour les médias et marques. Passionné par l'intersection entre créativité et data.</p>
+    </div>
+
     <div class="cta"><a href="/#contact" data-i18n="cta">Discutons</a></div>
   </div>
 
@@ -153,6 +173,8 @@
         'about.data.l1': 'Collecte de données publiques (vues, engagement, tendances)',
         'about.data.l2': 'Rapports de performance personnalisés',
         'about.data.l3': 'Veille concurrentielle et analyse de marché',
+        'about.founder': 'Fondateur',
+        'about.founder.bio': '7 ans d\'expérience en production vidéo et analyse de données pour les médias et marques. Passionné par l\'intersection entre créativité et data.',
         'cta': 'Discutons', 'footer.legal': 'Mentions légales'
       },
       en: {
@@ -167,6 +189,8 @@
         'about.data.l1': 'Public data collection (views, engagement, trends)',
         'about.data.l2': 'Custom performance reports',
         'about.data.l3': 'Competitive intelligence and market analysis',
+        'about.founder': 'Founder',
+        'about.founder.bio': '7 years of experience in video production and data analysis for media and brands. Passionate about the intersection of creativity and data.',
         'cta': 'Let\'s talk', 'footer.legal': 'Legal notice'
       }
     };
