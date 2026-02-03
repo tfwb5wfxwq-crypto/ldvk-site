@@ -56,24 +56,74 @@
     .stat .l { font-size: 0.7rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; }
 
     .timeline {
-      max-width: 700px; margin: 0 auto; padding: 0 1rem;
+      max-width: 750px; margin: 0 auto; padding: 0 1rem;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #6366f1 0%, #ec4899 50%, #10b981 100%);
+      opacity: 0.3;
+    }
+    .timeline-section {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 2.5rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 16px;
+      top: 0;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #050505;
+      border: 3px solid #6366f1;
+      z-index: 1;
+    }
+    .timeline-section.future .timeline-dot {
+      border-color: #10b981;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+      animation: pulse2026 2s ease-in-out infinite;
+    }
+    @keyframes pulse2026 {
+      0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
+      50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.8); }
+    }
+    .timeline-section.current .timeline-dot {
+      border-color: #ec4899;
+    }
+    .timeline-section.past .timeline-dot {
+      border-color: rgba(255,255,255,0.2);
     }
     .timeline-year {
-      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 1rem;
     }
-    .timeline-year .year {
-      font-family: 'Clash Display', sans-serif; font-size: 2rem; font-weight: 700;
+    .timeline-section.future .timeline-year {
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .timeline-section.current .timeline-year {
       background: linear-gradient(135deg, #6366f1, #ec4899);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .timeline-year .line {
-      flex: 1; height: 1px; background: rgba(255,255,255,0.1);
+    .timeline-section.past .timeline-year {
+      color: rgba(255,255,255,0.25);
+    }
+    .past-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.2);
+      font-style: italic;
     }
     .projects {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 2rem;
     }
     .project {
       position: relative;
@@ -108,34 +158,49 @@
     }
     .project-desc { display: none; }
 
-    .timeline-2026 {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
+    .dropzone {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2.5rem 2rem;
+      border: 2px dashed rgba(16, 185, 129, 0.3);
       border-radius: 12px;
+      background: rgba(16, 185, 129, 0.03);
       cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+    }
+    .dropzone:hover {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      transform: translateY(-2px);
+    }
+    .dropzone-icon {
+      width: 48px; height: 48px;
+      border: 2px dashed rgba(16, 185, 129, 0.4);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
       transition: all 0.3s;
     }
-    .timeline-2026:hover {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(99, 102, 241, 0.3);
+    .dropzone:hover .dropzone-icon {
+      border-color: #10b981;
+      border-style: solid;
+      background: rgba(16, 185, 129, 0.1);
     }
-    .timeline-2026 .year {
-      font-family: 'Clash Display', sans-serif; font-size: 2rem; font-weight: 700;
-      background: linear-gradient(135deg, #10b981, #06b6d4);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .timeline-2026 .cta {
-      font-size: 0.9rem; color: rgba(255,255,255,0.6);
-    }
-    .timeline-2026:hover .cta { color: #fff; }
-    .timeline-2026 .arrow {
-      margin-left: auto; font-size: 1.2rem; color: rgba(255,255,255,0.3);
+    .dropzone-icon span {
+      font-size: 1.5rem; color: rgba(16, 185, 129, 0.6);
       transition: all 0.3s;
     }
-    .timeline-2026:hover .arrow {
-      color: #10b981; transform: translateX(5px);
+    .dropzone:hover .dropzone-icon span {
+      color: #10b981;
+      transform: scale(1.1);
+    }
+    .dropzone-text {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      transition: all 0.3s;
+    }
+    .dropzone:hover .dropzone-text {
+      color: rgba(255,255,255,0.8);
     }
 
     .clients {
@@ -155,10 +220,14 @@
 
     @media (max-width: 600px) {
       .hero { padding: 100px 1.5rem 30px; }
+      .timeline { padding: 0 0.5rem; }
+      .timeline::before { left: 12px; }
+      .timeline-section { padding-left: 40px; }
+      .timeline-dot { left: 4px; width: 14px; height: 14px; }
+      .timeline-year { font-size: 1.2rem; }
       .projects { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-      .timeline-year .year { font-size: 1.5rem; }
-      .timeline-2026 { padding: 1rem; }
-      .timeline-2026 .year { font-size: 1.5rem; }
+      .dropzone { padding: 1.5rem 1rem; }
+      .dropzone-icon { width: 36px; height: 36px; }
       h1 { font-size: 2rem; }
       .stats { gap: 1.5rem; flex-wrap: wrap; }
       .stat .n { font-size: 1.5rem; }
@@ -183,7 +252,6 @@
 
   <div class="hero">
     <h1 data-i18n="portfolio.h1">Projets</h1>
-    <p class="sub" data-i18n="portfolio.sub">Sélection 2025</p>
     <div class="stats">
       <div class="stat"><div class="n">45M+</div><div class="l" data-i18n="stats.views">Vues</div></div>
       <div class="stat"><div class="n">7 ans</div><div class="l" data-i18n="stats.exp">Expérience</div></div>
@@ -192,53 +260,58 @@
   </div>
 
   <div class="timeline">
-    <div class="timeline-year">
-      <span class="year">2025</span>
-      <span class="line"></span>
-    </div>
-    <div class="projects">
-      <div class="project">
-        <div class="project-header">
-          <div class="project-tag">Masterclass</div>
-          <div class="project-name">Court ou Crève</div>
-        </div>
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/coc.mp4" type="video/mp4"></video>
-      </div>
-
-      <div class="project">
-        <div class="project-header">
-          <div class="project-tag">Poker</div>
-          <div class="project-name">Winamax</div>
-        </div>
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/winamax.mp4" type="video/mp4"></video>
-      </div>
-
-      <div class="project">
-        <div class="project-header">
-          <div class="project-tag">Food</div>
-          <div class="project-name">Terry's</div>
-        </div>
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/terrys.mp4" type="video/mp4"></video>
-      </div>
-
-      <div class="project">
-        <div class="project-header">
-          <div class="project-tag">Spot TV</div>
-          <div class="project-name">Winamax</div>
-        </div>
-        <video autoplay muted loop playsinline><source src="/portfolio/videos/wina-botox.mp4" type="video/mp4"></video>
-      </div>
+    <!-- 2026 - Future -->
+    <div class="timeline-section future">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2026</div>
+      <a href="/#contact" class="dropzone">
+        <div class="dropzone-icon"><span>+</span></div>
+        <div class="dropzone-text" data-i18n="portfolio.drop">Déposez votre projet ici</div>
+      </a>
     </div>
 
-    <div class="timeline-year">
-      <span class="year" style="background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text;">2026</span>
-      <span class="line"></span>
+    <!-- 2025 - Current -->
+    <div class="timeline-section current">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2025</div>
+      <div class="projects">
+        <div class="project">
+          <div class="project-header">
+            <div class="project-tag">Masterclass</div>
+            <div class="project-name">Court ou Crève</div>
+          </div>
+          <video autoplay muted loop playsinline><source src="/portfolio/videos/coc.mp4" type="video/mp4"></video>
+        </div>
+        <div class="project">
+          <div class="project-header">
+            <div class="project-tag">Poker</div>
+            <div class="project-name">Winamax</div>
+          </div>
+          <video autoplay muted loop playsinline><source src="/portfolio/videos/winamax.mp4" type="video/mp4"></video>
+        </div>
+        <div class="project">
+          <div class="project-header">
+            <div class="project-tag">Food</div>
+            <div class="project-name">Terry's</div>
+          </div>
+          <video autoplay muted loop playsinline><source src="/portfolio/videos/terrys.mp4" type="video/mp4"></video>
+        </div>
+        <div class="project">
+          <div class="project-header">
+            <div class="project-tag">Spot TV</div>
+            <div class="project-name">Winamax</div>
+          </div>
+          <video autoplay muted loop playsinline><source src="/portfolio/videos/wina-botox.mp4" type="video/mp4"></video>
+        </div>
+      </div>
     </div>
-    <a href="/#contact" class="timeline-2026">
-      <span class="year">?</span>
-      <span class="cta" data-i18n="portfolio.cta">Ensemble ?</span>
-      <span class="arrow">→</span>
-    </a>
+
+    <!-- 2024 - Past (grayed) -->
+    <div class="timeline-section past">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2024</div>
+      <div class="past-label">+ autres projets</div>
+    </div>
   </div>
 
   <div class="clients">
@@ -262,7 +335,7 @@
         'project.winamax': 'Contenus pour les campagnes poker et sport.',
         'project.terrys': 'Stratégie et production vidéo food.',
         'footer.legal': 'Mentions légales',
-        'portfolio.cta': 'Ensemble ?'
+        'portfolio.drop': 'Déposez votre projet ici'
       },
       en: {
         'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
@@ -272,7 +345,7 @@
         'project.winamax': 'Content for poker and sports campaigns.',
         'project.terrys': 'Strategy and food video production.',
         'footer.legal': 'Legal notice',
-        'portfolio.cta': 'Together?'
+        'portfolio.drop': 'Drop your project here'
       }
     };
     let currentLang = localStorage.getItem('ldvk-lang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
