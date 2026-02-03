@@ -72,7 +72,7 @@
       transform: translateX(8px);
     }
     .project video {
-      width: 180px; height: 100px; object-fit: cover;
+      width: 140px; height: 180px; object-fit: cover;
       border-radius: 8px;
       filter: brightness(0.7) grayscale(0.2);
       transition: all 0.4s ease;
@@ -122,8 +122,9 @@
     footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
     @media (max-width: 600px) {
-      .project { flex-direction: column; gap: 1rem; }
-      .project video { width: 100%; height: 150px; }
+      .project { flex-direction: column; gap: 1rem; text-align: center; }
+      .project video { width: 100%; height: 200px; }
+      .project-overlay { align-items: center; }
       h1 { font-size: 2rem; }
       .stats { gap: 1.5rem; flex-wrap: wrap; }
       .stat .n { font-size: 1.5rem; }
@@ -144,7 +145,7 @@
 
   <div class="hero">
     <h1 data-i18n="portfolio.h1">Projets</h1>
-    <p class="sub" data-i18n="portfolio.sub">Sélection de réalisations.</p>
+    <p class="sub" data-i18n="portfolio.sub">Sélection 2025</p>
     <div class="stats">
       <div class="stat"><div class="n">45M+</div><div class="l" data-i18n="stats.views">Vues</div></div>
       <div class="stat"><div class="n">7 ans</div><div class="l" data-i18n="stats.exp">Expérience</div></div>
@@ -205,7 +206,7 @@
     const translations = {
       fr: {
         'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
-        'portfolio.h1': 'Projets', 'portfolio.sub': 'Sélection de réalisations.',
+        'portfolio.h1': 'Projets', 'portfolio.sub': 'Sélection 2025',
         'stats.views': 'Vues', 'stats.exp': 'Expérience', 'stats.clients': 'Clients',
         'project.coc': 'Production complète de la série YouTube à succès.',
         'project.winamax': 'Contenus pour les campagnes poker et sport.',
@@ -214,7 +215,7 @@
       },
       en: {
         'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
-        'portfolio.h1': 'Projects', 'portfolio.sub': 'Selected work.',
+        'portfolio.h1': 'Projects', 'portfolio.sub': '2025 Selection',
         'stats.views': 'Views', 'stats.exp': 'Experience', 'stats.clients': 'Clients',
         'project.coc': 'Full production of the hit YouTube series.',
         'project.winamax': 'Content for poker and sports campaigns.',
