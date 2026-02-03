@@ -62,23 +62,29 @@
     .timeline::before {
       content: '';
       position: absolute;
-      left: 24px;
+      left: 19px;
       top: 0;
-      bottom: 0;
+      bottom: 40px;
       width: 2px;
-      background: linear-gradient(to bottom, #6366f1 0%, #ec4899 50%, #10b981 100%);
-      opacity: 0.3;
+      background: linear-gradient(to bottom, #10b981 0%, #ec4899 40%, #6366f1 70%, rgba(255,255,255,0.1) 100%);
+      opacity: 0.4;
     }
     .timeline-section {
       position: relative;
-      padding-left: 60px;
-      margin-bottom: 2.5rem;
+      padding-left: 50px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.6s ease forwards;
     }
+    .timeline-section:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-section:nth-child(2) { animation-delay: 0.3s; }
+    .timeline-section:nth-child(3) { animation-delay: 0.8s; }
     .timeline-dot {
       position: absolute;
-      left: 16px;
+      left: 12px;
       top: 0;
-      width: 18px; height: 18px;
+      width: 16px; height: 16px;
       border-radius: 50%;
       background: #050505;
       border: 3px solid #6366f1;
@@ -101,8 +107,8 @@
     }
     .timeline-year {
       font-family: 'Clash Display', sans-serif;
-      font-size: 1.5rem; font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: 1.3rem; font-weight: 700;
+      margin-bottom: 0.8rem;
     }
     .timeline-section.future .timeline-year {
       background: linear-gradient(135deg, #10b981, #06b6d4);
@@ -112,35 +118,70 @@
       background: linear-gradient(135deg, #6366f1, #ec4899);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
+    .timeline-section.past {
+      opacity: 0;
+      animation: fadeInPast 0.8s ease forwards;
+      animation-delay: 1s;
+    }
+    @keyframes fadeInPast {
+      to { opacity: 0.4; transform: translateY(0); }
+    }
     .timeline-section.past .timeline-year {
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.3);
+      font-size: 1.2rem;
+    }
+    .timeline-section.past .timeline-dot {
+      width: 12px; height: 12px;
+      border-width: 2px;
+      opacity: 0.5;
     }
     .past-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.2);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
       font-style: italic;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      left: 20px;
+      bottom: 0;
+      width: 40px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, #050505);
+      pointer-events: none;
     }
     .projects {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      gap: 6px;
+      max-width: 500px;
     }
     .project {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.5s ease forwards;
+    }
+    .project:nth-child(1) { animation-delay: 0.4s; }
+    .project:nth-child(2) { animation-delay: 0.5s; }
+    .project:nth-child(3) { animation-delay: 0.6s; }
+    .project:nth-child(4) { animation-delay: 0.7s; }
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
     }
     .project-header {
-      padding: 0.5rem 0.6rem;
+      padding: 0.4rem 0.5rem;
       background: rgba(255,255,255,0.03);
     }
     .project-tag {
-      font-size: 0.5rem; color: rgba(255,255,255,0.4);
+      font-size: 0.45rem; color: rgba(255,255,255,0.4);
       text-transform: uppercase; letter-spacing: 0.1em;
     }
     .project-name {
-      font-family: 'Clash Display', sans-serif; font-size: 0.75rem; font-weight: 600;
+      font-family: 'Clash Display', sans-serif; font-size: 0.65rem; font-weight: 600;
       color: #fff; transition: all 0.3s;
     }
     .project:hover .project-name {
@@ -148,7 +189,7 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .project video {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      width: 100%; aspect-ratio: 1; object-fit: cover;
       filter: brightness(0.7);
       transition: all 0.4s ease;
     }
@@ -161,13 +202,14 @@
     .dropzone {
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 2.5rem 2rem;
+      padding: 1.5rem 1.5rem;
       border: 2px dashed rgba(16, 185, 129, 0.3);
-      border-radius: 12px;
+      border-radius: 10px;
       background: rgba(16, 185, 129, 0.03);
       cursor: pointer;
       transition: all 0.4s ease;
       text-decoration: none;
+      max-width: 300px;
     }
     .dropzone:hover {
       border-color: #10b981;
@@ -175,11 +217,11 @@
       transform: translateY(-2px);
     }
     .dropzone-icon {
-      width: 48px; height: 48px;
+      width: 36px; height: 36px;
       border: 2px dashed rgba(16, 185, 129, 0.4);
-      border-radius: 12px;
+      border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.6rem;
       transition: all 0.3s;
     }
     .dropzone:hover .dropzone-icon {
@@ -188,7 +230,7 @@
       background: rgba(16, 185, 129, 0.1);
     }
     .dropzone-icon span {
-      font-size: 1.5rem; color: rgba(16, 185, 129, 0.6);
+      font-size: 1.2rem; color: rgba(16, 185, 129, 0.6);
       transition: all 0.3s;
     }
     .dropzone:hover .dropzone-icon span {
@@ -196,7 +238,7 @@
       transform: scale(1.1);
     }
     .dropzone-text {
-      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
       transition: all 0.3s;
     }
     .dropzone:hover .dropzone-text {
