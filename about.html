@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>À propos — LDVK</title>
-  <meta name="description" content="LDVK — Production vidéo et analyse de données.">
+  <meta name="description" content="LDVK — Production vidéo et analyse de données publiques.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=clash-display@600,700&display=swap" rel="stylesheet">
   <style>
@@ -23,7 +23,7 @@
     }
     .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; cursor: pointer; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .lang-toggle {
       margin-left: 1rem; padding: 0.3rem 0.6rem;
@@ -33,25 +33,32 @@
     }
     .lang-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-    .content { max-width: 550px; margin: 0 auto; padding: 100px 2rem 60px; }
+    .content { max-width: 700px; margin: 0 auto; padding: 120px 2rem 80px; }
 
     h1 {
-      font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 600;
-      margin-bottom: 1.5rem; cursor: default;
-      background: linear-gradient(135deg, #fff, #fff);
+      font-family: 'Clash Display', sans-serif; font-size: 2.5rem; font-weight: 600;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      transition: transform 0.3s ease, letter-spacing 0.3s ease;
     }
-    h1:hover { transform: scale(1.05); letter-spacing: 0.05em; }
-    h1.animate-colors { animation: colorShift 0.8s linear infinite; }
+    .sub { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 3rem; }
 
-    @keyframes colorShift {
-      0% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
-      25% { background: linear-gradient(135deg, #ec4899, #10b981, #6366f1); -webkit-background-clip: text; background-clip: text; }
-      50% { background: linear-gradient(135deg, #10b981, #6366f1, #ec4899); -webkit-background-clip: text; background-clip: text; }
-      75% { background: linear-gradient(135deg, #6366f1, #10b981, #ec4899); -webkit-background-clip: text; background-clip: text; }
-      100% { background: linear-gradient(135deg, #6366f1, #ec4899, #10b981); -webkit-background-clip: text; background-clip: text; }
+    .stats { display: flex; gap: 3rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .stat .n {
+      font-family: 'Clash Display', sans-serif; font-size: 2rem; font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
+    .stat .l { font-size: 0.7rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .section { margin-bottom: 3rem; }
+    .section h2 {
+      font-family: 'Clash Display', sans-serif; font-size: 1.3rem; font-weight: 600;
+      margin-bottom: 1rem; transition: color 0.3s;
+    }
+    .section:hover h2 { color: #fff; }
+    .section.animate-colors h2 { animation: textColorShift 0.5s linear infinite; }
+    .section p { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.7; }
 
     @keyframes textColorShift {
       0% { color: #6366f1; }
@@ -60,68 +67,33 @@
       100% { color: #6366f1; }
     }
 
-    @keyframes btnColorShift {
-      0% { background: linear-gradient(135deg, #6366f1, #ec4899); }
-      33% { background: linear-gradient(135deg, #ec4899, #10b981); }
-      66% { background: linear-gradient(135deg, #10b981, #6366f1); }
-      100% { background: linear-gradient(135deg, #6366f1, #ec4899); }
-    }
-
-    .intro { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 2rem; }
-    .intro strong { color: #fff; }
-
-    .row { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .row .item { flex: 1; }
-    .row .l { font-size: 0.6rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
-    .row .v { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-    h2 {
-      font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 1rem; cursor: default;
-      transition: letter-spacing 0.3s ease, transform 0.3s ease;
-    }
-    h2:hover { letter-spacing: 0.03em; transform: scale(1.02); }
-    h2 span { background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    h2.animate-colors span { animation: textColorShift 0.5s linear infinite; -webkit-background-clip: unset; -webkit-text-fill-color: unset; }
-
-    .text { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.5rem; }
-
-    .list { list-style: none; margin-bottom: 2rem; }
+    .list { list-style: none; margin-top: 1rem; }
     .list li {
-      padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.6); font-size: 0.8rem;
-      display: flex; gap: 0.8rem; align-items: flex-start;
-      transition: all 0.3s ease; cursor: default;
+      padding: 0.6rem 0; color: rgba(255,255,255,0.5); font-size: 0.85rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: all 0.3s;
     }
     .list li:last-child { border-bottom: none; }
-    .list li:hover { padding-left: 0.5rem; }
-    .list li.animate-colors span:last-child { animation: textColorShift 0.5s linear infinite; }
-    .list .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; margin-top: 6px; flex-shrink: 0; transition: background 0.3s; }
-    .list li.animate-colors .dot { animation: dotColorShift 0.5s linear infinite; }
-    @keyframes dotColorShift {
-      0% { background: #6366f1; }
-      33% { background: #ec4899; }
-      66% { background: #10b981; }
-      100% { background: #6366f1; }
-    }
+    .list li:hover { padding-left: 0.5rem; color: rgba(255,255,255,0.7); }
+    .list .dot { width: 5px; height: 5px; border-radius: 50%; background: #6366f1; }
 
-    .cta { text-align: center; }
+    .cta { text-align: center; margin-top: 3rem; }
     .cta a {
-      display: inline-block; padding: 0.7rem 1.5rem;
+      display: inline-block; padding: 0.8rem 2rem;
       background: linear-gradient(135deg, #6366f1, #ec4899);
       color: #fff; text-decoration: none; border-radius: 8px;
-      font-size: 0.8rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 0.85rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
     }
     .cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
-    .cta a.animate-colors { animation: btnColorShift 0.5s linear infinite; }
 
-    footer { padding: 1.5rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+    footer { padding: 2rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
     footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-    @media (max-width: 500px) {
-      .row { flex-direction: column; gap: 1rem; }
-      h1 { font-size: 1.5rem; }
-      .nav-links { gap: 1rem; }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .stats { flex-wrap: wrap; gap: 2rem; }
+      .stat .n { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -138,24 +110,29 @@
   </nav>
 
   <div class="content">
-    <h1 data-i18n="about.h1">Vidéo + Data</h1>
+    <h1 data-i18n="about.h1">À propos</h1>
+    <p class="sub" data-i18n="about.sub">Production vidéo et analyse de données depuis 2018.</p>
 
-    <p class="intro"><strong>LDVK</strong> — <span data-i18n="about.intro">Agence française de production vidéo et d'analyse de données. Depuis 2018, créativité et data pour optimiser chaque campagne.</span></p>
-
-    <div class="row">
-      <div class="item"><div class="l" data-i18n="about.created">Création</div><div class="v">2018</div></div>
-      <div class="item"><div class="l" data-i18n="about.structure">Structure</div><div class="v">SAS</div></div>
-      <div class="item"><div class="l" data-i18n="about.activity">Activité</div><div class="v">5911B</div></div>
+    <div class="stats">
+      <div class="stat"><div class="n">2018</div><div class="l" data-i18n="stats.founded">Création</div></div>
+      <div class="stat"><div class="n">SAS</div><div class="l" data-i18n="stats.structure">Structure</div></div>
+      <div class="stat"><div class="n">5911B</div><div class="l" data-i18n="stats.naf">Code NAF</div></div>
     </div>
 
-    <h2><span data-i18n="about.approach">Approche</span> <span>Data</span></h2>
-    <p class="text" data-i18n="about.text">Mesure d'impact et optimisation continue. Collecte et agrégation de données publiques pour des insights actionnables.</p>
+    <div class="section">
+      <h2 data-i18n="about.video">Production Vidéo</h2>
+      <p data-i18n="about.video.desc">Conception et réalisation de contenus vidéo pour marques et médias. Spots publicitaires, contenus social media, séries YouTube.</p>
+    </div>
 
-    <ul class="list">
-      <li><span class="dot"></span><span data-i18n="about.l1">Collecte de données publiques — vues, tendances, engagement</span></li>
-      <li><span class="dot"></span><span data-i18n="about.l2">Agrégation et analyse — rapports personnalisés</span></li>
-      <li><span class="dot"></span><span data-i18n="about.l3">Optimisation continue — ajustement basé sur les performances</span></li>
-    </ul>
+    <div class="section">
+      <h2 data-i18n="about.data">Analyse de Données</h2>
+      <p data-i18n="about.data.desc">Collecte et agrégation de données publiques pour mesurer l'impact des campagnes et comprendre les tendances du marché.</p>
+      <ul class="list">
+        <li><span class="dot"></span><span data-i18n="about.data.l1">Collecte de données publiques (vues, engagement, tendances)</span></li>
+        <li><span class="dot"></span><span data-i18n="about.data.l2">Rapports de performance personnalisés</span></li>
+        <li><span class="dot"></span><span data-i18n="about.data.l3">Veille concurrentielle et analyse de marché</span></li>
+      </ul>
+    </div>
 
     <div class="cta"><a href="/#contact" data-i18n="cta">Discutons</a></div>
   </div>
@@ -166,26 +143,30 @@
     const translations = {
       fr: {
         'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
-        'about.h1': 'Vidéo + Data',
-        'about.intro': 'Agence française de production vidéo et d\'analyse de données. Depuis 2018, créativité et data pour optimiser chaque campagne.',
-        'about.created': 'Création', 'about.structure': 'Structure', 'about.activity': 'Activité',
-        'about.approach': 'Approche',
-        'about.text': 'Mesure d\'impact et optimisation continue. Collecte et agrégation de données publiques pour des insights actionnables.',
-        'about.l1': 'Collecte de données publiques — vues, tendances, engagement',
-        'about.l2': 'Agrégation et analyse — rapports personnalisés',
-        'about.l3': 'Optimisation continue — ajustement basé sur les performances',
+        'about.h1': 'À propos',
+        'about.sub': 'Production vidéo et analyse de données depuis 2018.',
+        'stats.founded': 'Création', 'stats.structure': 'Structure', 'stats.naf': 'Code NAF',
+        'about.video': 'Production Vidéo',
+        'about.video.desc': 'Conception et réalisation de contenus vidéo pour marques et médias. Spots publicitaires, contenus social media, séries YouTube.',
+        'about.data': 'Analyse de Données',
+        'about.data.desc': 'Collecte et agrégation de données publiques pour mesurer l\'impact des campagnes et comprendre les tendances du marché.',
+        'about.data.l1': 'Collecte de données publiques (vues, engagement, tendances)',
+        'about.data.l2': 'Rapports de performance personnalisés',
+        'about.data.l3': 'Veille concurrentielle et analyse de marché',
         'cta': 'Discutons', 'footer.legal': 'Mentions légales'
       },
       en: {
         'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
-        'about.h1': 'Video + Data',
-        'about.intro': 'French video production and data analysis agency. Since 2018, creativity and data to optimize every campaign.',
-        'about.created': 'Founded', 'about.structure': 'Structure', 'about.activity': 'Activity',
-        'about.approach': 'Our',
-        'about.text': 'Impact measurement and continuous optimization. Collection and aggregation of public data for actionable insights.',
-        'about.l1': 'Public data collection — views, trends, engagement',
-        'about.l2': 'Aggregation and analysis — custom reports',
-        'about.l3': 'Continuous optimization — performance-based adjustments',
+        'about.h1': 'About',
+        'about.sub': 'Video production and data analysis since 2018.',
+        'stats.founded': 'Founded', 'stats.structure': 'Structure', 'stats.naf': 'NAF Code',
+        'about.video': 'Video Production',
+        'about.video.desc': 'Design and production of video content for brands and media. Commercials, social media content, YouTube series.',
+        'about.data': 'Data Analysis',
+        'about.data.desc': 'Collection and aggregation of public data to measure campaign impact and understand market trends.',
+        'about.data.l1': 'Public data collection (views, engagement, trends)',
+        'about.data.l2': 'Custom performance reports',
+        'about.data.l3': 'Competitive intelligence and market analysis',
         'cta': 'Let\'s talk', 'footer.legal': 'Legal notice'
       }
     };
@@ -201,28 +182,16 @@
     function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
     setLanguage(currentLang);
 
-    // Logo shuffle effect
+    // Logo shuffle
     let c=0,r=8+Math.floor(Math.random()*5);
     function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
     s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
 
-    // Dynamic color hover effects
-    const h1 = document.querySelector('h1');
-    h1.addEventListener('mouseenter', () => h1.classList.add('animate-colors'));
-    h1.addEventListener('mouseleave', () => h1.classList.remove('animate-colors'));
-
-    const h2 = document.querySelector('h2');
-    h2.addEventListener('mouseenter', () => h2.classList.add('animate-colors'));
-    h2.addEventListener('mouseleave', () => h2.classList.remove('animate-colors'));
-
-    document.querySelectorAll('.list li').forEach(li => {
-      li.addEventListener('mouseenter', () => li.classList.add('animate-colors'));
-      li.addEventListener('mouseleave', () => li.classList.remove('animate-colors'));
+    // Multicolor hover on sections
+    document.querySelectorAll('.section').forEach(section => {
+      section.addEventListener('mouseenter', () => section.classList.add('animate-colors'));
+      section.addEventListener('mouseleave', () => section.classList.remove('animate-colors'));
     });
-
-    const ctaLink = document.querySelector('.cta a');
-    ctaLink.addEventListener('mouseenter', () => ctaLink.classList.add('animate-colors'));
-    ctaLink.addEventListener('mouseleave', () => ctaLink.classList.remove('animate-colors'));
   </script>
 </body>
 </html>
