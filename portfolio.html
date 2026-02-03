@@ -57,62 +57,48 @@
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      max-width: 900px; margin: 0 auto;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      max-width: 700px; margin: 0 auto; padding: 0 1rem;
     }
 
     .project {
       position: relative;
-      aspect-ratio: 1;
+      aspect-ratio: 3/4;
       overflow: hidden;
+      border-radius: 8px;
       cursor: pointer;
     }
     .project video {
       width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.6) grayscale(0.3);
-      transition: all 0.5s ease;
+      filter: brightness(0.7);
+      transition: all 0.4s ease;
     }
     .project:hover video {
-      filter: brightness(0.8) grayscale(0);
+      filter: brightness(0.9);
       transform: scale(1.05);
     }
     .project-overlay {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-      transform: translateY(20px);
-      opacity: 0;
-      transition: all 0.4s ease;
-    }
-    .project:hover .project-overlay {
-      transform: translateY(0);
-      opacity: 1;
+      inset: 0;
+      padding: 0.6rem;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
     }
     .project-tag {
-      font-size: 0.6rem; color: rgba(255,255,255,0.5);
-      text-transform: uppercase; letter-spacing: 0.15em;
-      margin-bottom: 0.3rem;
+      font-size: 0.5rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.1em;
     }
     .project-name {
-      font-family: 'Clash Display', sans-serif; font-size: 1.3rem; font-weight: 600;
+      font-family: 'Clash Display', sans-serif; font-size: 0.75rem; font-weight: 600;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    .project:hover .project-name {
       background: linear-gradient(90deg, #6366f1, #ec4899, #10b981);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .project-desc {
-      font-size: 0.75rem; color: rgba(255,255,255,0.6);
-      margin-top: 0.4rem;
-    }
-    .project::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 2px solid transparent;
-      transition: all 0.4s ease;
-    }
-    .project:hover::after {
-      border-color: rgba(99, 102, 241, 0.5);
-    }
+    .project-desc { display: none; }
 
     .clients {
       max-width: 1200px; margin: 3rem auto; padding: 2rem;
@@ -131,9 +117,7 @@
 
     @media (max-width: 600px) {
       .hero { padding: 100px 1.5rem 30px; }
-      .projects { grid-template-columns: 1fr; }
-      .project-name { font-size: 1.1rem; }
-      .project-overlay { padding: 1rem; opacity: 1; transform: none; }
+      .projects { grid-template-columns: repeat(2, 1fr); gap: 6px; }
       h1 { font-size: 2rem; }
       .stats { gap: 1.5rem; flex-wrap: wrap; }
       .stat .n { font-size: 1.5rem; }
