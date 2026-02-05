@@ -848,8 +848,11 @@
     .logo-track {
       display: flex;
       gap: 4rem;
-      animation: scroll 30s linear infinite;
       width: max-content;
+    }
+
+    .logo-track.animate {
+      animation: scroll 30s linear infinite;
     }
 
     .logo-track:hover {
@@ -858,14 +861,14 @@
 
     @keyframes scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(var(--scroll-distance, -50%)); }
     }
 
     .logo-carousel img {
       height: 38px;
       opacity: 0.4;
       filter: grayscale(1) invert(1) brightness(1.5);
-      transition: all 0.4s ease;
+      transition: opacity 0.4s ease;
       flex-shrink: 0;
     }
 
@@ -1209,26 +1212,26 @@
 
   <!-- Logo Carousel - Infinite Scroll -->
   <div class="logo-carousel">
-    <div class="logo-track">
-      <img src="logos/winamax.png" alt="Winamax">
-      <img src="logos/laposte.png" alt="La Poste">
-      <img src="logos/webedia.png" alt="Webedia">
-      <img src="logos/macif.png" alt="Macif">
-      <img src="logos/francetv.png" alt="France TV">
-      <img src="logos/terrys.svg" alt="Terry's">
-      <img src="logos/coc.png" alt="Court ou Crève">
-      <img src="logos/primevideo.png" alt="Prime Video">
-      <img src="logos/freaks.png" alt="Freaks">
+    <div class="logo-track" id="logoTrack">
+      <img src="logos/winamax.png" alt="Winamax" loading="eager">
+      <img src="logos/laposte.png" alt="La Poste" loading="eager">
+      <img src="logos/webedia.png" alt="Webedia" loading="eager">
+      <img src="logos/macif.png" alt="Macif" loading="eager">
+      <img src="logos/francetv.png" alt="France TV" loading="eager">
+      <img src="logos/terrys.svg" alt="Terry's" loading="eager">
+      <img src="logos/coc.png" alt="Court ou Crève" loading="eager">
+      <img src="logos/primevideo.png" alt="Prime Video" loading="eager">
+      <img src="logos/freaks.png" alt="Freaks" loading="eager">
       <!-- Duplicate for seamless loop -->
-      <img src="logos/winamax.png" alt="Winamax">
-      <img src="logos/laposte.png" alt="La Poste">
-      <img src="logos/webedia.png" alt="Webedia">
-      <img src="logos/macif.png" alt="Macif">
-      <img src="logos/francetv.png" alt="France TV">
-      <img src="logos/terrys.svg" alt="Terry's">
-      <img src="logos/coc.png" alt="Court ou Crève">
-      <img src="logos/primevideo.png" alt="Prime Video">
-      <img src="logos/freaks.png" alt="Freaks">
+      <img src="logos/winamax.png" alt="Winamax" loading="eager">
+      <img src="logos/laposte.png" alt="La Poste" loading="eager">
+      <img src="logos/webedia.png" alt="Webedia" loading="eager">
+      <img src="logos/macif.png" alt="Macif" loading="eager">
+      <img src="logos/francetv.png" alt="France TV" loading="eager">
+      <img src="logos/terrys.svg" alt="Terry's" loading="eager">
+      <img src="logos/coc.png" alt="Court ou Crève" loading="eager">
+      <img src="logos/primevideo.png" alt="Prime Video" loading="eager">
+      <img src="logos/freaks.png" alt="Freaks" loading="eager">
     </div>
   </div>
 
@@ -1980,6 +1983,40 @@
       if (window.location.hash === '#contact') {
         openModal('contact');
       }
+
+      // Logo carousel: wait for images to load, then calculate scroll distance
+      const track = document.getElementById('logoTrack');
+      const images = track.querySelectorAll('img');
+      let loaded = 0;
+      const totalImages = images.length;
+
+      function startCarousel() {
+        // Calculate half width (first set of logos)
+        const halfWidth = track.scrollWidth / 2;
+        track.style.setProperty('--scroll-distance', `-${halfWidth}px`);
+        track.classList.add('animate');
+      }
+
+      images.forEach(img => {
+        if (img.complete) {
+          loaded++;
+          if (loaded === totalImages) startCarousel();
+        } else {
+          img.addEventListener('load', () => {
+            loaded++;
+            if (loaded === totalImages) startCarousel();
+          });
+          img.addEventListener('error', () => {
+            loaded++;
+            if (loaded === totalImages) startCarousel();
+          });
+        }
+      });
+
+      // Fallback: start after 2s even if not all loaded
+      setTimeout(() => {
+        if (!track.classList.contains('animate')) startCarousel();
+      }, 2000);
     });
 
     // Also check on hash change
