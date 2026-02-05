@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Collection Practices — LDVK</title>
+  <meta name="description" content="LDVK data collection methodology and compliance practices.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%236366f1'/><stop offset='50%25' stop-color='%23ec4899'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='%230a0a0a'/><text x='50' y='78' font-family='system-ui,sans-serif' font-size='80' font-weight='700' fill='url(%23g)' text-anchor='middle'>L</text></svg>">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=clash-display@600,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050505; color: #fff; font-family: 'General Sans', sans-serif; min-height: 100vh; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 1.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; background: rgba(5,5,5,0.8); backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 700;
+      color: rgba(255,255,255,0.25); text-decoration: none; display: flex; cursor: pointer;
+    }
+    .nav-logo span { display: inline-block; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .lang-toggle {
+      margin-left: 1rem; padding: 0.3rem 0.6rem;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 5px; color: rgba(255,255,255,0.5); font-size: 0.7rem;
+      font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: inherit;
+    }
+    .lang-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    .content { max-width: 700px; margin: 0 auto; padding: 120px 2rem 80px; }
+
+    h1 {
+      font-family: 'Clash Display', sans-serif; font-size: 2.5rem; font-weight: 600;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .sub { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 3rem; }
+
+    .section { margin-bottom: 2.5rem; }
+    .section h2 {
+      font-family: 'Clash Display', sans-serif; font-size: 1.3rem; font-weight: 600;
+      margin-bottom: 1rem; color: #fff;
+    }
+    .section p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.8rem; }
+
+    .info-block {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .info-block h3 {
+      font-size: 1rem; font-weight: 600; color: #10b981; margin-bottom: 0.8rem;
+    }
+    .info-block p { color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.5rem; }
+    .info-block p:last-child { margin-bottom: 0; }
+
+    .list { list-style: none; margin-top: 1rem; }
+    .list li {
+      padding: 0.6rem 0; color: rgba(255,255,255,0.6); font-size: 0.85rem;
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .list li:last-child { border-bottom: none; }
+    .list .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; margin-top: 6px; flex-shrink: 0; }
+
+    .company-info {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .company-info h3 {
+      font-size: 0.8rem; color: rgba(255,255,255,0.4); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .company-row {
+      display: flex; justify-content: space-between; padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.85rem;
+    }
+    .company-row:last-child { border-bottom: none; }
+    .company-row .label { color: rgba(255,255,255,0.4); }
+    .company-row .value { color: #fff; font-weight: 500; }
+
+    footer { padding: 2rem; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .company-row { flex-direction: column; gap: 0.2rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo"><span>L</span><span>D</span><span>V</span><span>K</span></a>
+    <div class="nav-links">
+      <a href="/services" data-i18n="nav.services">Services</a>
+      <a href="/portfolio" data-i18n="nav.portfolio">Projets</a>
+      <a href="/about" data-i18n="nav.about">À propos</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+      <button class="lang-toggle" onclick="toggleLang()">EN</button>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h1 data-i18n="dc.h1">Data Collection Practices</h1>
+    <p class="sub" data-i18n="dc.sub">How we collect and use publicly available web data.</p>
+
+    <div class="section">
+      <h2 data-i18n="dc.what">What We Collect</h2>
+      <p data-i18n="dc.what.desc">LDVK collects and aggregates publicly accessible data from the web to provide actionable market intelligence reports to our clients. We focus on:</p>
+      <ul class="list">
+        <li><span class="dot"></span><span data-i18n="dc.what.1">Video performance metrics (views, engagement rates, growth trends)</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.what.2">Pricing and availability data for e-commerce and transport sectors</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.what.3">Market trends and competitor benchmarking</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.what.4">Audience demographics and content performance analytics</span></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2 data-i18n="dc.why">Why We Use Residential Proxies</h2>
+      <p data-i18n="dc.why.desc">To deliver accurate and comprehensive data to our clients, we use residential proxy services for the following reasons:</p>
+      <ul class="list">
+        <li><span class="dot"></span><span data-i18n="dc.why.1"><strong>Geographic coverage:</strong> Access geo-restricted content to provide regional market insights for clients operating in multiple countries</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.why.2"><strong>Scale:</strong> Collect data at the volume required for meaningful statistical analysis and trend identification</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.why.3"><strong>Accuracy:</strong> View content as real users see it, without datacenter IP blocking or altered content</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.why.4"><strong>Rate limits:</strong> Distribute requests to avoid overloading source servers while maintaining data freshness</span></li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h3 data-i18n="dc.compliance">Compliance & Ethics</h3>
+      <p data-i18n="dc.compliance.1">We only collect publicly available data that any user could access through a web browser.</p>
+      <p data-i18n="dc.compliance.2">We respect robots.txt directives and website terms of service.</p>
+      <p data-i18n="dc.compliance.3">We do not collect personal data, login-protected content, or any sensitive information.</p>
+      <p data-i18n="dc.compliance.4">Our data collection practices comply with GDPR and applicable data protection regulations.</p>
+    </div>
+
+    <div class="section">
+      <h2 data-i18n="dc.industries">Industries We Serve</h2>
+      <p data-i18n="dc.industries.desc">We provide data-driven insights for clients in:</p>
+      <ul class="list">
+        <li><span class="dot"></span><span data-i18n="dc.industries.1"><strong>Media & Entertainment:</strong> YouTube analytics, social media trends, content performance</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.industries.2"><strong>E-commerce:</strong> Pricing intelligence, product availability, competitor monitoring</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.industries.3"><strong>Transport:</strong> Fare tracking, route availability, market analysis</span></li>
+        <li><span class="dot"></span><span data-i18n="dc.industries.4"><strong>Advertising:</strong> Campaign performance benchmarking, audience insights</span></li>
+      </ul>
+    </div>
+
+    <div class="company-info">
+      <h3 data-i18n="dc.company">Company Information</h3>
+      <div class="company-row"><span class="label">Company</span><span class="value">LDVK SAS</span></div>
+      <div class="company-row"><span class="label">SIRET</span><span class="value">834 994 352 00021</span></div>
+      <div class="company-row"><span class="label">VAT</span><span class="value">FR69834994352</span></div>
+      <div class="company-row"><span class="label">Activity (NAF)</span><span class="value">5911B - Film Production</span></div>
+      <div class="company-row"><span class="label">Address</span><span class="value">22 Rue de la Folie-Méricourt, 75011 Paris, France</span></div>
+      <div class="company-row"><span class="label">Founded</span><span class="value">2018</span></div>
+      <div class="company-row"><span class="label">Contact</span><span class="value">ludo@ldvk.fr</span></div>
+    </div>
+  </div>
+
+  <footer>© 2018-2026 LDVK SAS · <a href="/mentions-legales" data-i18n="footer.legal">Mentions légales</a></footer>
+
+  <script>
+    const translations = {
+      fr: {
+        'nav.services': 'Services', 'nav.portfolio': 'Projets', 'nav.about': 'À propos', 'nav.contact': 'Contact',
+        'dc.h1': 'Collecte de Données',
+        'dc.sub': 'Comment nous collectons et utilisons les données web publiques.',
+        'dc.what': 'Ce que nous collectons',
+        'dc.what.desc': 'LDVK collecte et agrège des données publiquement accessibles pour fournir des rapports d\'intelligence marché à nos clients. Nous nous concentrons sur :',
+        'dc.what.1': 'Métriques de performance vidéo (vues, taux d\'engagement, tendances)',
+        'dc.what.2': 'Données de prix et disponibilité pour les secteurs e-commerce et transport',
+        'dc.what.3': 'Tendances marché et benchmarking concurrentiel',
+        'dc.what.4': 'Démographie audience et analytics de performance',
+        'dc.why': 'Pourquoi nous utilisons des proxys résidentiels',
+        'dc.why.desc': 'Pour fournir des données précises et complètes à nos clients, nous utilisons des services de proxy résidentiels pour les raisons suivantes :',
+        'dc.why.1': '<strong>Couverture géographique :</strong> Accéder aux contenus géo-restreints pour fournir des analyses régionales',
+        'dc.why.2': '<strong>Échelle :</strong> Collecter des données au volume requis pour une analyse statistique pertinente',
+        'dc.why.3': '<strong>Précision :</strong> Voir le contenu tel que les vrais utilisateurs le voient',
+        'dc.why.4': '<strong>Limites de requêtes :</strong> Distribuer les requêtes pour éviter de surcharger les serveurs sources',
+        'dc.compliance': 'Conformité & Éthique',
+        'dc.compliance.1': 'Nous collectons uniquement des données publiquement accessibles.',
+        'dc.compliance.2': 'Nous respectons les directives robots.txt et les conditions d\'utilisation.',
+        'dc.compliance.3': 'Nous ne collectons pas de données personnelles ni de contenu protégé.',
+        'dc.compliance.4': 'Nos pratiques sont conformes au RGPD.',
+        'dc.industries': 'Secteurs servis',
+        'dc.industries.desc': 'Nous fournissons des insights data-driven pour :',
+        'dc.industries.1': '<strong>Média & Entertainment :</strong> Analytics YouTube, tendances social media',
+        'dc.industries.2': '<strong>E-commerce :</strong> Intelligence prix, monitoring concurrentiel',
+        'dc.industries.3': '<strong>Transport :</strong> Suivi des tarifs, analyse marché',
+        'dc.industries.4': '<strong>Publicité :</strong> Benchmarking campagnes, insights audience',
+        'dc.company': 'Informations société',
+        'footer.legal': 'Mentions légales'
+      },
+      en: {
+        'nav.services': 'Services', 'nav.portfolio': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact',
+        'dc.h1': 'Data Collection Practices',
+        'dc.sub': 'How we collect and use publicly available web data.',
+        'dc.what': 'What We Collect',
+        'dc.what.desc': 'LDVK collects and aggregates publicly accessible data from the web to provide actionable market intelligence reports to our clients. We focus on:',
+        'dc.what.1': 'Video performance metrics (views, engagement rates, growth trends)',
+        'dc.what.2': 'Pricing and availability data for e-commerce and transport sectors',
+        'dc.what.3': 'Market trends and competitor benchmarking',
+        'dc.what.4': 'Audience demographics and content performance analytics',
+        'dc.why': 'Why We Use Residential Proxies',
+        'dc.why.desc': 'To deliver accurate and comprehensive data to our clients, we use residential proxy services for the following reasons:',
+        'dc.why.1': '<strong>Geographic coverage:</strong> Access geo-restricted content to provide regional market insights',
+        'dc.why.2': '<strong>Scale:</strong> Collect data at the volume required for meaningful statistical analysis',
+        'dc.why.3': '<strong>Accuracy:</strong> View content as real users see it, without datacenter IP blocking',
+        'dc.why.4': '<strong>Rate limits:</strong> Distribute requests to avoid overloading source servers',
+        'dc.compliance': 'Compliance & Ethics',
+        'dc.compliance.1': 'We only collect publicly available data that any user could access.',
+        'dc.compliance.2': 'We respect robots.txt directives and website terms of service.',
+        'dc.compliance.3': 'We do not collect personal data or login-protected content.',
+        'dc.compliance.4': 'Our practices comply with GDPR and applicable regulations.',
+        'dc.industries': 'Industries We Serve',
+        'dc.industries.desc': 'We provide data-driven insights for clients in:',
+        'dc.industries.1': '<strong>Media & Entertainment:</strong> YouTube analytics, social media trends',
+        'dc.industries.2': '<strong>E-commerce:</strong> Pricing intelligence, competitor monitoring',
+        'dc.industries.3': '<strong>Transport:</strong> Fare tracking, market analysis',
+        'dc.industries.4': '<strong>Advertising:</strong> Campaign benchmarking, audience insights',
+        'dc.company': 'Company Information',
+        'footer.legal': 'Legal notice'
+      }
+    };
+    let currentLang = localStorage.getItem('ldvk-lang') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+    function setLanguage(lang) {
+      currentLang = lang; localStorage.setItem('ldvk-lang', lang); document.documentElement.lang = lang;
+      document.querySelector('.lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+    }
+    function toggleLang() { setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
+    setLanguage(currentLang);
+
+    // Logo shuffle
+    let c=0,r=8+Math.floor(Math.random()*5);
+    function s(){c++;if(c>=r){document.querySelectorAll('.nav-logo span').forEach(e=>e.style.transform='');c=0;r=8+Math.floor(Math.random()*5);}else{document.querySelectorAll('.nav-logo span').forEach(e=>{e.style.transform=`translate(${(Math.random()-.5)*25}px,${(Math.random()-.5)*15}px) rotate(${(Math.random()-.5)*35}deg)`;});}}
+    s();document.querySelector('.nav-logo').addEventListener('mouseenter',s);document.querySelector('.nav-logo').addEventListener('click',s);
+  </script>
+</body>
+</html>
